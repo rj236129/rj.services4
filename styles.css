@@ -1,0 +1,16 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+
+#login-container {
+    margin-top: 100px;
+}
+
+#profile-container img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+}
