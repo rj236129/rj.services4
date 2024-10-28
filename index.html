@@ -181,19 +181,6 @@
        <div class="gcse-search"></div> <!-- Google CSE will render here -->
     </div>
 
-    <script>
-        function performSearch() {
-            const query = document.getElementById('searchInput').value;
-            const searchElement = document.querySelector('.gcse-search');
-            searchElement.innerHTML = ''; // Clear previous results
-            const searchForm = document.createElement('form');
-            searchForm.setAttribute('action', `https://www.google.com/cse?cx=YOUR_CSE_ID&q=${query}`);
-            searchForm.setAttribute('method', 'get');
-            searchForm.target = '_blank'; // Open in new tab
-            searchForm.submit();
-        }
-    </script>
-
   <!-- Section 2: Our Services -->
         <h2>Our Services</h2>
 
