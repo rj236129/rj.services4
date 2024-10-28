@@ -177,22 +177,10 @@
                 <button class="search-icon"><i class="fas fa-search"></i></button> <!-- Search icon without background -->
             </div>
         </div>
-        <script>
-    function performSearch() {
-        // Search bar में जो भी टाइप किया गया है उसे 'query' में ले रहे हैं
-        var query = document.getElementById("search-query").value;
-        
-        // Google CSE की ID से सर्च URL तैयार कर रहे हैं
-        var cseID = '07cad105f6ef24529'; // यहां पर अपने Google CSE की ID डालें
-        var searchURL = 'https://cse.google.com/cse?cx=' + cseID + '&q=' + encodeURIComponent(query);
-
-        // सर्च URL को नई टैब में ओपन कर रहे हैं
-        window.open(searchURL, '_blank');
-    }
+        <script async src="https://cse.google.com/cse.js?cx=07cad105f6ef24529">
 </script>
-
-
-        <!-- Section 2: Our Services -->
+<div class="gcse-search"></div>
+  <!-- Section 2: Our Services -->
         <h2>Our Services</h2>
 
         <!-- Section 3: Service Layer (Flex Box) -->
