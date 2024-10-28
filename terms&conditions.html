@@ -42,17 +42,23 @@
             text-align: center;
             margin: 0px 0;
         }
-        .icon-left {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: #ffffff;
+        .search-container {
+            text-align: center;
+            padding: 2px;
+            margin: 0; /* Set margin to 0 */
+            background-color: #febd69; /* Set background color for search container */
+            display: flex; /* Use flexbox for layout */
+            align-items: center; /* Center items vertically */
+        }
+        .logo {
+            height: 50px; /* Set logo height */
+            margin-right: 10px; /* Space between logo and text */
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2em;
-            color: #ff6f00;
-            margin-right: 10px;
+        }
+        .logo-text {
+            font-size: 1.5em; /* Font size for RJ Services text */
+            font-weight: bold; /* Bold text */
+            color: black; /* Text color */
         }
         .bottom-menu {
             display: flex;
@@ -118,11 +124,10 @@
 </head>
 <body>
     <div class="container">
-        <!-- Header with Icon and Title -->
-        <h2 style="margin-top: 0px;">
-            <div class="icon-left">
-                <i class="fas fa-briefcase"></i> <!-- Replace with your app/site icon if available -->
-            </h2></div>
+        <!-- Section 1: Logo and Text -->
+        <div class="search-container">
+            <img src="MY LOGO.png" alt="Logo" class="logo"> <!-- Add your logo here -->
+        </div>
             <h3>Terms and Conditions</h3>
             <div class="rj">   
                 <h2>1. Acceptance of Terms</h2>
