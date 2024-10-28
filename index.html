@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="styles.css"> <!-- अपनी स्टाइलिंग फाइल जोड़ें -->
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js"></script>
+</head>
+<body>
+    <div id="login-container">
+        <button id="google-login-btn">Login with Google</button>
+    </div>
+    <div id="profile-container" style="display:none;">
+        <h2>User Profile</h2>
+        <img id="user-photo" alt="User Photo">
+        <p id="user-name"></p>
+        <p id="user-email"></p>
+        <button id="logout-btn">Logout</button>
+    </div>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCbLnj8H_BhbwGuFrJR_MUMYSOUmEaYvww",
+            authDomain: "rjapp-6fc09.firebaseapp.com",
+            projectId: "rjapp-6fc09",
+            storageBucket: "rjapp-6fc09.appspot.com",
+            messagingSenderId: "1047396234166",
+            appId: "1:1047396234166:web:4af3d994da76a623a68717",
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Google Sign-In
+        document.getElementById('google-login-btn').addEventListener('click', () => {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider)
+                .then(result => {
+                    const user = result.user;
+                    displayUserProfile(user);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        });
+
+        // Display user profile
+        function displayUserProfile(user) {
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('profile-container').style.display = 'block';
+            document.getElementById('user-photo').src = user.photoURL;
+            document.getElementById('user-name').textContent = `Name: ${user.displayName}`;
+            document.getElementById('user-email').textContent = `Email: ${user.email}`;
+        }
+
+        // Logout
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            auth.signOut().then(() => {
+                document.getElementById('profile-container').style.display = 'none';
+                document.getElementById('login-container').style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
