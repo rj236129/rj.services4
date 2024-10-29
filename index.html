@@ -6,6 +6,88 @@
     <title>RJ Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: black;
+        }
+
+        .search-container {
+            text-align: center;
+            padding: 10px;
+            background-color: #febd69;
+            position: relative;
+        }
+
+        .search-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar {
+            padding: 8px;
+            border: none;
+            outline: none;
+            flex: 1;
+        }
+
+        .search-icon {
+            padding: 8px;
+            background-color: #febd69;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            transition: color 0.3s;
+        }
+
+        .suggestions {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            border: 1px solid #ccc;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 4px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: none;
+        }
+
+        .suggestions div {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .suggestions div:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RJ Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -19,61 +101,62 @@
         .search-container {
             text-align: center;
             padding: 10px;
-            margin: 0; /* Set margin to 0 */
-            background-color: #febd69; /* Set background color for search container */
+            background-color: #febd69;
+            position: relative;
         }
+
         .search-box {
-            display: flex; /* Use flexbox for layout */
-            justify-content: space-between; /* Space between input and icon */
-            border: 2px solid #febd69; /* Border color */
-            border-radius: 10px; /* Rounded corners */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for depth */
-            background-color: white; /* Background color for search box */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         .search-bar {
             padding: 8px;
-            border: none; /* No border for input */
-            border-radius: 10px 0 0 10px; /* Rounded corners for left side */
-            width: 220px; /* Width of the input */
-            outline: none; /* Remove outline on focus */
+            border: none;
+            outline: none;
+            flex: 1;
         }
+
         .search-icon {
-            padding: 8px; /* Padding around the icon */
-            border: none; /* No border */
-            border-radius: 0 10px 10px 0; /* Rounded corners for right side */
-            color: black; /* Icon color */
+            padding: 8px;
+            background-color: #febd69;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
             transition: color 0.3s;
-            display: flex; /* Center the icon */
-            align-items: center; /* Center icon vertically */
         }
-        .search-icon:hover {
-            color: #d97706; /* Change color on hover */
-        }
+
         .suggestions {
             position: absolute;
-            top: 100%; /* Position below the search bar */
-            left: 0;
-            right: 0;
-            background: white;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
             border: 1px solid #ccc;
+            width: 100%;
+            max-width: 400px;
             border-radius: 4px;
-            z-index: 1000; /* Ensure suggestions are on top */
-            max-height: 200px;
-            overflow-y: auto; /* Scroll if too many suggestions */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: none;
         }
+
         .suggestions div {
             padding: 10px;
             cursor: pointer;
         }
+
         .suggestions div:hover {
-            background-color: #f0f0f0; /* Highlight suggestion on hover */
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto; /* Centering container */
-            padding: 0; /* No padding for container */
-            flex: 1;
+            background-color: #f0f0f0;
         }
         h2 {
             color: black; /* Set heading text color to black */
@@ -190,71 +273,101 @@
 </head>
 <body>
 
-<div class="container">
-    <!-- Section 1: Search Bar -->
+    <!-- Search Container -->
     <div class="search-container">
-        <form class="search-box" onsubmit="handleSearch(event)">
-            <input type="text" class="search-bar" id="searchInput" placeholder="Search services..." oninput="showSuggestions(this.value)" required>
-            <button type="submit" class="search-icon">
+        <div class="search-box">
+            <input type="text" class="search-bar" id="searchInput" placeholder="Search services..." oninput="showSuggestions(this.value)" onkeypress="handleKeyPress(event)">
+            <div class="search-icon" onclick="handleSearch()">
                 <i class="fas fa-search"></i>
-            </button>
-        </form>
-        <div id="suggestions" class="suggestions"></div> <!-- Suggestions container -->
+            </div>
+        </div>
+        <div id="suggestions" class="suggestions"></div>
     </div>
-    <!-- Bottom Menu -->
-    <div class="bottom-menu">
-        <!-- Bottom menu links -->
-    </div>
-</div>
 
-<!-- JavaScript for search functionality -->
-<script>
-    // Define service links based on keywords
-    const services = {
-        "pan": "https://example.com/pan-card",
-        "e-mitra": "RJ SERVICES.HTML",
-        "itr": "itr.html",
-        "gst": "gst.html",
-        "accounting": "accounting.html",
-        "jobs": "jobs.html"
-    };
+    <!-- JavaScript -->
+    <script>
+        // List of services for suggestions
+        const services = [
+            { name: "PAN Card Services", url: "https://example.com/pan-card" },
+            { name: "E-Mitra Services", url: "RJ SERVICES.HTML" },
+            { name: "ITR Services", url: "itr.html" },
+            { name: "GST Services", url: "gst.html" },
+            { name: "Accounting Services", url: "accounting.html" },
+            { name: "Jobs Services", url: "jobs.html" }
+        ];
 
-    function handleSearch(event) {
-        event.preventDefault(); // Prevent form submission
+        // Show suggestions based on input
+        function showSuggestions(query) {
+            const suggestionsContainer = document.getElementById("suggestions");
+            suggestionsContainer.innerHTML = ""; // Clear previous suggestions
 
-        // Get the input from the search bar
-        const query = document.getElementById("searchInput").value.trim().toLowerCase();
+            if (query.trim() === "") {
+                suggestionsContainer.style.display = "none";
+                return;
+            }
 
-        // Check if the query matches any predefined services
-        if (services[query]) {
-            window.location.href = services[query]; // Redirect to the matched service page
-        } else {
-            // Perform a Google search if no match is found
-            window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+            // Filter services based on input (match anywhere in the name)
+            const filteredServices = services.filter(service =>
+                service.name.toLowerCase().includes(query.toLowerCase())
+            );
+
+            // Display filtered services
+            if (filteredServices.length > 0) {
+                filteredServices.forEach(service => {
+                    const suggestionDiv = document.createElement("div");
+                    suggestionDiv.textContent = service.name;
+                    suggestionDiv.onclick = () => {
+                        window.location.href = service.url;
+                    };
+                    suggestionsContainer.appendChild(suggestionDiv);
+                });
+            } else {
+                // Add Google search suggestion if no matching local services found
+                const googleSearchDiv = document.createElement("div");
+                googleSearchDiv.textContent = `Search on Google: "${query}"`;
+                googleSearchDiv.onclick = () => {
+                    window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                };
+                suggestionsContainer.appendChild(googleSearchDiv);
+            }
+            suggestionsContainer.style.display = "block";
         }
-    }
 
-    function showSuggestions(input) {
-        const suggestionsContainer = document.getElementById("suggestions");
-        suggestionsContainer.innerHTML = ''; // Clear previous suggestions
+        // Handle search
+        function handleSearch() {
+            const query = document.getElementById("searchInput").value;
+            const service = services.find(s => s.name.toLowerCase() === query.toLowerCase());
 
-        // Filter services based on input
-        const filteredServices = Object.keys(services).filter(service => service.includes(input.toLowerCase()));
+            if (service) {
+                window.location.href = service.url;
+            } else {
+                // Google search if no exact match in services
+                window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+            }
+        }
 
-        // Show suggestions
-        filteredServices.forEach(service => {
-            const suggestionDiv = document.createElement("div");
-            suggestionDiv.textContent = service;
-            suggestionDiv.onclick = () => {
-                document.getElementById("searchInput").value = service; // Set input value to selected suggestion
-                suggestionsContainer.innerHTML = ''; // Clear suggestions
-                handleSearch(new Event('submit')); // Trigger search
-            };
-            suggestionsContainer.appendChild(suggestionDiv);
+        // Trigger search on Enter key press
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                handleSearch();
+            }
+        }
+
+        // Hide suggestions when clicking outside the search area
+        document.addEventListener("click", (event) => {
+            const searchContainer = document.querySelector(".search-container");
+            const suggestionsContainer = document.getElementById("suggestions");
+
+            if (!searchContainer.contains(event.target)) {
+                suggestionsContainer.style.display = "none";
+            }
         });
-    }
-</script>
 
+        // Clear suggestions on back button press (browser back button)
+        window.addEventListener("popstate", () => {
+            document.getElementById("suggestions").style.display = "none";
+        });
+    </script>
 </body>
   <!-- Section 2: Our Services -->
         <h2>Our Services</h2>
@@ -347,4 +460,5 @@
         </a>
     </div>
 </body>
+</html>
 </html>
