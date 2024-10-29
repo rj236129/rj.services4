@@ -171,47 +171,55 @@
 </head>
 <body>
     <div class="container">
-        <!-- Section 1: Search Bar -->
-        <div class="search-container">
-            <div class="search-box">
-                <input type="text" class="search-bar" id="searchInput" placeholder="Search services...">
-                <button class="search-icon" onclick="performSearch()"><i class="fas fa-search"></i></button>
-            </div>
-        </div>
-        
-        <!-- Rest of your HTML code -->
-        
-        <!-- Bottom Menu -->
-        <div class="bottom-menu">
-            <!-- Bottom menu links -->
-        </div>
+    <!-- Section 1: Search Bar -->
+    <div class="search-container">
+        <!-- Form added around the search box -->
+        <form class="search-box" onsubmit="handleSearch(event)">
+            <input type="text" class="search-bar" id="searchInput" placeholder="Search services...">
+            <button type="button" class="search-icon" onclick="performSearch()">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
     </div>
+    <!-- Bottom Menu -->
+    <div class="bottom-menu">
+        <!-- Bottom menu links -->
+    </div>
+</div>
 
-    <!-- JavaScript for search functionality -->
-    <script>
-        function performSearch() {
-            // Get the input from the search bar
-            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+<!-- JavaScript for search functionality -->
+<script>
+    function handleSearch(event) {
+        event.preventDefault(); // Prevent form submission
+        performSearch(); // Call the search function
+    }
 
-            // Define service links based on keywords
-            const services = {
-                "pan": "https://example.com/pan-card",
-                "e-mitra": "RJ SERVICES.HTML",
-                "itr": "itr.html",
-                "gst": "gst.html",
-                "accounting": "accounting.html",
-                "jobs": "jobs.html"
-            };
+    function performSearch() {
+        // Get the input from the search bar
+        const query = document.getElementById("searchInput").value.trim().toLowerCase();
 
-            // Check if the query matches any predefined services
-            if (services[query]) {
-                window.location.href = services[query]; // Redirect to the matched service page
-            } else {
-                // Perform a Google search if no match is found
-                window.open(`https://www.google.com/search?q=${query}`, '_blank');
-            }
+        // Define service links based on keywords
+        const services = {
+            "pan": "https://example.com/pan-card",
+            "e-mitra": "RJ SERVICES.HTML",
+            "itr": "itr.html",
+            "gst": "gst.html",
+            "accounting": "accounting.html",
+            "jobs": "jobs.html"
+        };
+
+        // Check if the query matches any predefined services
+        if (services[query]) {
+            window.location.href = services[query]; // Redirect to the matched service page
+        } else if (query) {
+            // Redirect to a custom search results page if desired
+            window.location.href = `searchResultsPage.html?query=${encodeURIComponent(query)}`;
+            // OR perform a Google search if no match is found
+            // window.open(`https://www.google.com/search?q=${query}`, '_blank');
         }
-    </script>
+    }
+</script>
+
 </body>
   <!-- Section 2: Our Services -->
         <h2>Our Services</h2>
