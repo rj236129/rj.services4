@@ -170,16 +170,17 @@
     </style>
 </head>
 <body>
-    <div class="container">
+
+<div class="container">
     <!-- Section 1: Search Bar -->
     <div class="search-container">
-        <!-- Form added around the search box -->
         <form class="search-box" onsubmit="handleSearch(event)">
-            <input type="text" class="search-bar" id="searchInput" placeholder="Search services...">
-            <button type="button" class="search-icon" onclick="performSearch()">
+            <input type="text" class="search-bar" id="searchInput" placeholder="Search services..." oninput="showSuggestions(this.value)" required>
+            <button type="submit" class="search-icon">
                 <i class="fas fa-search"></i>
             </button>
         </form>
+        <div id="suggestions" class="suggestions"></div> <!-- Suggestions container -->
     </div>
     <!-- Bottom Menu -->
     <div class="bottom-menu">
@@ -189,34 +190,49 @@
 
 <!-- JavaScript for search functionality -->
 <script>
+    // Define service links based on keywords
+    const services = {
+        "pan": "https://example.com/pan-card",
+        "e-mitra": "RJ SERVICES.HTML",
+        "itr": "itr.html",
+        "gst": "gst.html",
+        "accounting": "accounting.html",
+        "jobs": "jobs.html"
+    };
+
     function handleSearch(event) {
         event.preventDefault(); // Prevent form submission
-        performSearch(); // Call the search function
-    }
 
-    function performSearch() {
         // Get the input from the search bar
         const query = document.getElementById("searchInput").value.trim().toLowerCase();
-
-        // Define service links based on keywords
-        const services = {
-            "pan": "https://example.com/pan-card",
-            "e-mitra": "RJ SERVICES.HTML",
-            "itr": "itr.html",
-            "gst": "gst.html",
-            "accounting": "accounting.html",
-            "jobs": "jobs.html"
-        };
 
         // Check if the query matches any predefined services
         if (services[query]) {
             window.location.href = services[query]; // Redirect to the matched service page
-        } else if (query) {
-            // Redirect to a custom search results page if desired
-            window.location.href = `searchResultsPage.html?query=${encodeURIComponent(query)}`;
-            // OR perform a Google search if no match is found
-            // window.open(`https://www.google.com/search?q=${query}`, '_blank');
+        } else {
+            // Perform a Google search if no match is found
+            window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
         }
+    }
+
+    function showSuggestions(input) {
+        const suggestionsContainer = document.getElementById("suggestions");
+        suggestionsContainer.innerHTML = ''; // Clear previous suggestions
+
+        // Filter services based on input
+        const filteredServices = Object.keys(services).filter(service => service.includes(input.toLowerCase()));
+
+        // Show suggestions
+        filteredServices.forEach(service => {
+            const suggestionDiv = document.createElement("div");
+            suggestionDiv.textContent = service;
+            suggestionDiv.onclick = () => {
+                document.getElementById("searchInput").value = service; // Set input value to selected suggestion
+                suggestionsContainer.innerHTML = ''; // Clear suggestions
+                handleSearch(new Event('submit')); // Trigger search
+            };
+            suggestionsContainer.appendChild(suggestionDiv);
+        });
     }
 </script>
 
