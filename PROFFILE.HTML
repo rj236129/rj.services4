@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: #febd69;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #d97706;
+        }
+        input[type="text"], input[type="date"], input[type="file"], textarea {
+            width: 90%;
+            padding: 10px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            display: block;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #d97706;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #febd69;
+        }
+        .profile-display {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .profile-display img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        .edit-btn {
+            background-color: #febd69;
+            color: #333;
+        }
+        .edit-btn:hover {
+            background-color: #d97706;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>User Profile</h2>
+
+    <!-- User Profile Form -->
+    <div id="profileForm">
+        <input type="text" id="name" placeholder="Enter Name" required>
+        <input type="text" id="email" placeholder="Enter Email" required>
+        <input type="text" id="phone" placeholder="Enter Phone Number" required>
+        <input type="text" id="address" placeholder="Enter Address" required>
+        <input type="date" id="dob" placeholder="Select Date of Birth" required>
+        <textarea id="bio" placeholder="Write a short bio" rows="3"></textarea>
+        <input type="file" id="profileImage" accept="image/*">
+        <button id="saveProfileBtn">Save Profile</button>
+    </div>
+
+    <!-- Profile Display Section -->
+    <div class="profile-display" id="profileDisplay" style="display: none;">
+        <h3>Profile Information</h3>
+        <p><strong>Name:</strong> <span id="displayName"></span></p>
+        <p><strong>Email:</strong> <span id="displayEmail"></span></p>
+        <p><strong>Phone:</strong> <span id="displayPhone"></span></p>
+        <p><strong>Address:</strong> <span id="displayAddress"></span></p>
+        <p><strong>Date of Birth:</strong> <span id="displayDob"></span></p>
+        <p><strong>Bio:</strong> <span id="displayBio"></span></p>
+        <img id="displayImage" src="" alt="Profile Image" style="display:none;">
+        <button id="editProfileBtn" class="edit-btn" style="display: none;">Edit Profile</button>
+    </div>
+</div>
+
+<script>
+    // Function to save profile data
+    document.getElementById('saveProfileBtn').addEventListener('click', function() {
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
+        const dob = document.getElementById('dob').value;
+        const bio = document.getElementById('bio').value;
+        const profileImage = document.getElementById('profileImage').files[0];
+
+        // Save data to local storage
+        localStorage.setItem('name', name);
+        localStorage.setItem('email', email);
+        localStorage.setItem('phone', phone);
+        localStorage.setItem('address', address);
+        localStorage.setItem('dob', dob);
+        localStorage.setItem('bio', bio);
+
+        // Save profile image in local storage
+        if (profileImage) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                localStorage.setItem('profileImage', event.target.result);
+                completeProfile(); // Mark profile as complete
+                displayProfile(); // Display profile after saving
+            };
+            reader.readAsDataURL(profileImage);
+        } else {
+            completeProfile(); // Mark profile as complete
+            displayProfile(); // Display profile if no image is selected
+        }
+    });
+
+    // Function to mark the profile as complete
+    function completeProfile() {
+        localStorage.setItem("isProfileComplete", "true"); // Mark as complete
+        window.location.href = 'home.html'; // Redirect to home page
+    }
+
+    // Function to display profile data
+    function displayProfile() {
+        const name = localStorage.getItem('name');
+        const email = localStorage.getItem('email');
+        const phone = localStorage.getItem('phone');
+        const address = localStorage.getItem('address');
+        const dob = localStorage.getItem('dob');
+        const bio = localStorage.getItem('bio');
+        const profileImage = localStorage.getItem('profileImage');
+
+        // Update the profile display
+        if (name && email && phone && address && dob && bio) {
+            document.getElementById('displayName').textContent = name;
+            document.getElementById('displayEmail').textContent = email;
+            document.getElementById('displayPhone').textContent = phone;
+            document.getElementById('displayAddress').textContent = address;
+            document.getElementById('displayDob').textContent = dob;
+            document.getElementById('displayBio').textContent = bio;
+
+            if (profileImage) {
+                const displayImage = document.getElementById('displayImage');
+                displayImage.src = profileImage;
+                displayImage.style.display = 'block'; // Show the image
+            }
+            document.getElementById('profileDisplay').style.display = 'block'; // Show profile section
+            document.getElementById('profileForm').style.display = 'none'; // Hide profile form
+            document.getElementById('editProfileBtn').style.display = 'inline-block'; // Show edit button
+        }
+    }
+
+    // Function to edit profile data
+    document.getElementById('editProfileBtn').addEventListener('click', function() {
+        document.getElementById('name').value = localStorage.getItem('name');
+        document.getElementById('email').value = localStorage.getItem('email');
+        document.getElementById('phone').value = localStorage.getItem('phone');
+        document.getElementById('address').value = localStorage.getItem('address');
+        document.getElementById('dob').value = localStorage.getItem('dob');
+        document.getElementById('bio').value = localStorage.getItem('bio');
+        document.getElementById('profileForm').style.display = 'block'; // Show profile form
+        document.getElementById('profileDisplay').style.display = 'none'; // Hide profile display
+        document.getElementById('editProfileBtn').style.display = 'none'; // Hide edit button
+    });
+
+    // Function to check if the profile is complete
+    function checkProfileCompletion() {
+        return localStorage.getItem("isProfileComplete") === "true";
+    }
+
+    // Display profile data if available on page load
+    window.onload = function() {
+        displayProfile();
+
+        // Check if the profile is complete; if not, show the modal
+        if (!checkProfileCompletion()) {
+            showModal(); // Show the sign-in/sign-up modal
+        }
+    };
+
+    // Modal function
+    function showModal() {
+        const modal = document.createElement('div');
+        modal.style.position = 'fixed';
+        modal.style.top = '0';
+        modal.style.left = '0';
+        modal.style.width = '100%';
+        modal.style.height = '100%';
+        modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        modal.style.display = 'flex';
+        modal.style.justifyContent = 'center';
+        modal.style.alignItems = 'center';
+        modal.style.zIndex = '1000';
+
+        const modalContent = document.createElement('div');
+        modalContent.style.backgroundColor = 'white';
+        modalContent.style.padding = '20px';
+        modalContent.style.borderRadius = '8px';
+        modalContent.style.textAlign = 'center';
+
+        const modalText = document.createElement('p');
+        modalText.innerText = "Please sign in or sign up to continue.";
+        const closeButton = document.createElement('button');
+        closeButton.innerText = "Close";
+        closeButton.addEventListener('click', function() {
+            document.body.removeChild(modal);
+        });
+
+        modalContent.appendChild(modalText);
+        modalContent.appendChild(closeButton);
+        modal.appendChild(modalContent);
+        document.body.appendChild(modal);
+    }
+</script>
+
+</body>
+</html>
