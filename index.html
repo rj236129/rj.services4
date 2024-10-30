@@ -122,43 +122,60 @@
     </style>
 </head>
 <body>
-    <body>
-        <!-- Modal -->
-        <div id="loginModal" class="modal">
-            <div class="modal-content">
-                <h2>Access Required</h2>
-                <p>Please sign up or sign in to access this page.</p>
-                <button onclick="redirectToAuth()">Go to Sign Up / Sign In</button>
+   <body>
+            <!-- Modal -->
+            <div id="loginModal" class="modal">
+                <div class="modal-content">
+                    <h2>Access Required</h2>
+                    <p>Please sign up or sign in to access this page.</p>
+                    <button onclick="redirectToAuth()">Go to Sign Up / Sign In</button>
+                </div>
             </div>
-        </div>
-    
-        <script>
-            // Show the modal when the page loads
-            window.onload = function() {
-                showModal();
-            }
-    
-            function showModal() {
-                document.getElementById("loginModal").style.display = "block";
-            }
-    
-            function closeModal() {
-                document.getElementById("loginModal").style.display = "none";
-            }
-    
-            function redirectToAuth() {
-                window.location.href = 'PROFFILE.HTML'; // Redirect to the auth page
-            }
-    
-            // Close the modal when clicking anywhere outside of it
-            window.onclick = function(event) {
-                const modal = document.getElementById("loginModal");
-                if (event.target === modal) {
-                    closeModal();
+        
+            <script>
+                // Check if the profile is complete in local storage
+                let isProfileComplete = localStorage.getItem("isProfileComplete") === "true";
+        
+                // Show the modal when the page loads
+                window.onload = function() {
+                    showModal();
                 }
-            }
-        </script>
-    </body>
+        
+                function showModal() {
+                    // Only show the modal if the profile is not complete
+                    if (!isProfileComplete) {
+                        document.getElementById("loginModal").style.display = "block";
+                    }
+                }
+        
+                function closeModal() {
+                    // Close the modal only if the profile is complete
+                    document.getElementById("loginModal").style.display = "none";
+                }
+        
+                function redirectToAuth() {
+                    window.location.href = 'PROFFILE.HTML'; // Redirect to the auth page
+                }
+        
+                // Close the modal when clicking anywhere outside of it only if the profile is complete
+                window.onclick = function(event) {
+                    const modal = document.getElementById("loginModal");
+                    if (event.target === modal && isProfileComplete) {
+                        closeModal();
+                    }
+                }
+        
+                // Function to set the profile as complete (call this when the profile is completed)
+                function completeProfile() {
+                    isProfileComplete = true; // Set the flag to true
+                    localStorage.setItem("isProfileComplete", "true"); // Save to local storage
+                    closeModal(); // Close the modal if you want
+                }
+        
+                // Call this function when the user completes their profile
+                // completeProfile(); // Uncomment this line to simulate profile completion
+            </script>
+        </body>
 <!DOCTYPE html>
 <html lang="en">
 <head>
