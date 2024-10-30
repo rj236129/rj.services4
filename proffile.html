@@ -132,7 +132,7 @@
     // Function to mark the profile as complete
     function completeProfile() {
         localStorage.setItem("isProfileComplete", "true"); // Mark as complete
-        window.location.href = 'index.html'; //Redirect to index page
+        window.location.href = 'index.html'; // Redirect to index page
     }
 
     // Function to display profile data
@@ -214,16 +214,15 @@
         modalContent.style.textAlign = 'center';
 
         const modalText = document.createElement('p');
-        modalText.textContent = 'Your profile is incomplete. Please fill out the required fields.';
-        modalContent.appendChild(modalText);
-
+        modalText.innerText = "Please sign in or sign up to continue.";
         const closeButton = document.createElement('button');
-        closeButton.textContent = 'Close';
+        closeButton.innerText = "Close";
         closeButton.addEventListener('click', function() {
             document.body.removeChild(modal);
         });
-        modalContent.appendChild(closeButton);
 
+        modalContent.appendChild(modalText);
+        modalContent.appendChild(closeButton);
         modal.appendChild(modalContent);
         document.body.appendChild(modal);
     }
