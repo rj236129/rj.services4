@@ -63,113 +63,6 @@
             color: white;
         }
     </style>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-    <script>
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyCtyvIJL5xVdMG0HznaMkeChF3lSMxF20c",
-            authDomain: "rj-services-83743.web.app",
-            projectId: "rj-services-83743",
-            storageBucket: "rj-services-83743.appspot.com",
-            messagingSenderId: "947044086169",
-            appId: "1:947044086169:web:86c96ff9f801798456a308",
-            measurementId: "G-XTKK72MRCV"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
-        const storage = firebase.storage();
-
-        // Function to save profile data to Firebase
-        function saveProfile() {
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const address = document.getElementById('address').value;
-            const dob = document.getElementById('dob').value;
-            const bio = document.getElementById('bio').value;
-            const profileImage = document.getElementById('profileImage').files[0];
-
-            const userId = Date.now(); // Unique user ID based on timestamp
-
-            // Save profile data to Firebase Realtime Database
-            database.ref('profiles/' + userId).set({
-                name: name,
-                email: email,
-                phone: phone,
-                address: address,
-                dob: dob,
-                bio: bio
-            }).then(() => {
-                console.log("Profile data saved successfully");
-
-                // Only upload the profile image if one is selected
-                if (profileImage) {
-                    const storageRef = storage.ref('profileImages/' + userId + '/' + profileImage.name);
-                    storageRef.put(profileImage).then(() => {
-                        console.log("Profile image uploaded successfully");
-                        return storageRef.getDownloadURL(); // Get the download URL
-                    }).then((url) => {
-                        return database.ref('profiles/' + userId).update({ profileImage: url });
-                    }).then(() => {
-                        console.log("Profile image URL saved successfully");
-                        displayProfile(userId); // Display profile after saving
-                    }).catch((error) => {
-                        console.error("Error uploading profile image: ", error);
-                    });
-                } else {
-                    displayProfile(userId); // Display profile if no image is selected
-                }
-            }).catch((error) => {
-                console.error("Error saving profile: ", error);
-            });
-        }
-
-        // Function to display profile data
-        function displayProfile(userId) {
-            database.ref('profiles/' + userId).once('value').then((snapshot) => {
-                const data = snapshot.val();
-                if (data) {
-                    document.getElementById('displayName').textContent = data.name;
-                    document.getElementById('displayEmail').textContent = data.email;
-                    document.getElementById('displayPhone').textContent = data.phone;
-                    document.getElementById('displayAddress').textContent = data.address;
-                    document.getElementById('displayDob').textContent = data.dob;
-                    document.getElementById('displayBio').textContent = data.bio;
-
-                    if (data.profileImage) {
-                        const displayImage = document.getElementById('displayImage');
-                        displayImage.src = data.profileImage;
-                        displayImage.style.display = 'block'; // Show the image
-                    }
-                    document.getElementById('profileDisplay').style.display = 'block'; // Show profile section
-                    document.getElementById('profileForm').style.display = 'none'; // Hide profile form
-                    document.getElementById('editProfileBtn').style.display = 'inline-block'; // Show edit button
-                }
-            }).catch((error) => {
-                console.error("Error displaying profile: ", error);
-            });
-        }
-
-        // Function to edit profile data
-        function editProfile() {
-            document.getElementById('profileForm').reset(); // Reset the form
-            document.getElementById('profileForm').style.display = 'block'; // Show profile form
-            document.getElementById('profileDisplay').style.display = 'none'; // Hide profile display
-            document.getElementById('editProfileBtn').style.display = 'none'; // Hide edit button
-        }
-
-        // Clear local storage and display profile data if available on page load
-        window.onload = function() {
-            localStorage.clear(); // Clear local storage on page load
-        };
-
-        document.getElementById('saveProfileBtn').addEventListener('click', saveProfile);
-        document.getElementById('editProfileBtn').addEventListener('click', editProfile);
-    </script>
 </head>
 <body>
 
@@ -182,15 +75,15 @@
         <input type="text" id="email" placeholder="Enter Email" required>
         <input type="text" id="phone" placeholder="Enter Phone Number" required>
         <input type="text" id="address" placeholder="Enter Address" required>
-        <input type="date" id="dob" required>
-        <textarea id="bio" placeholder="Enter Bio"></textarea>
-        <input type="file" id="profileImage">
+        <input type="date" id="dob" placeholder="Select Date of Birth" required>
+        <textarea id="bio" placeholder="Write a short bio" rows="3"></textarea>
+        <input type="file" id="profileImage" accept="image/*">
         <button id="saveProfileBtn">Save Profile</button>
     </div>
 
     <!-- Profile Display Section -->
-    <div id="profileDisplay" class="profile-display" style="display: none;">
-        <h3>Profile Details</h3>
+    <div class="profile-display" id="profileDisplay" style="display: none;">
+        <h3>Profile Information</h3>
         <p><strong>Name:</strong> <span id="displayName"></span></p>
         <p><strong>Email:</strong> <span id="displayEmail"></span></p>
         <p><strong>Phone:</strong> <span id="displayPhone"></span></p>
@@ -201,6 +94,139 @@
         <button id="editProfileBtn" class="edit-btn" style="display: none;">Edit Profile</button>
     </div>
 </div>
+
+<script>
+    // Function to save profile data
+    document.getElementById('saveProfileBtn').addEventListener('click', function() {
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
+        const dob = document.getElementById('dob').value;
+        const bio = document.getElementById('bio').value;
+        const profileImage = document.getElementById('profileImage').files[0];
+
+        // Save data to local storage
+        localStorage.setItem('name', name);
+        localStorage.setItem('email', email);
+        localStorage.setItem('phone', phone);
+        localStorage.setItem('address', address);
+        localStorage.setItem('dob', dob);
+        localStorage.setItem('bio', bio);
+
+        // Save profile image in local storage
+        if (profileImage) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                localStorage.setItem('profileImage', event.target.result);
+                completeProfile(); // Mark profile as complete
+                displayProfile(); // Display profile after saving
+            };
+            reader.readAsDataURL(profileImage);
+        } else {
+            completeProfile(); // Mark profile as complete
+            displayProfile(); // Display profile if no image is selected
+        }
+    });
+
+    // Function to mark the profile as complete
+    function completeProfile() {
+        localStorage.setItem("isProfileComplete", "true"); // Mark as complete
+        window.location.href = 'index.html'; // Redirect to index page
+    }
+
+    // Function to display profile data
+    function displayProfile() {
+        const name = localStorage.getItem('name');
+        const email = localStorage.getItem('email');
+        const phone = localStorage.getItem('phone');
+        const address = localStorage.getItem('address');
+        const dob = localStorage.getItem('dob');
+        const bio = localStorage.getItem('bio');
+        const profileImage = localStorage.getItem('profileImage');
+
+        // Update the profile display
+        if (name && email && phone && address && dob && bio) {
+            document.getElementById('displayName').textContent = name;
+            document.getElementById('displayEmail').textContent = email;
+            document.getElementById('displayPhone').textContent = phone;
+            document.getElementById('displayAddress').textContent = address;
+            document.getElementById('displayDob').textContent = dob;
+            document.getElementById('displayBio').textContent = bio;
+
+            if (profileImage) {
+                const displayImage = document.getElementById('displayImage');
+                displayImage.src = profileImage;
+                displayImage.style.display = 'block'; // Show the image
+            }
+            document.getElementById('profileDisplay').style.display = 'block'; // Show profile section
+            document.getElementById('profileForm').style.display = 'none'; // Hide profile form
+            document.getElementById('editProfileBtn').style.display = 'inline-block'; // Show edit button
+        }
+    }
+
+    // Function to edit profile data
+    document.getElementById('editProfileBtn').addEventListener('click', function() {
+        document.getElementById('name').value = localStorage.getItem('name');
+        document.getElementById('email').value = localStorage.getItem('email');
+        document.getElementById('phone').value = localStorage.getItem('phone');
+        document.getElementById('address').value = localStorage.getItem('address');
+        document.getElementById('dob').value = localStorage.getItem('dob');
+        document.getElementById('bio').value = localStorage.getItem('bio');
+        document.getElementById('profileForm').style.display = 'block'; // Show profile form
+        document.getElementById('profileDisplay').style.display = 'none'; // Hide profile display
+        document.getElementById('editProfileBtn').style.display = 'none'; // Hide edit button
+    });
+
+    // Function to check if the profile is complete
+    function checkProfileCompletion() {
+        return localStorage.getItem("isProfileComplete") === "true";
+    }
+
+    // Display profile data if available on page load
+    window.onload = function() {
+        displayProfile();
+
+        // Check if the profile is complete; if not, show the modal
+        if (!checkProfileCompletion()) {
+            showModal(); // Show the sign-in/sign-up modal
+        }
+    };
+
+    // Modal function
+    function showModal() {
+        const modal = document.createElement('div');
+        modal.style.position = 'fixed';
+        modal.style.top = '0';
+        modal.style.left = '0';
+        modal.style.width = '100%';
+        modal.style.height = '100%';
+        modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        modal.style.display = 'flex';
+        modal.style.justifyContent = 'center';
+        modal.style.alignItems = 'center';
+        modal.style.zIndex = '1000';
+
+        const modalContent = document.createElement('div');
+        modalContent.style.backgroundColor = 'white';
+        modalContent.style.padding = '20px';
+        modalContent.style.borderRadius = '8px';
+        modalContent.style.textAlign = 'center';
+
+        const modalText = document.createElement('p');
+        modalText.innerText = "Please sign in or sign up to continue.";
+        const closeButton = document.createElement('button');
+        closeButton.innerText = "Close";
+        closeButton.addEventListener('click', function() {
+            document.body.removeChild(modal);
+        });
+
+        modalContent.appendChild(modalText);
+        modalContent.appendChild(closeButton);
+        modal.appendChild(modalContent);
+        document.body.appendChild(modal);
+    }
+</script>
 
 </body>
 </html>
