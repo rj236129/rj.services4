@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            background-color: #f4f4f9;
             color: #333;
             display: flex;
             justify-content: center;
@@ -20,20 +20,22 @@
             max-width: 400px;
             background: #febd69;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         h2 {
             text-align: center;
             color: #d97706;
+            margin-bottom: 15px;
         }
-        input[type="text"], input[type="email"], input[type="date"], textarea {
+        input[type="text"], input[type="email"], input[type="date"], textarea, input[type="file"] {
             width: 100%;
             padding: 10px;
-            margin: 10px 0;
+            margin: 8px 0;
             border: 1px solid #d97706;
             border-radius: 4px;
             display: block;
+            box-sizing: border-box;
         }
         button {
             width: 100%;
@@ -43,6 +45,7 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-weight: bold;
         }
         button:hover {
             background-color: #333;
@@ -51,6 +54,16 @@
             max-width: 100%;
             border-radius: 5px;
             margin-top: 10px;
+            display: block;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            font-size: 0.9em;
+            color: #333;
+        }
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -68,36 +81,42 @@
         <input type="date" id="dob" placeholder="Select Date of Birth" required>
         <textarea id="bio" placeholder="Write a short bio" rows="3"></textarea>
         <input type="file" id="profileImage" accept="image/*">
+        <p class="loading" id="imageLoading">Uploading image...</p>
         <button id="saveProfileBtn">Save Profile</button>
     </div>
 
     <!-- Profile Display Section -->
-    <div class="profile-display" id="profileDisplay" style="display: none;">
+    <div class="profile-display hidden" id="profileDisplay">
         <p><strong>Name:</strong> <span id="displayName"></span></p>
         <p><strong>Email:</strong> <span id="displayEmail"></span></p>
         <p><strong>Phone:</strong> <span id="displayPhone"></span></p>
         <p><strong>Address:</strong> <span id="displayAddress"></span></p>
         <p><strong>Date of Birth:</strong> <span id="displayDob"></span></p>
         <p><strong>Bio:</strong> <span id="displayBio"></span></p>
-        <img id="displayImage" src="" alt="Profile Image" style="display:none;">
+        <img id="displayImage" src="" alt="Profile Image" class="hidden">
         <button id="editProfileBtn">Edit Profile</button>
     </div>
 </div>
 
 <script>
     function toggleVisibility(showForm) {
-        document.getElementById('profileForm').style.display = showForm ? 'block' : 'none';
-        document.getElementById('profileDisplay').style.display = showForm ? 'none' : 'block';
+        document.getElementById('profileForm').classList.toggle('hidden', !showForm);
+        document.getElementById('profileDisplay').classList.toggle('hidden', showForm);
     }
 
     document.getElementById('saveProfileBtn').addEventListener('click', function() {
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
-        const address = document.getElementById('address').value;
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const address = document.getElementById('address').value.trim();
         const dob = document.getElementById('dob').value;
-        const bio = document.getElementById('bio').value;
+        const bio = document.getElementById('bio').value.trim();
         const profileImage = document.getElementById('profileImage').files[0];
+
+        if (!name || !email || !phone || !address || !dob) {
+            alert("All fields are required!");
+            return;
+        }
 
         localStorage.setItem('name', name);
         localStorage.setItem('email', email);
@@ -108,9 +127,12 @@
 
         if (profileImage) {
             const reader = new FileReader();
+            const imageLoading = document.getElementById('imageLoading');
+            imageLoading.style.display = 'block';
             reader.onload = function(event) {
                 localStorage.setItem('profileImage', event.target.result);
                 loadProfile();
+                imageLoading.style.display = 'none';
             };
             reader.readAsDataURL(profileImage);
         } else {
@@ -140,9 +162,9 @@
         const displayImage = document.getElementById('displayImage');
         if (profileImage) {
             displayImage.src = profileImage;
-            displayImage.style.display = 'block';
+            displayImage.classList.remove('hidden');
         } else {
-            displayImage.style.display = 'none';
+            displayImage.classList.add('hidden');
         }
         toggleVisibility(false);
     }
