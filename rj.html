@@ -71,6 +71,12 @@
                 alert('Please log in before saving your profile.');
             }
         }
+        async function signInWithFacebook() {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'facebook',
+  })
+}
+
     </script>
 </body>
 </html>
