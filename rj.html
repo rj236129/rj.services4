@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase Auth Integration</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
+    <h1>Welcome to RJ Services</h1>
+
+    <!-- Google Login Button -->
+    <button onclick="signInWithGoogle()">Sign in with Google</button>
+
+    <!-- OTP Login Form -->
+    <h3>Phone OTP Login</h3>
+    <input type="text" id="phone" placeholder="Enter your phone number" />
+    <button onclick="sendOtp()">Send OTP</button>
+    <br><br>
+
+    <h3>Save User Profile</h3>
+    <!-- Save User Data Form -->
+    <input type="text" id="name" placeholder="Enter your name" />
+    <input type="email" id="email" placeholder="Enter your email" />
+    <button onclick="saveUserData()">Save Profile</button>
+
+    <script>
+        // Supabase initialization
+        const SUPABASE_URL = 'https://eyulfpxzkqncpmqovizo.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV5dWxmcHh6a3FuY3BtcW92aXpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzAyOTU5MzUsImV4cCI6MjA0NTg3MTkzNX0.MCGLv96i4vMaSQsHtOToqX9KYdM3mIw3DAINJWUgkJ8';
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Google login function
+        async function signInWithGoogle() {
+            const { error } = await supabase.auth.signInWithOAuth({ provider: 'google' });
+            if (error) {
+                console.error('Google login error:', error);
+            } else {
+                alert('Redirecting to Google for authentication...');
+            }
+        }
+
+        // Phone OTP function
+        async function sendOtp() {
+            const phone = document.getElementById('phone').value;
+            const { error } = await supabase.auth.signInWithOtp({ phone });
+            if (error) {
+                console.error('Error sending OTP:', error);
+            } else {
+                alert('OTP sent successfully to your phone!');
+            }
+        }
+
+        // Save user data function
+        async function saveUserData() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const user = supabase.auth.user();
+
+            if (user) {
+                const { error } = await supabase
+                    .from('user_profiles')
+                    .insert([{ id: user.id, name, email }]);
+
+                if (error) {
+                    console.error('Error saving user data:', error);
+                } else {
+                    alert('Profile saved successfully!');
+                }
+            } else {
+                alert('Please log in before saving your profile.');
+            }
+        }
+    </script>
+</body>
+</html>
