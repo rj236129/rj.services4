@@ -3,43 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>RJ Services - Sign In / Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        form {
+            margin: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to RJ Services!</h1>
-    <button onclick="signOut()">Sign Out</button>
+    <h1>Welcome to RJ Services</h1>
+    <div id="user-container">
+        <h2>Sign In</h2>
+        <form id="signInForm">
+            <input type="text" id="phoneNumber" placeholder="Enter mobile number" required>
+            <button type="submit">Send OTP</button>
+        </form>
+        <div id="otpContainer" style="display:none;">
+            <input type="text" id="otp" placeholder="Enter OTP" required>
+            <button id="verifyOtpButton">Verify OTP</button>
+        </div>
+        <button id="googleSignInButton">Sign in with Google</button>
+    </div>
 
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
     <script>
         // Your web app's Firebase configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyCbLnj8H_BhbwGuFrJR_MUMYSOUmEaYvww",
-            authDomain: "rjapp-6fc09.firebaseapp.com",
-            projectId: "rjapp-6fc09",
-            storageBucket: "rjapp-6fc09.appspot.com",
-            messagingSenderId: "1047396234166",
-            appId: "1:1047396234166:android:4af3d994da76a623a68717"
+            apiKey: "AIzaSyCtyvIJL5xVdMG0HznaMkeChF3lSMxF20c",
+            authDomain: "rj-services-83743.firebaseapp.com",
+            projectId: "rj-services-83743",
+            storageBucket: "rj-services-83743.appspot.com",
+            messagingSenderId: "947044086169",
+            appId: "1:947044086169:web:86c96ff9f801798456a308",
+            measurementId: "G-XTKK72MRCV"
         };
 
         // Initialize Firebase
         const app = firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
 
-        function signOut() {
-            auth.signOut().then(() => {
-                alert("Sign out successful!");
-                window.location.href = 'index.html'; // Redirect to sign-in page
-            }).catch((error) => {
-                console.error("Error signing out:", error);
-            });
-        }
+        // Sign in with mobile OTP
+        const signInForm = document.getElementById('signInForm');
+        const otpContainer = document.getElementById('otpContainer');
+        const otpInput = document.getElementById('otp');
+        const phoneNumberInput = document.getElementById('phoneNumber');
+        let verificationId;
 
-        // Check if user is signed in
-        auth.onAuthStateChanged((user) => {
-            if (!user) {
-                window.location.href = 'index.html'; // Redirect to sign-in if not signed in
-            }
+        signInForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const phoneNumber = phoneNumberInput.value;
+            const appVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+                size: 'invisible',
+                callback: (response) => {
+                    // reCAPTCHA solved, can proceed with signIn
+                }
+            });
+
+            auth.signInWithPhoneNumber(phoneNumber, appVerifier)
+                .then((confirmationResult) => {
+                    verificationId = confirmationResult.verificationId;
+                    otpContainer.style.display = 'block';
+                    alert("OTP sent to your mobile number.");
+                })
+                .catch((error) => {
+                    console.error("Error during sign-in with phone number:", error);
+                });
+        });
+
+        document.getElementById('verifyOtpButton').addEventListener('click', function() {
+            const otp = otpInput.value;
+            const credential = firebase.auth.PhoneAuthProvider.credential(verificationId, otp);
+            auth.signInWithCredential(credential)
+                .then((userCredential) => {
+                    alert("Sign-in successful!");
+                    window.location.href = 'welcome.html'; // Redirect to another page
+                })
+                .catch((error) => {
+                    console.error("Error verifying OTP:", error);
+                });
+        });
+
+        // Sign in with Google
+        document.getElementById('googleSignInButton').addEventListener('click', function() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    alert("Google sign-in successful!");
+                    window.location.href = 'welcome.html'; // Redirect to another page
+                })
+                .catch((error) => {
+                    console.error("Error during Google sign-in:", error);
+                });
         });
     </script>
 </body>
