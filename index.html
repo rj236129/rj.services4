@@ -78,8 +78,87 @@
         .suggestions div:hover {
             background-color: #f0f0f0;
         }
+     /* Style for the modal */
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            }
+    
+            .modal-content {
+                background-color: #febd69; /* Background color to match your site */
+                margin: 15% auto; /* 15% from the top and centered */
+                padding: 20px;
+                border: 1px solid #d97706; /* Border color to match your site */
+                width: 80%; /* Could be more or less, depending on screen size */
+                border-radius: 8px; /* Rounded corners */
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+            }
+    
+            h2 {
+                color: #d97706; /* Heading color */
+            }
+    
+            button {
+                background-color: #d97706; /* Button color */
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+    
+            button:hover {
+                background-color: #febd69; /* Button hover color */
+            }
     </style>
 </head>
+<body>
+    <body>
+        <!-- Modal -->
+        <div id="loginModal" class="modal">
+            <div class="modal-content">
+                <h2>Access Required</h2>
+                <p>Please sign up or sign in to access this page.</p>
+                <button onclick="redirectToAuth()">Go to Sign Up / Sign In</button>
+            </div>
+        </div>
+    
+        <script>
+            // Show the modal when the page loads
+            window.onload = function() {
+                showModal();
+            }
+    
+            function showModal() {
+                document.getElementById("loginModal").style.display = "block";
+            }
+    
+            function closeModal() {
+                document.getElementById("loginModal").style.display = "none";
+            }
+    
+            function redirectToAuth() {
+                window.location.href = 'PROFFILE.HTML'; // Redirect to the auth page
+            }
+    
+            // Close the modal when clicking anywhere outside of it
+            window.onclick = function(event) {
+                const modal = document.getElementById("loginModal");
+                if (event.target === modal) {
+                    closeModal();
+                }
+            }
+        </script>
+    </body>
 <!DOCTYPE html>
 <html lang="en">
 <head>
