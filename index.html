@@ -3,24 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Login</title>
+    <title>User Authentication</title>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com.firebasejs/9.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
 </head>
 <body>
-    <h1>Google Login</h1>
-    <button id="login-button">Login with Google</button>
-    <button id="logout-button" style="display: none;">Logout</button>
-    <div id="user-info" style="display: none;">
-        <h2>User Info</h2>
-        <p id="user-name"></p>
-        <p id="user-email"></p>
+    <h1>Welcome to RJ Services!</h1>
+
+    <!-- Google Sign-In Button -->
+    <button onclick="googleSignIn()">Sign in with Google</button>
+
+    <!-- Mobile OTP Login -->
+    <h3>Or Sign in with Mobile OTP</h3>
+    <input type="text" id="phoneNumber" placeholder="Enter phone number" />
+    <button onclick="sendOTP()">Send OTP</button>
+
+    <!-- OTP Verification Input -->
+    <div id="otpSection" style="display: none;">
+        <input type="text" id="otpCode" placeholder="Enter OTP" />
+        <button onclick="verifyOTP()">Verify OTP</button>
     </div>
 
+    <button onclick="signOut()">Sign Out</button>
+
     <script>
-        // Your web app's Firebase configuration
+        // Initialize Firebase
         const firebaseConfig = {
-            apiKey: "AIzaSyCtyvIJL5xVdMG0HznaMkeChF3lSMxF20c",
+  apiKey: "AIzaSyCtyvIJL5xVdMG0HznaMkeChF3lSMxF20c",
   authDomain: "rj-services-83743.firebaseapp.com",
   projectId: "rj-services-83743",
   storageBucket: "rj-services-83743.appspot.com",
@@ -28,56 +37,62 @@
   appId: "1:947044086169:web:86c96ff9f801798456a308",
   measurementId: "G-XTKK72MRCV"
 };
-
-        // Initialize Firebase
         const app = firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
 
-        // Google Provider
-        const provider = new firebase.auth.GoogleAuthProvider();
+        // Google Sign-In Function
+        function googleSignIn() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    alert("Google Sign-in Successful");
+                    // Redirect or load user-specific content
+                })
+                .catch((error) => {
+                    console.error("Google Sign-in Error:", error);
+                });
+        }
 
-        // Login function
-        document.getElementById('login-button').addEventListener('click', () => {
-            auth.signInWithPopup(provider).then((result) => {
-                // User signed in successfully
-                const user = result.user;
-                document.getElementById('user-info').style.display = 'block';
-                document.getElementById('user-name').innerText = "Name: " + user.displayName;
-                document.getElementById('user-email').innerText = "Email: " + user.email;
-                document.getElementById('login-button').style.display = 'none';
-                document.getElementById('logout-button').style.display = 'block';
-            }).catch((error) => {
-                console.error("Error during signInWithPopup:", error);
+        // Send OTP for Phone Authentication
+        function sendOTP() {
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            const appVerifier = new firebase.auth.RecaptchaVerifier('sendOTP', {
+                'size': 'invisible'
             });
-        });
 
-        // Logout function
-        document.getElementById('logout-button').addEventListener('click', () => {
+            auth.signInWithPhoneNumber(phoneNumber, appVerifier)
+                .then((confirmationResult) => {
+                    window.confirmationResult = confirmationResult;
+                    alert("OTP sent successfully!");
+                    document.getElementById("otpSection").style.display = "block";
+                })
+                .catch((error) => {
+                    console.error("OTP Error:", error);
+                });
+        }
+
+        // Verify the OTP Code
+        function verifyOTP() {
+            const otpCode = document.getElementById("otpCode").value;
+            window.confirmationResult.confirm(otpCode)
+                .then((result) => {
+                    alert("Phone OTP Sign-in Successful");
+                    // Redirect or load user-specific content
+                })
+                .catch((error) => {
+                    console.error("OTP Verification Error:", error);
+                });
+        }
+
+        // Sign Out
+        function signOut() {
             auth.signOut().then(() => {
-                document.getElementById('user-info').style.display = 'none';
-                document.getElementById('login-button').style.display = 'block';
-                document.getElementById('logout-button').style.display = 'none';
+                alert("Sign-out Successful");
+                // Redirect to sign-in page or reload
             }).catch((error) => {
-                console.error("Error signing out:", error);
+                console.error("Sign-out Error:", error);
             });
-        });
-
-        // Check for user authentication state
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                // User is signed in
-                document.getElementById('user-info').style.display = 'block';
-                document.getElementById('user-name').innerText = "Name: " + user.displayName;
-                document.getElementById('user-email').innerText = "Email: " + user.email;
-                document.getElementById('login-button').style.display = 'none';
-                document.getElementById('logout-button').style.display = 'block';
-            } else {
-                // User is signed out
-                document.getElementById('user-info').style.display = 'none';
-                document.getElementById('login-button').style.display = 'block';
-                document.getElementById('logout-button').style.display = 'none';
-            }
-        });
+        }
     </script>
 </body>
 </html>
