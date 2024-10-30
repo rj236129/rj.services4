@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OTP Login</title>
+    <title>Google Login</title>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com.firebasejs/9.6.1/firebase-auth.js"></script>
 </head>
 <body>
-    <h1>OTP Login</h1>
-    <div id="login-container">
-        <input type="text" id="phone-number" placeholder="Enter your phone number" />
-        <button id="send-otp">Send OTP</button>
-        <div id="otp-container" style="display: none;">
-            <input type="text" id="otp" placeholder="Enter OTP" />
-            <button id="verify-otp">Verify OTP</button>
-        </div>
+    <h1>Google Login</h1>
+    <button id="login-button">Login with Google</button>
+    <button id="logout-button" style="display: none;">Logout</button>
+    <div id="user-info" style="display: none;">
+        <h2>User Info</h2>
+        <p id="user-name"></p>
+        <p id="user-email"></p>
     </div>
 
     <script>
@@ -34,47 +33,50 @@
         const app = firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
 
-        // Function to send OTP
-        document.getElementById('send-otp').addEventListener('click', function() {
-            const phoneNumber = document.getElementById('phone-number').value;
-            const appVerifier = new firebase.auth.RecaptchaVerifier('send-otp', {
-                'size': 'invisible',
-                'callback': (response) => {
-                    // reCAPTCHA solved, allow send OTP
-                    sendOtp(phoneNumber);
-                }
-            });
-            appVerifier.verify().then(() => {
-                sendOtp(phoneNumber);
+        // Google Provider
+        const provider = new firebase.auth.GoogleAuthProvider();
+
+        // Login function
+        document.getElementById('login-button').addEventListener('click', () => {
+            auth.signInWithPopup(provider).then((result) => {
+                // User signed in successfully
+                const user = result.user;
+                document.getElementById('user-info').style.display = 'block';
+                document.getElementById('user-name').innerText = "Name: " + user.displayName;
+                document.getElementById('user-email').innerText = "Email: " + user.email;
+                document.getElementById('login-button').style.display = 'none';
+                document.getElementById('logout-button').style.display = 'block';
             }).catch((error) => {
-                console.error("reCAPTCHA verification failed:", error);
+                console.error("Error during signInWithPopup:", error);
             });
         });
 
-        function sendOtp(phoneNumber) {
-            auth.signInWithPhoneNumber(phoneNumber, appVerifier)
-                .then((confirmationResult) => {
-                    // SMS sent. Prompt user to enter the code from the message
-                    window.confirmationResult = confirmationResult;
-                    document.getElementById('otp-container').style.display = 'block';
-                    alert('OTP sent!');
-                }).catch((error) => {
-                    console.error("Error during signInWithPhoneNumber", error);
-                });
-        }
-
-        // Function to verify OTP
-        document.getElementById('verify-otp').addEventListener('click', function() {
-            const otp = document.getElementById('otp').value;
-            window.confirmationResult.confirm(otp).then((result) => {
-                // User signed in successfully.
-                const user = result.user;
-                alert("User signed in successfully: " + user.phoneNumber);
-                window.location.href = 'index1.html'; // Redirect to another page after successful login
+        // Logout function
+        document.getElementById('logout-button').addEventListener('click', () => {
+            auth.signOut().then(() => {
+                document.getElementById('user-info').style.display = 'none';
+                document.getElementById('login-button').style.display = 'block';
+                document.getElementById('logout-button').style.display = 'none';
             }).catch((error) => {
-                console.error("Error verifying OTP", error);
-                alert("Invalid OTP. Please try again.");
+                console.error("Error signing out:", error);
             });
+        });
+
+        // Check for user authentication state
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                // User is signed in
+                document.getElementById('user-info').style.display = 'block';
+                document.getElementById('user-name').innerText = "Name: " + user.displayName;
+                document.getElementById('user-email').innerText = "Email: " + user.email;
+                document.getElementById('login-button').style.display = 'none';
+                document.getElementById('logout-button').style.display = 'block';
+            } else {
+                // User is signed out
+                document.getElementById('user-info').style.display = 'none';
+                document.getElementById('login-button').style.display = 'block';
+                document.getElementById('logout-button').style.display = 'none';
+            }
         });
     </script>
 </body>
