@@ -12,6 +12,9 @@
     <!-- Google Login Button -->
     <button onclick="signInWithGoogle()">Sign in with Google</button>
 
+    <!-- Facebook Login Button -->
+    <button onclick="signInWithFacebook()">Sign in with Facebook</button>
+
     <!-- OTP Login Form -->
     <h3>Phone OTP Login</h3>
     <input type="text" id="phone" placeholder="Enter your phone number" />
@@ -35,8 +38,20 @@
             const { error } = await supabase.auth.signInWithOAuth({ provider: 'google' });
             if (error) {
                 console.error('Google login error:', error);
+                alert('Google login failed. Please try again.');
             } else {
                 alert('Redirecting to Google for authentication...');
+            }
+        }
+
+        // Facebook login function
+        async function signInWithFacebook() {
+            const { error } = await supabase.auth.signInWithOAuth({ provider: 'facebook' });
+            if (error) {
+                console.error('Facebook login error:', error);
+                alert('Facebook login failed. Please try again.');
+            } else {
+                alert('Redirecting to Facebook for authentication...');
             }
         }
 
@@ -46,6 +61,7 @@
             const { error } = await supabase.auth.signInWithOtp({ phone });
             if (error) {
                 console.error('Error sending OTP:', error);
+                alert('Failed to send OTP. Please check the phone number and try again.');
             } else {
                 alert('OTP sent successfully to your phone!');
             }
@@ -64,6 +80,7 @@
 
                 if (error) {
                     console.error('Error saving user data:', error);
+                    alert('Failed to save profile data.');
                 } else {
                     alert('Profile saved successfully!');
                 }
@@ -71,11 +88,6 @@
                 alert('Please log in before saving your profile.');
             }
         }
-        async function signInWithFacebook() {
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: 'facebook',
-  })
-}
 
     </script>
 </body>
