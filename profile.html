@@ -74,6 +74,7 @@
         <input type="text" id="name" placeholder="Enter Name" required>
         <input type="text" id="email" placeholder="Enter Email" required>
         <input type="text" id="address" placeholder="Enter Address" required>
+        <input type="text" id="address" placeholder="Enter Address" required>
         <input type="date" id="dob" placeholder="Select Date of Birth" required>
         <textarea id="bio" placeholder="Write a short bio" rows="3"></textarea>
         <input type="file" id="profileImage" accept="image/*">
@@ -85,7 +86,6 @@
         <h3>Profile Information</h3>
         <p><strong>Name:</strong> <span id="displayName"></span></p>
         <p><strong>Email:</strong> <span id="displayEmail"></span></p>
-        <p><strong>Phone:</strong> <span id="displayPhone"></span></p>
         <p><strong>Address:</strong> <span id="displayAddress"></span></p>
         <p><strong>Date of Birth:</strong> <span id="displayDob"></span></p>
         <p><strong>Bio:</strong> <span id="displayBio"></span></p>
@@ -99,7 +99,6 @@
     document.getElementById('saveProfileBtn').addEventListener('click', function() {
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
         const address = document.getElementById('address').value;
         const dob = document.getElementById('dob').value;
         const bio = document.getElementById('bio').value;
