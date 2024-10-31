@@ -177,22 +177,9 @@
         document.getElementById('profileDisplay').style.display = 'none'; // Hide profile display
         document.getElementById('editProfileBtn').style.display = 'none'; // Hide edit button
     });
-
-    // Function to check if the profile is complete
-    function checkProfileCompletion() {
-        return localStorage.getItem("isProfileComplete") === "true";
-    }
-
     // Display profile data if available on page load
     window.onload = function() {
-        displayProfile();
-
-        // Check if the profile is complete; if not, show the modal
-        if (!checkProfileCompletion()) {
-            showModal(); // Show the sign-in/sign-up modal
-        }
-    };
-
+        displayProfile();}
     // Modal function
     function showModal() {
         const modal = document.createElement('div');
