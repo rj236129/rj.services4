@@ -132,17 +132,78 @@
             }
         },
         "5": {
-            name: "Government Jobs Assistance",
-            description: "Help with government job applications, results tracking, and admit card assistance.",
-            subServices: {
-                "P1": { title: "Application Assistance", description: "Guidance on filling out applications.", documents: "Required documents: Application form, ID proof." },
-                "P2": { title: "Results Tracking", description: "Keeping track of job results.", documents: "Required documents: Application number." },
-                "P3": { title: "Admit Card Assistance", description: "Help with obtaining admit cards.", documents: "Required documents: Registration details." },
-                "P4": { title: "", description: "Additional government job support.", documents: "Contact us for more details.", link: "https://example.com/government-jobs" },
-                "P5": { title: "", description: "Another support service.", documents: "Contact us for assistance.", link: "https://example.com/another-support" },
-                "P6": { title: "", description: "General inquiry assistance.", documents: "For more information, please reach out.", link: "https://example.com/general-inquiry" }
+    "name": "Government Jobs Assistance",
+    "description": "Help with government job applications, results tracking, and admit card assistance.",
+    "subServices": {
+        "P1": { 
+            "title": "केंद्र सरकार की नौकरियाँ", 
+            "description": "UPSC, SSC, रेलवे, रक्षा और बैंकिंग नौकरियों के लिए सहायता प्रदान करते हैं।",
+            "link": {
+                "UPSC": "https://www.upsc.gov.in/",
+                "SSC": "https://ssc.nic.in/",
+                "रेलवे": "https://www.rrbcdg.gov.in/",
+                "रक्षा": "https://www.joinindianarmy.nic.in/",
+                "बैंकिंग": "https://www.ibps.in/"
             }
         },
+        "P2": { 
+            "title": "राज्य सरकार की नौकरियाँ", 
+            "description": "RPSC, MPPSC और अन्य राज्य लोक सेवा आयोग नौकरियों के लिए आवेदन और सहायता।",
+            "link": {
+                "RPSC": "https://rpsc.rajasthan.gov.in/",
+                "MPPSC": "https://mppsc.mp.gov.in/",
+                "अन्य राज्य लोक सेवा आयोग": "https://www.mpsc.gov.in/"
+            }
+        },
+        "P3": { 
+            "title": "शिक्षण और शिक्षा नौकरियाँ", 
+            "description": "शिक्षण में करियर के लिए TET, CTET और सहायक प्रोफेसर नौकरियों के बारे में जानकारी।",
+            "link": {
+                "CTET": "https://ctet.nic.in/",
+                "TET": "https://www.tetexam.com/",
+                "सहायक प्रोफेसर": "https://www.ugc.ac.in/"
+            }
+        },
+        "P4": { 
+            "title": "सार्वजनिक क्षेत्र के उपक्रम (PSUs)", 
+            "description": "NTPC, BHEL, ONGC में विभिन्न नौकरियों के लिए मार्गदर्शन।",
+            "link": {
+                "NTPC": "https://www.ntpc.co.in/",
+                "BHEL": "https://www.bhel.com/",
+                "ONGC": "https://www.ongcindia.com/"
+            }
+        },
+        "P5": { 
+            "title": "पुलिस और रक्षा नौकरियाँ", 
+            "description": "सेना, नौसेना, वायु सेना और पुलिस नौकरियों के लिए सहायता।",
+            "link": {
+                "भारतीय सेना": "https://www.joinindianarmy.nic.in/",
+                "भारतीय नौसेना": "https://www.joinindiannavy.gov.in/",
+                "भारतीय वायु सेना": "https://indianairforce.nic.in/",
+                "अर्धसैनिक बल": "https://www.crpf.gov.in/",
+                "पुलिस कांस्टेबल": "https://www.police.rajasthan.gov.in/"
+            }
+        },
+        "P6": { 
+            "title": "बैंकिंग नौकरियाँ", 
+            "description": "IBPS, SBI PO, क्लर्क परीक्षा जैसे बैंकिंग नौकरियों के लिए सहायता।",
+            "link": {
+                "IBPS": "https://www.ibps.in/",
+                "SBI PO": "https://sbi.co.in/web/careers",
+                "SBI क्लर्क परीक्षा": "https://sbi.co.in/web/careers"
+            }
+        },
+        "P7": { 
+            "title": "स्वास्थ्य और चिकित्सा नौकरियाँ", 
+            "description": "AIIMS, ESIC और सरकारी अस्पतालों में नौकरियों के लिए मार्गदर्शन।",
+            "link": {
+                "AIIMS": "https://www.aiimsexams.org/",
+                "ESIC": "https://www.esic.nic.in/",
+                "सरकारी अस्पताल": "https://rajswasthya.nic.in/"
+            }
+        }
+    }
+},
         "6": {  // E-Mitra Services
             name: "E-Mitra Services",
             description: "Assistance with various E-Mitra services.",
