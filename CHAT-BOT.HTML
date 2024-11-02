@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RJ Services Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Light background color for the body */
+            margin: 0;
+            padding: 10px;
+        }
+        .chat-container {
+            background-color: #ffffff; /* White background for the chat window */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            max-width: 100%;
+            height: 400px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-message {
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            position: relative;
+            max-width: 80%;
+        }
+        .user-message {
+            background-color: #ffcc80; /* Light orange for user messages */
+            align-self: flex-end;
+        }
+        .bot-message {
+            background-color: #febd69; /* Warm yellow for bot messages */
+            align-self: flex-start;
+        }
+        .sub-service-title {
+            background-color: #007bff; /* Bootstrap primary color */
+            color: #ffffff; /* White text for contrast */
+            padding: 8px;
+            border-radius: 5px;
+            margin: 5px 0;
+            cursor: pointer;
+            text-align: center;
+        }
+        .sub-service-title:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .send-container {
+            display: flex;
+            margin-top: 10px;
+        }
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #007bff; /* Blue border */
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff; /* Blue button */
+            color: #ffffff; /* White text */
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+
+<div class="chat-container" id="chat-window"></div>
+<div class="send-container">
+    <input type="text" id="user-input" placeholder="Type your message..." />
+    <button id="send-button">Send</button>
+</div>
+
+<script>
+    const chatWindow = document.getElementById('chat-window');
+    const inputField = document.getElementById('user-input');
+    const sendBtn = document.getElementById('send-button');
+    const maxMessages = 10; // Maximum messages to display
+
+    const services = {
+        "1": {
+            name: "Accounting Services",
+            description: "Comprehensive accounting solutions.",
+            subServices: {
+                "P1": { title: "Bookkeeping", description: "Maintaining financial records.", documents: "Required documents: Financial statements." },
+                "P2": { title: "Tax Accounting", description: "Preparation of tax returns.", documents: "Required documents: Tax documents, income details." },
+                "P3": { title: "Payroll Processing", description: "Managing employee payments.", documents: "Required documents: Employee records." }
+            }
+        },
+        "2": {
+            name: "ITR Services",
+            description: "Assistance with income tax returns.",
+            subServices: {
+                "P1": { title: "Employee ITR", description: "Filing income tax returns for employees.", documents: "Required documents: Salary slips, Form 16." },
+                "P2": { title: "Business ITR", description: "Filing income tax returns for businesses.", documents: "Required documents: Financial statements, Form 3CB." },
+                "P3": { title: "Filing ITR", description: "Filing income tax returns.", documents: "Required documents: Income details, Form 16." },
+                "P4": { title: "ITR Corrections", description: "Correcting filed returns.", documents: "Required documents: Original ITR and correction proof." },
+                "P5": { title: "Tax Planning", description: "Strategizing for tax efficiency.", documents: "Required documents: Financial plans, income details." },
+                "P6": { title: "Tax Audit Assistance", description: "Guidance on tax audit processes.", documents: "Required documents: Financial statements.", link: "https://example.com/tax-audit" },
+                "P7": { title: "Tax Compliance Check", description: "Verifying tax compliance requirements.", documents: "Required documents: Previous tax returns.", link: "https://example.com/tax-compliance" },
+                "P8": { title: "ITR Review Service", description: "Review of filed income tax returns.", documents: "Required documents: Copy of filed ITR.", link: "https://example.com/itr-review" },
+                "P9": { title: "Advance Tax Calculation", description: "Calculation of advance tax liabilities.", documents: "Required documents: Income projections.", link: "https://example.com/advance-tax" }
+            }
+        },
+        "3": {
+            name: "GST Services",
+            description: "Guidance on GST compliance.",
+            subServices: {
+                "P1": { title: "GST Registration", description: "Assisting with GST registration." },
+                "P2": { title: "GST Returns", description: "Filing GST returns." },
+                "P3": { title: "GST Audit", description: "Conducting GST audits." },
+                "P4": { title: "Documents Required for GST Registration", description: "Download the complete list of required documents for GST registration.", link: "https://drive.google.com/file/d/1qp82bRDO-q1Um5-28xKVcRtcGNEUcq6l/view?usp=sharing" }
+            }
+        },
+        "4": {
+            name: "PAN Card Services",
+            description: "Services related to PAN card applications.",
+            subServices: {
+                "P1": { title: "New PAN Applications", description: "Assisting in applying for a new PAN.", documents: "Required documents: ID proof (Aadhaar), address proof." },
+                "P2": { title: "PAN Updates", description: "Updating details on PAN cards.", documents: "Required documents: PAN card and ID proof(AADHAR-CARD)." },
+                "P3": { title: "Linking PAN with Aadhaar", description: "Helping in linking PAN with Aadhaar.", documents: "Required documents: PAN card and Aadhaar card." }
+            }
+        },
+        "5": {
+            name: "Government Jobs Assistance",
+            description: "Help with government job applications, results tracking, and admit card assistance.",
+            subServices: {
+                "P1": { title: "Application Assistance", description: "Guidance on filling out applications.", documents: "Required documents: Application form, ID proof." },
+                "P2": { title: "Results Tracking", description: "Keeping track of job results.", documents: "Required documents: Application number." },
+                "P3": { title: "Admit Card Assistance", description: "Help with obtaining admit cards.", documents: "Required documents: Registration details." },
+                "P4": { title: "", description: "Additional government job support.", documents: "Contact us for more details.", link: "https://example.com/government-jobs" },
+                "P5": { title: "", description: "Another support service.", documents: "Contact us for assistance.", link: "https://example.com/another-support" },
+                "P6": { title: "", description: "General inquiry assistance.", documents: "For more information, please reach out.", link: "https://example.com/general-inquiry" }
+            }
+        },
+        "6": {  // E-Mitra Services
+            name: "E-Mitra Services",
+            description: "Assistance with various E-Mitra services.",
+            subServices: {
+                "P1": { title: "E-Mitra Application", description: "Assisting with E-Mitra service applications.", documents: "Required documents: Application form, ID proof." },
+                "P2": { title: "E-Mitra Payment Assistance", description: "Help with E-Mitra payments.", documents: "Required documents: Payment details." },
+                "P3": { title: "E-Mitra Query Resolution", description: "Resolving queries related to E-Mitra services.", documents: "Required documents: Query details." },
+                "P4": { title: "", description: "Additional E-Mitra support service.", documents: "Contact us for assistance.", link: "https://example.com/emitra-support" },
+                "P5": { title: "", description: "Another E-Mitra inquiry.", documents: "For details, reach out to us.", link: "https://example.com/emitra-inquiry" },
+                "P6": { title: "", description: "General E-Mitra assistance.", documents: "Reach out for more information.", link: "https://example.com/emitra-general" }
+            }
+        }
+    };
+
+    let chatMessages = []; // Array to keep track of messages
+
+    function addMessage(sender, text) {
+        // Add new message to the array
+        chatMessages.push({ sender, text });
+
+        // Keep only the latest maxMessages messages
+        if (chatMessages.length > maxMessages) {
+            chatMessages.shift(); // Remove the oldest message
+        }
+
+        // Update chat window with current messages
+        chatWindow.innerHTML = '';
+        chatMessages.forEach(msg => {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${msg.sender}-message`;
+            messageDiv.innerHTML = msg.text;
+            chatWindow.appendChild(messageDiv);
+        });
+        chatWindow.scrollTop = chatWindow.scrollHeight; // Scroll to bottom
+    }
+
+    function processInput() {
+        const userInput = inputField.value.trim();
+        inputField.value = '';
+
+        if (userInput in services) {
+            const service = services[userInput];
+            let subServiceList = '<strong>' + service.name + ':</strong> ' + service.description + '<br>';
+            Object.keys(service.subServices).forEach(key => {
+                const subService = service.subServices[key];
+                subServiceList += '<div class="sub-service-title" onclick="showSubService(\'' + userInput + '\', \'' + key + '\')">' + subService.title + ' <em>(Click Here)</em></div>';
+            });
+            addMessage('bot', subServiceList);
+        } else {
+            // Default response about all services
+            addMessage('bot', "Here are all our services: 1. Accounting Services, 2. ITR Services, 3. GST Services, 4. PAN Card Services, 5. Government Jobs Assistance, 6. E-Mitra Services. Please enter a service number (1-6) for more information.");
+        }
+    }
+
+    function showSubService(serviceKey, subServiceKey) {
+        const subService = services[serviceKey].subServices[subServiceKey];
+        const response = '<strong>' + subService.title + ':</strong> ' + subService.description + (subService.documents ? '<br><em>Documents Required:</em> ' + subService.documents : '') + (subService.link ? '<br><a href="' + subService.link + '" target="_blank">More Info</a>' : '');
+        addMessage('bot', response);
+    }
+
+    sendBtn.addEventListener('click', processInput);
+    inputField.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') processInput();
+    });
+
+    addMessage('bot', 'Welcome to RJ Services! Please enter a service number (1 for Accounting, 2 for ITR Services, 3 for GST Services, 4 for PAN Card Services, 5 for Government Jobs Assistance, 6 for E-Mitra Services).');
+</script>
+
+</body>
+</html>
