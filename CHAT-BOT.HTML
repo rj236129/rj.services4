@@ -116,7 +116,7 @@
             name: "GST Services",
             description: "Guidance on GST compliance.",
             subServices: {
-                "P1": { title: "GST Registration", description: "Assisting with GST registration." },
+                "P1": { title: "GST Registration", description: "GST पंजीयन किसके लिए करना जरुरी है?<br>किसी भी व्यापार में सालाना कारोबार 40 लाख अधिक है तो GST पंजीयन करा कर GST नंबर लेना जरुरी है।<br>किसी भी सेवा में सालाना कारोबार 20 लाख अधिक है तो GST पंजीयन करा कर GST नंबर लेना जरुरी है।<br>एक राज्य से दूसरे राज्य में व्यापार करने वालो को GST पंजीयन करा कर GST नंबर लेना जरुरी है।<br>ऑनलाइन व्यापार करने वालो को GST पंजीयन करा कर GST नंबर लेना जरुरी है।" },
                 "P2": { title: "GST Returns", description: "Filing GST returns." },
                 "P3": { title: "GST Audit", description: "Conducting GST audits." },
                 "P4": { title: "Documents Required for GST Registration", description: "Download the complete list of required documents for GST registration.", link: "https://drive.google.com/file/d/1qp82bRDO-q1Um5-28xKVcRtcGNEUcq6l/view?usp=sharing" }
@@ -131,79 +131,23 @@
                 "P3": { title: "Linking PAN with Aadhaar", description: "Helping in linking PAN with Aadhaar.", documents: "Required documents: PAN card and Aadhaar card." }
             }
         },
-        "5": {
-    "name": "Government Jobs Assistance",
-    "description": "Help with government job applications, results tracking, and admit card assistance.",
-    "subServices": {
-        "P1": { 
-            "title": "केंद्र सरकार की नौकरियाँ", 
-            "description": "UPSC, SSC, रेलवे, रक्षा और बैंकिंग नौकरियों के लिए सहायता प्रदान करते हैं।",
-            "link": {
-                "UPSC": "https://www.upsc.gov.in/",
-                "SSC": "https://ssc.nic.in/",
-                "रेलवे": "https://www.rrbcdg.gov.in/",
-                "रक्षा": "https://www.joinindianarmy.nic.in/",
-                "बैंकिंग": "https://www.ibps.in/"
-            }
+        "5": {  // Government Jobs Assistance
+            name: "केंद्र सरकार की नौकरियाँ&राज्य सरकार की नौकरियाँ",
+            description: "UPSC, SSC, रेलवे, रक्षा और बैंकिंग नौकरियों के लिए सहायता प्रदान करते हैं।",
+            subServices: {
+                "P1": { title: "UPSC JOBS", description: "Required documents: Payment details.", link: "https://www.upsc.gov.in/" },
+                "P2": { title: "SSC JOBS", description: "Required documents: Payment details.", link: "https://ssc.nic.in/" },
+                "P3": { title: "रेलवे JOBS", description: "Required documents: Payment details.", link: "https://www.rrbcdg.gov.in/" },
+                "P4": { title: "रक्षा JOBS", description: "Contact us for assistance.", link: "https://www.joinindianarmy.nic.in/" },
+                "P5": { title: "बैंकिंग JOBS ", description: "For details, reach out to us.", link: "https://www.ibps.in/" },
+                "P6": { title: "राज्य सरकार की नौकरियाँ", description: "राज्य लोक सेवा आयोग नौकरियों के लिए आवेदन और सहायता।", documents: "Required documents: Application form, ID proof.", 
+                link: "https://rpsc.rajasthan.gov.in/"},
+                "P7": { title: "शिक्षण और शिक्षा नौकरियाँ", description: "शिक्षण में करियर के लिए TET, CTET और सहायक प्रोफेसर नौकरियों के बारे में जानकारी।", documents: "Required documents: Application form, ID proof.", 
+                link: "https://ctet.nic.in/"},
+                "P8": { title: "राजस्थान शिक्षण और शिक्षा नौकरियाँ", description: "राजस्थान शिक्षण में करियर के लिए RTET और सहायक प्रोफेसर नौकरियों के बारे में जानकारी।", documents: "Required documents: Application form, ID proof.", 
+                link: "https://rpsc.rajasthan.gov.in/TET2021.aspx"},
+            }   
         },
-        "P2": { 
-            "title": "राज्य सरकार की नौकरियाँ", 
-            "description": "RPSC, MPPSC और अन्य राज्य लोक सेवा आयोग नौकरियों के लिए आवेदन और सहायता।",
-            "link": {
-                "RPSC": "https://rpsc.rajasthan.gov.in/",
-                "MPPSC": "https://mppsc.mp.gov.in/",
-                "अन्य राज्य लोक सेवा आयोग": "https://www.mpsc.gov.in/"
-            }
-        },
-        "P3": { 
-            "title": "शिक्षण और शिक्षा नौकरियाँ", 
-            "description": "शिक्षण में करियर के लिए TET, CTET और सहायक प्रोफेसर नौकरियों के बारे में जानकारी।",
-            "link": {
-                "CTET": "https://ctet.nic.in/",
-                "TET": "https://www.tetexam.com/",
-                "सहायक प्रोफेसर": "https://www.ugc.ac.in/"
-            }
-        },
-        "P4": { 
-            "title": "सार्वजनिक क्षेत्र के उपक्रम (PSUs)", 
-            "description": "NTPC, BHEL, ONGC में विभिन्न नौकरियों के लिए मार्गदर्शन।",
-            "link": {
-                "NTPC": "https://www.ntpc.co.in/",
-                "BHEL": "https://www.bhel.com/",
-                "ONGC": "https://www.ongcindia.com/"
-            }
-        },
-        "P5": { 
-            "title": "पुलिस और रक्षा नौकरियाँ", 
-            "description": "सेना, नौसेना, वायु सेना और पुलिस नौकरियों के लिए सहायता।",
-            "link": {
-                "भारतीय सेना": "https://www.joinindianarmy.nic.in/",
-                "भारतीय नौसेना": "https://www.joinindiannavy.gov.in/",
-                "भारतीय वायु सेना": "https://indianairforce.nic.in/",
-                "अर्धसैनिक बल": "https://www.crpf.gov.in/",
-                "पुलिस कांस्टेबल": "https://www.police.rajasthan.gov.in/"
-            }
-        },
-        "P6": { 
-            "title": "बैंकिंग नौकरियाँ", 
-            "description": "IBPS, SBI PO, क्लर्क परीक्षा जैसे बैंकिंग नौकरियों के लिए सहायता।",
-            "link": {
-                "IBPS": "https://www.ibps.in/",
-                "SBI PO": "https://sbi.co.in/web/careers",
-                "SBI क्लर्क परीक्षा": "https://sbi.co.in/web/careers"
-            }
-        },
-        "P7": { 
-            "title": "स्वास्थ्य और चिकित्सा नौकरियाँ", 
-            "description": "AIIMS, ESIC और सरकारी अस्पतालों में नौकरियों के लिए मार्गदर्शन।",
-            "link": {
-                "AIIMS": "https://www.aiimsexams.org/",
-                "ESIC": "https://www.esic.nic.in/",
-                "सरकारी अस्पताल": "https://rajswasthya.nic.in/"
-            }
-        }
-    }
-},
         "6": {  // E-Mitra Services
             name: "E-Mitra Services",
             description: "Assistance with various E-Mitra services.",
