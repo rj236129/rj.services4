@@ -73,7 +73,6 @@
     <div id="profileForm">
         <input type="text" id="name" placeholder="Enter Name" required>
         <input type="text" id="email" placeholder="Enter Email" required>
-        <input type="text" id="phone" placeholder="Enter Phone Number" required>
         <input type="text" id="address" placeholder="Enter Address" required>
         <input type="date" id="dob" placeholder="Select Date of Birth" required>
         <textarea id="bio" placeholder="Write a short bio" rows="3"></textarea>
@@ -86,7 +85,6 @@
         <h3>Profile Information</h3>
         <p><strong>Name:</strong> <span id="displayName"></span></p>
         <p><strong>Email:</strong> <span id="displayEmail"></span></p>
-        <p><strong>Phone:</strong> <span id="displayPhone"></span></p>
         <p><strong>Address:</strong> <span id="displayAddress"></span></p>
         <p><strong>Date of Birth:</strong> <span id="displayDob"></span></p>
         <p><strong>Bio:</strong> <span id="displayBio"></span></p>
@@ -100,7 +98,6 @@
     document.getElementById('saveProfileBtn').addEventListener('click', function() {
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
         const address = document.getElementById('address').value;
         const dob = document.getElementById('dob').value;
         const bio = document.getElementById('bio').value;
@@ -109,7 +106,6 @@
         // Save data to local storage
         localStorage.setItem('name', name);
         localStorage.setItem('email', email);
-        localStorage.setItem('phone', phone);
         localStorage.setItem('address', address);
         localStorage.setItem('dob', dob);
         localStorage.setItem('bio', bio);
@@ -139,17 +135,15 @@
     function displayProfile() {
         const name = localStorage.getItem('name');
         const email = localStorage.getItem('email');
-        const phone = localStorage.getItem('phone');
         const address = localStorage.getItem('address');
         const dob = localStorage.getItem('dob');
         const bio = localStorage.getItem('bio');
         const profileImage = localStorage.getItem('profileImage');
 
         // Update the profile display
-        if (name && email && phone && address && dob && bio) {
+        if (name && email && address && dob && bio) {
             document.getElementById('displayName').textContent = name;
             document.getElementById('displayEmail').textContent = email;
-            document.getElementById('displayPhone').textContent = phone;
             document.getElementById('displayAddress').textContent = address;
             document.getElementById('displayDob').textContent = dob;
             document.getElementById('displayBio').textContent = bio;
@@ -169,7 +163,6 @@
     document.getElementById('editProfileBtn').addEventListener('click', function() {
         document.getElementById('name').value = localStorage.getItem('name');
         document.getElementById('email').value = localStorage.getItem('email');
-        document.getElementById('phone').value = localStorage.getItem('phone');
         document.getElementById('address').value = localStorage.getItem('address');
         document.getElementById('dob').value = localStorage.getItem('dob');
         document.getElementById('bio').value = localStorage.getItem('bio');
@@ -177,9 +170,12 @@
         document.getElementById('profileDisplay').style.display = 'none'; // Hide profile display
         document.getElementById('editProfileBtn').style.display = 'none'; // Hide edit button
     });
+    
     // Display profile data if available on page load
     window.onload = function() {
-        displayProfile();}
+        displayProfile();
+    }
+    
     // Modal function
     function showModal() {
         const modal = document.createElement('div');
