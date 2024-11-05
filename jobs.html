@@ -38,7 +38,7 @@
         }
 
         .job-list {
-            width: 95%; /* Use relative width */
+            width: 100%; /* Use relative width */
             max-width: 600px; /* Max width for larger screens */
             margin: 10px 0;
         }
@@ -58,7 +58,7 @@
 
         /* Scrolling Updates Section */
         .marquee-container {
-            width: 95%; 
+            width:100%; 
             background-color: #f1f1f1;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -123,57 +123,37 @@
             border-radius: 5px;
         }
 
-      /* Bottom Menu */
-.bottom-menu {
-    display: flex;
-    justify-content: space-between; /* Use space-between for even distribution */
-    background-color: #febd69;
-    padding: 10px; /* Increased padding for better touch target */
-    border-radius: 5px;
-    width: 100%;
-    max-width: 600px; /* Keep the max-width for larger screens */
-    position: fixed;
-    bottom: 0;
-    left: 0; /* Align to the left edge */
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2); /* Add a shadow for better visibility */
-    z-index: 1000; /* Ensure it stays above other content */
-}
+        /* Bottom Menu */
+        .bottom-menu {
+            display: flex;
+            justify-content: space-around;
+            background-color: #febd69;
+            padding: 5px;
+            border-radius: 5px;
+            width: 100%; /* Full width */
+            max-width: 600px; /* Max width for larger screens */
+            position: fixed;
+            bottom: 0;
+        }
 
-/* Adjust icon and text size for better accessibility on mobile */
-.bottom-menu a {
-    color: black;
-    text-decoration: none;
-    font-size: 1.1em; /* Slightly larger font size */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: color 0.3s;
-    flex: 1; /* Allow items to grow equally */
-}
+        .bottom-menu a {
+            color: black;
+            text-decoration: none;
+            font-size: 0.9em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: color 0.3s;
+        }
 
-.bottom-menu a:hover {
-    color: #d97706;
-}
+        .bottom-menu a:hover {
+            color: #d97706;
+        }
 
-.bottom-menu .icon {
-    font-size: 1.5em;
-    margin-bottom: 3px;
-}
-
-/* Media Query for Smaller Screens */
-@media (max-width: 400px) {
-    .bottom-menu {
-        padding: 8px; /* Reduce padding on smaller screens */
-    }
-    
-    .bottom-menu a {
-        font-size: 1em; /* Adjust font size for better fit */
-    }
-    
-    .bottom-menu .icon {
-        font-size: 1.3em; /* Adjust icon size */
-    }
-}
+        .bottom-menu .icon {
+            font-size: 1.5em;
+            margin-bottom: 3px;
+        }
 
     </style>
 </head>
