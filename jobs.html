@@ -13,9 +13,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
-        /* Header */
         header {
             background-color: #febd69;
             color: black;
@@ -40,14 +40,16 @@
         }
 
         .job-list {
-            width: 100%; /* Use relative width */
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive columns */
+            gap: 10px; /* Space between job columns */
+            width: 95%; /* Use relative width */
             max-width: 600px;
             margin: 10px 0;
         }
 
         .job-column {
             padding: 8px;
-            margin: 5px 0; 
             border: 1px solid #ddd;
             border-radius: 5px;
             background-color: #f9f9f9;
@@ -58,13 +60,13 @@
             font-weight: bold;
         }
 
-        /* Scrolling Updates Section */
         .marquee-container {
-            width: 100%; 
+            width: 95%; 
             background-color: #f1f1f1;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             margin: 10px 0;
+            overflow: hidden; /* Prevent overflow */
         }
 
         .marquee {
@@ -87,7 +89,6 @@
             100% { transform: translateX(-100%); }
         }
 
-        /* Job List */
         .job-header {
             font-weight: bold;
             text-align: center;
@@ -108,9 +109,8 @@
             margin-left: 10px;
         }
 
-        /* Search Bar */
         .search-bar {
-            width: auto;
+            width: 95%;
             display: flex;
             margin: 10px 0;
         }
@@ -124,36 +124,38 @@
             border-radius: 5px;
         }
 
-        /* Bottom Menu */
         .bottom-menu {
             display: flex;
-            justify-content: space-around; /* Adjust space for icon and text */
-            background-color: #febd69; /* Set bottom menu color */
-            padding: 5px; /* Reduced padding for bottom menu */
+            justify-content: space-around;
+            background-color: #febd69;
+            padding: 5px;
             border-radius: 5px;
-            margin: 0; /* Remove margin for bottom menu */
+            width: 100%; /* Full width */
+            max-width: 600px;
             position: fixed;
             bottom: 0;
-            left: 0;
-            right: 0;
+            z-index: 1000;
         }
+
         .bottom-menu a {
-            color: black; /* Set text color to black */
+            color: black;
             text-decoration: none;
-            font-size: 0.7em; /* Set font size to smaller */
+            font-size: 0.9em;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center items in the flex column */
+            align-items: center;
             transition: color 0.3s;
         }
+
         .bottom-menu a:hover {
-            color: #d97706; /* Change color on hover */
+            color: #d97706;
         }
+
         .bottom-menu .icon {
-            font-size: 1.5em; /* Icon size */
-            margin-bottom: 3px; /* Space between icon and text */
+            font-size: 1.5em;
+            margin-bottom: 3px;
         }
-        /* Responsive Font Sizes */
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 1.5em;
@@ -170,15 +172,13 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <img src="C:\Users\desktop\OneDrive\Desktop\MY LOGO.png" alt="App Icon">
     </header>
     <div class="job-portal-header">
         <h1>Job Portal</h1>
-    </div>        
+    </div>
 
-    <!-- Scrolling Latest Updates Section -->
     <div class="marquee-container">
         <div class="marquee">
             <div class="update">🗞️ Update 1: Latest information about Exam A. <a href="#" target="_blank">Check Here</a></div>
@@ -188,12 +188,10 @@
         </div>
     </div>
 
-    <!-- Search Bar -->
     <div class="search-bar">
         <input type="text" id="searchBar" placeholder="Search for jobs..." onkeyup="filterJobs()">
     </div>
 
-    <!-- Job List with Vertical Boxes -->
     <div class="job-list" id="jobList">
         <div class="job-column">
             <div class="job-header">केंद्र सरकार की नौकरियाँ</div>
@@ -205,7 +203,6 @@
             <a href="https://ssc.nic.in/" class="more-details" target="_blank">More Details</a>
         </div>
 
-        <!-- State Government Jobs -->
         <div class="job-column">
             <div class="job-header">राज्य सरकार की नौकरियाँ</div>
             <div class="job-description">RPSC - राजस्थान लोक सेवा आयोग</div>
@@ -214,7 +211,6 @@
             <a href="https://mppsc.nic.in/" class="more-details" target="_blank">More Details</a>
         </div>
 
-        <!-- Other Field Jobs -->
         <div class="job-column">
             <div class="job-header">अन्य क्षेत्रों की नौकरियाँ</div>
             <div class="job-description">Teaching - शिक्षक की नौकरियाँ (TET, CTET)</div>
@@ -226,7 +222,6 @@
         </div>
     </div>
 
-    <!-- Bottom Menu -->
     <div class="bottom-menu">
         <a href="index.html">
             <i class="fas fa-home icon"></i> Home
@@ -240,39 +235,82 @@
         <a href="privacy-policy.html">
             <i class="fas fa-shield-alt icon"></i> Privacy 
         </a>
-        <a href="about.html">
-            <i class="fas fa-info-circle icon"></i> About
-        </a>
-        <a href="https://wa.me/917737740207">
-            <i class="fas fa-envelope icon"></i> Contact
-        </a>
-    </div>
+        <aTo enhance the display and user experience of your job portal, we can implement a few changes to ensure that elements are more visually appealing and functionally effective. Here are some adjustments you might consider:
 
-    <script>
-       function filterJobs() {
-    const searchInput = document.getElementById('searchBar').value.toLowerCase();
-    const jobColumns = document.querySelectorAll('.job-column');
-    
-    jobColumns.forEach(column => {
-        const jobs = column.querySelectorAll('.job-description');
-        const links = column.querySelectorAll('.more-details');
-        let hasVisibleJob = false;
-        
-        // Loop through each job description to check if it matches the search
-        jobs.forEach((job, index) => {
-            const jobText = job.textContent.toLowerCase();
-            const isVisible = jobText.includes(searchInput);
-            
-            job.style.display = isVisible ? '' : 'none'; // Show/hide job based on match
-            links[index].style.display = isVisible ? '' : 'none'; // Show/hide corresponding link
-            
-            if (isVisible) hasVisibleJob = true;
-        });
-        
-        // Show the column if it has at least one matching job
-        column.style.display = hasVisibleJob ? '' : 'none';
-    });
+### 1. Improve Responsive Design
+You can adjust styles in your CSS to ensure that elements adapt better across various screen sizes.
+
+### CSS Adjustments
+Here's an updated CSS snippet to enhance the responsiveness and display properties of your job portal:
+
+```css
+/* Body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
-    </script>
-    
+/* Job List */
+.job-list {
+    width: 100%; /* Use full width for responsiveness */
+    max-width: 600px;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column; /* Stack job columns */
+}
+
+/* Job Column */
+.job-column {
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: transform 0.2s; /* Add a hover effect */
+}
+
+.job-column:hover {
+    transform: scale(1.02); /* Scale up on hover for better visual feedback */
+}
+
+/* Search Bar */
+.search-bar {
+    width: 100%; /* Adjust to full width */
+    max-width: 600px; /* Maintain maximum width */
+    display: flex;
+    margin: 10px 0;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+/* Marquee Container */
+.marquee-container {
+    width: 100%; /* Adjust to full width */
+    max-width: 600px; /* Maintain maximum width */
+}
+
+/* Bottom Menu */
+.bottom-menu {
+    display: flex;
+    justify-content: space-around;
+    background-color: #febd69;
+    padding: 5px;
+    border-radius: 5px;
+    width: 100%; /* Full width */
+    max-width: 600px;
+    position: fixed;
+    bottom: 0;
+    z-index: 1000;
+}
