@@ -9,58 +9,76 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding-bottom: 60px;
+            padding-block-end: 60px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
         }
 
-       /* Header */
-       header {
-    background-color: #febd69; /* Set header color same as bottom menu */
-    color: black; /* Change text color for visibility */
-    padding: 10px; /* Padding remains the same */
-    inline-size: 100%;
-    display: flex;
-    align-items: center;
-}
-
-header img {
-    inline-size: 80px;
-    block-size: 40px;
-    margin-left: 20px; 
-}
-
-h1 {
-    margin-inline-start: 15px; /* Keep some space from the logo */
-    margin: 0 auto; /* Center the <h1> element */
-    text-align: center; /* Center text */
-    flex: 1; /* Allow the <h1> to take remaining space */
-    font-size: 30px;
-}
-     /* Scrolling Latest Updates Section */
-        .marquee-container {
+        /* Header */
+        header {
+            background-color: #febd69;
+            color: black;
+            padding: 10px;
             inline-size: 100%;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            inset-block-start: 0;
+            z-index: 1000;
+        }
+
+        header img {
+            inline-size: 40px;
+            block-size: auto;
+            margin-inline-end: 10px;
+        }
+
+.job-portal-header {
+    text-align: center;
+    margin: 0px 0; /* Reduce space around header */
+}
+
+.job-list {
+    inline-size: 100%; /* Full width */
+    max-inline-size: 600px;
+    margin: 5px 0; /* Reduced margin */
+}
+
+.job-column {
+    padding: 8px;
+    margin: 5px 0; /* Reduced space between job entries */
+}
+
+.job-portal-header h1 {
+    font-size: 2em; /* Adjust the size as needed */
+    font-weight: bold;
+}
+
+
+        /* Scrolling Updates Section */
+        .marquee-container {
+            inline-size: 95%;
             overflow: hidden;
             background-color: #f1f1f1;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin: 10px 0; /* Reduced margin */
+            margin: 10px 0;
         }
 
         .marquee {
             display: flex;
-            animation: scroll 10s linear infinite;
+            animation: scroll 15s linear infinite;
         }
 
         .update {
-            padding: 5px; /* Reduced padding */
+            padding: 5px;
             background-color: #e6f7ff;
             border-radius: 5px;
-            margin-inline-end: 5px; /* Reduced margin */
+            margin-inline-end: 5px;
             white-space: nowrap;
-            min-inline-size: 150px; /* Adjusted for readability */
+            min-inline-size: 150px;
+            font-size: 1em;
         }
 
         @keyframes scroll {
@@ -70,89 +88,115 @@ h1 {
 
         /* Job List */
         .job-list {
-            inline-size: 100%;
+            inline-size: 95%;
+            max-inline-size: 600px;
             display: flex;
             flex-direction: column;
-            margin: 10px 0; /* Reduced margin */
+            margin: 10px 0;
         }
 
         .job-column {
             background-color: #f9f9f9;
             border: 1px solid #ddd;
-            padding: 5px; /* Reduced padding */
-            margin: 5px 0; /* Reduced margin */
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
         }
 
         .job-header {
             font-weight: bold;
             text-align: center;
-            margin-block-end: 5px; /* Reduced margin */
+            margin-block-end: 5px;
+            font-size: 1.2em;
         }
 
         .job-description {
-        margin-block-end: 2px; /* Reduced margin */
-        padding-inline-start: 10px; /* Added left padding */
-    }
+            margin-block-end: 5px;
+            padding-inline-start: 10px;
+        }
 
         .more-details {
             color: #0073e6;
             text-decoration: none;
             font-weight: bold;
-            padding-inline-start: 10px;
+            display: block;
+            margin-inline-start: 10px;
         }
 
+        /* Search Bar */
         .search-bar {
-            inline-size: 100%;
+            inline-size: 95%;
             max-inline-size: 600px;
             display: flex;
-            margin: 5px 0; /* Reduced margin */
+            margin: 10px 0;
         }
 
         .search-bar input {
             inline-size: 100%;
-            padding: 8px; /* Reduced padding */
+            padding: 10px;
             border: 1px solid #ddd;
-            font-size: 14px; /* Adjusted font size */
+            font-size: 1em;
             box-sizing: border-box;
+            border-radius: 5px;
         }
-    
-     .bottom-menu {
-        display: flex;
-        justify-content: space-around; /* Adjust space for icon and text */
-        background-color: #febd69; /* Set bottom menu color */
-        padding: 5px; /* Reduced padding for bottom menu */
-        border-radius: 5px;
-        margin: 0; /* Remove margin for bottom menu */
-        position: fixed;
-        inset-block-end: 0;
-        inset-inline-start: 0;
-        inset-inline-end: 0;
-        z-index: 1000;
-    }
-    .bottom-menu a {
-        color: black; /* Set text color to black */
-        text-decoration: none;
-        font-size: 0.7em; /* Set font size to smaller */
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* Center items in the flex column */
-        transition: color 0.3s;
-    }
-    .bottom-menu a:hover {
-        color: #d97706; /* Change color on hover */
-    }
-    .bottom-menu .icon {
-        font-size: 1.5em; /* Icon size */
-        margin-block-end: 3px; /* Space between icon and text */
-    }
-</style>
+
+        /* Bottom Menu */
+        .bottom-menu {
+            display: flex;
+            justify-content: space-around;
+            background-color: #febd69;
+            padding: 5px;
+            border-radius: 5px;
+            inline-size: 100%;
+            max-inline-size: 600px;
+            position: fixed;
+            inset-block-end: 0;
+            z-index: 1000;
+        }
+
+        .bottom-menu a {
+            color: black;
+            text-decoration: none;
+            font-size: 0.9em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+        .bottom-menu a:hover {
+            color: #d97706;
+        }
+
+        .bottom-menu .icon {
+            font-size: 1.5em;
+            margin-block-end: 3px;
+        }
+
+        /* Responsive Font Sizes */
+        @media (max-inline-size: 768px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .job-header {
+                font-size: 1em;
+            }
+
+            .search-bar input, .update {
+                font-size: 0.9em;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <img src="C:\Users\desktop\OneDrive\Desktop\MY LOGO.png" alt="App Icon">
-        <h1>Job Portal</h1>
     </header>
+    <div class="job-portal-header">
+        <h1>Job Portal</h1>
+    </div>        
 
     <!-- Scrolling Latest Updates Section -->
     <div class="marquee-container">
@@ -180,70 +224,75 @@ h1 {
             <div class="job-description">SSC - कर्मचारी चयन आयोग</div>
             <a href="https://ssc.nic.in/" class="more-details" target="_blank">More Details</a>
         </div>
+
+        <!-- State Government Jobs -->
         <div class="job-column">
             <div class="job-header">राज्य सरकार की नौकरियाँ</div>
             <div class="job-description">RPSC - राजस्थान लोक सेवा आयोग</div>
             <a href="https://rpsc.rajasthan.gov.in/" class="more-details" target="_blank">More Details</a>
-            <div class="job-description">TET - शिक्षक पात्रता परीक्षा</div>
-            <a href="https://ctet.nic.in/" class="more-details" target="_blank">More Details</a>
-            <div class="job-description">राजस्थान पुलिस भर्ती</div>
-            <a href="https://rpsc.rajasthan.gov.in/" class="more-details" target="_blank">More Details</a>
+            <div class="job-description">MPPSC - मध्य प्रदेश लोक सेवा आयोग</div>
+            <a href="https://mppsc.nic.in/" class="more-details" target="_blank">More Details</a>
         </div>
+
+        <!-- Other Field Jobs -->
         <div class="job-column">
-            <div class="job-header">अन्य क्षेत्र की नौकरियाँ</div>
-            <div class="job-description">PSU - सार्वजनिक उपक्रम</div>
-            <a href="https://www.psuconnect.in/" class="more-details" target="_blank">More Details</a>
-            <div class="job-description">IBPS - बैंकिंग क्षेत्र</div>
+            <div class="job-header">अन्य क्षेत्रों की नौकरियाँ</div>
+            <div class="job-description">Teaching - शिक्षक की नौकरियाँ (TET, CTET)</div>
+            <a href="https://ctet.nic.in/" class="more-details" target="_blank">More Details</a>
+            <div class="job-description">Banking - बैंकिंग नौकरियाँ (IBPS, SBI)</div>
             <a href="https://www.ibps.in/" class="more-details" target="_blank">More Details</a>
-            <div class="job-description">स्वास्थ्य सेवा में नौकरियाँ</div>
-            <a href="https://www.mohfw.gov.in/" class="more-details" target="_blank">More Details</a>
+            <div class="job-description">Police - पुलिस और रक्षा सेवाएँ</div>
+            <a href="https://www.police.gov.in/" class="more-details" target="_blank">More Details</a>
         </div>
-        
-        
     </div>
+
     <!-- Bottom Menu -->
     <div class="bottom-menu">
         <a href="index.html">
-            <i class="fas fa-home icon"></i>
-            Home
+            <i class="fas fa-home icon"></i> Home
         </a>
         <a href="#profile">
-            <i class="fas fa-user icon"></i>
-            Profile
+            <i class="fas fa-user icon"></i> Profile
         </a>
         <a href="terms&conditions.html">
-            <i class="fas fa-file-contract icon"></i>
-            Terms
+            <i class="fas fa-file-contract icon"></i> Terms
         </a>
-        <a href="privecy policy.html">
-            <i class="fas fa-shield-alt icon"></i>
-            Privacy 
+        <a href="privacy-policy.html">
+            <i class="fas fa-shield-alt icon"></i> Privacy 
         </a>
         <a href="about.html">
-            <i class="fas fa-info-circle icon"></i>
-            About
+            <i class="fas fa-info-circle icon"></i> About
         </a>
         <a href="https://wa.me/917737740207">
-            <i class="fas fa-envelope icon"></i>
-            Contact
+            <i class="fas fa-envelope icon"></i> Contact
         </a>
-    
+    </div>
+
     <script>
-        function filterJobs() {
-            const searchInput = document.getElementById('searchBar').value.toLowerCase();
-            const jobColumns = document.querySelectorAll('.job-column');
-            jobColumns.forEach(column => {
-                const jobs = column.querySelectorAll('.job-description');
-                let hasVisibleJob = false;
-                jobs.forEach(job => {
-                    const jobText = job.textContent.toLowerCase();
-                    const isVisible = jobText.includes(searchInput);
-                    job.parentElement.style.display = isVisible ? '' : 'none';
-                    if (isVisible) hasVisibleJob = true;
-                });
-                column.style.display = hasVisibleJob ? '' : 'none';
-            });
-        }
+       function filterJobs() {
+    const searchInput = document.getElementById('searchBar').value.toLowerCase();
+    const jobColumns = document.querySelectorAll('.job-column');
+    
+    jobColumns.forEach(column => {
+        const jobs = column.querySelectorAll('.job-description');
+        const links = column.querySelectorAll('.more-details');
+        let hasVisibleJob = false;
+        
+        // Loop through each job description to check if it matches the search
+        jobs.forEach((job, index) => {
+            const jobText = job.textContent.toLowerCase();
+            const isVisible = jobText.includes(searchInput);
+            
+            job.style.display = isVisible ? '' : 'none'; // Show/hide job based on match
+            links[index].style.display = isVisible ? '' : 'none'; // Show/hide corresponding link
+            
+            if (isVisible) hasVisibleJob = true;
+        });
+        
+        // Show the column if it has at least one matching job
+        column.style.display = hasVisibleJob ? '' : 'none';
+    });
+}
+
     </script>
-</body>
-</html>
+    
