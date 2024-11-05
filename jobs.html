@@ -12,16 +12,32 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
+            width: 100vw;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
         /* Header */
         header {
             background-color: #0073e6;
             color: white;
-            padding: 15px;
-            text-align: center;
+            padding: 10px; /* Reduced padding */
             width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        header img {
+            width: 40px; /* Keep size for the icon */
+            height: 40px; 
+            margin-right: 10px; /* Reduced margin */
+        }
+
+        h1 {
+            margin: 0;
+            flex-grow: 1;
+            text-align: center;
+            font-size: 20px; /* Adjust font size for mobile */
         }
 
         /* Scrolling Latest Updates Section */
@@ -29,26 +45,25 @@
             width: 100%;
             overflow: hidden;
             background-color: #f1f1f1;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 15px 0; /* Reduced margin */
         }
 
         .marquee {
             display: flex;
-            animation: scroll 10s linear infinite; /* Slower for better mobile visibility */
+            animation: scroll 10s linear infinite; /* Adjust speed for mobile */
         }
 
         .update {
-            padding: 10px;
+            padding: 8px; /* Reduced padding */
             background-color: #e6f7ff;
-            border-radius: 5px;
-            margin-right: 10px;
+            border-radius: 4px;
+            margin-right: 8px; /* Reduced margin */
             white-space: nowrap;
-            min-width: 200px; /* Ensures updates are readable */
+            min-width: 180px; /* Ensure readability */
         }
 
-        /* Animation for scrolling */
         @keyframes scroll {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
@@ -57,46 +72,50 @@
         /* Job List */
         .job-list {
             width: 100%;
+            max-width: 1000px; /* Adjusted maximum width */
             display: flex;
-            flex-direction: column; /* Stack columns vertically for mobile */
-            margin: 20px 0;
+            flex-direction: column;
+            margin: 0 auto;
+            padding: 0 5px; /* Reduced padding */
         }
 
         .job-column {
             background-color: #f9f9f9;
             border: 1px solid #ddd;
-            padding: 10px;
-            margin: 10px 0; /* Space between job sections */
+            padding: 8px; /* Reduced padding */
+            margin: 5px 0; /* Reduced margin */
+            border-radius: 4px; /* Rounded corners */
         }
 
         .job-header {
             font-weight: bold;
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 5px; /* Reduced margin */
         }
 
         .job-description {
-            margin-bottom: 5px;
+            margin-bottom: 4px; /* Reduced margin */
         }
 
         .more-details {
             color: #0073e6;
             text-decoration: none;
             font-weight: bold;
+            font-size: 14px; /* Adjust font size for mobile */
         }
 
         .search-bar {
             width: 100%;
             max-width: 600px;
             display: flex;
-            margin: 10px 0;
+            margin: 8px 0; /* Reduced margin */
         }
 
         .search-bar input {
             width: 100%;
-            padding: 10px;
+            padding: 8px; /* Reduced padding */
             border: 1px solid #ddd;
-            font-size: 16px;
+            font-size: 14px; /* Adjust font size for mobile */
             box-sizing: border-box;
         }
     </style>
@@ -104,6 +123,7 @@
 <body>
     <!-- Header -->
     <header>
+        <img src="path/to/your/icon.png" alt="App Icon">
         <h1>Job Portal</h1>
     </header>
 
@@ -152,7 +172,7 @@
             <a href="https://www.mohfw.gov.in/" class="more-details" target="_blank">More Details</a>
         </div>
     </div>
-    
+
     <script>
         function filterJobs() {
             const searchInput = document.getElementById('searchBar').value.toLowerCase();
