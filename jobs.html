@@ -9,29 +9,31 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding-bottom: 60px;
+            padding-block-end: 60px;
             display: flex;
+
             flex-direction: column;
             align-items: center;
             overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
+        /* Header */
         header {
             background-color: #febd69;
             color: black;
             padding: 10px;
-            width: 100%;
+            inline-size: 100%;
             display: flex;
             align-items: center;
             position: sticky;
-            top: 0;
+            inset-block-start: 0;
             z-index: 1000;
         }
 
         header img {
-            width: 40px;
-            height: auto;
-            margin-right: 10px;
+            inline-size: 40px;
+            block-size: auto;
+            margin-inline-end: 10px;
         }
 
         .job-portal-header {
@@ -40,16 +42,14 @@
         }
 
         .job-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive columns */
-            gap: 10px; /* Space between job columns */
-            width: 95%; /* Use relative width */
-            max-width: 600px;
+            inline-size: 95%; /* Use relative width */
+            max-inline-size: 600px;
             margin: 10px 0;
         }
 
         .job-column {
             padding: 8px;
+            margin: 5px 0; 
             border: 1px solid #ddd;
             border-radius: 5px;
             background-color: #f9f9f9;
@@ -60,8 +60,9 @@
             font-weight: bold;
         }
 
+        /* Scrolling Updates Section */
         .marquee-container {
-            width: 95%; 
+            inline-size: 95%; 
             background-color: #f1f1f1;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -78,9 +79,9 @@
             padding: 5px;
             background-color: #e6f7ff;
             border-radius: 5px;
-            margin-right: 5px;
+            margin-inline-end: 5px;
             white-space: nowrap;
-            min-width: 150px;
+            min-inline-size: 150px;
             font-size: 1em;
         }
 
@@ -89,16 +90,17 @@
             100% { transform: translateX(-100%); }
         }
 
+        /* Job List */
         .job-header {
             font-weight: bold;
             text-align: center;
-            margin-bottom: 5px;
+            margin-block-end: 5px;
             font-size: 1.2em;
         }
 
         .job-description {
-            margin-bottom: 5px;
-            padding-left: 10px;
+            margin-block-end: 5px;
+            padding-inline-start: 10px;
         }
 
         .more-details {
@@ -106,17 +108,18 @@
             text-decoration: none;
             font-weight: bold;
             display: block;
-            margin-left: 10px;
+            margin-inline-start: 10px;
         }
 
+        /* Search Bar */
         .search-bar {
-            width: 95%;
+            inline-size: 95%;
             display: flex;
             margin: 10px 0;
         }
 
         .search-bar input {
-            width: 100%;
+            inline-size: 100%;
             padding: 10px;
             border: 1px solid #ddd;
             font-size: 1em;
@@ -124,16 +127,17 @@
             border-radius: 5px;
         }
 
+        /* Bottom Menu */
         .bottom-menu {
             display: flex;
             justify-content: space-around;
             background-color: #febd69;
             padding: 5px;
             border-radius: 5px;
-            width: 100%; /* Full width */
-            max-width: 600px;
+            inline-size: 100%; /* Full width */
+            max-inline-size: 600px;
             position: fixed;
-            bottom: 0;
+            inset-block-end: 0;
             z-index: 1000;
         }
 
@@ -153,10 +157,11 @@
 
         .bottom-menu .icon {
             font-size: 1.5em;
-            margin-bottom: 3px;
+            margin-block-end: 3px;
         }
 
-        @media (max-width: 768px) {
+        /* Responsive Font Sizes */
+        @media (max-inline-size: 768px) {
             h1 {
                 font-size: 1.5em;
             }
@@ -172,13 +177,11 @@
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
         <img src="C:\Users\desktop\OneDrive\Desktop\MY LOGO.png" alt="App Icon">
-    </header>
-    <div class="job-portal-header">
-        <h1>Job Portal</h1>
-    </div>
-
+    </header>     
+    <!-- Scrolling Latest Updates Section -->
     <div class="marquee-container">
         <div class="marquee">
             <div class="update">🗞️ Update 1: Latest information about Exam A. <a href="#" target="_blank">Check Here</a></div>
@@ -188,10 +191,12 @@
         </div>
     </div>
 
+    <!-- Search Bar -->
     <div class="search-bar">
         <input type="text" id="searchBar" placeholder="Search for jobs..." onkeyup="filterJobs()">
     </div>
 
+    <!-- Job List with Vertical Boxes -->
     <div class="job-list" id="jobList">
         <div class="job-column">
             <div class="job-header">केंद्र सरकार की नौकरियाँ</div>
@@ -203,6 +208,7 @@
             <a href="https://ssc.nic.in/" class="more-details" target="_blank">More Details</a>
         </div>
 
+        <!-- State Government Jobs -->
         <div class="job-column">
             <div class="job-header">राज्य सरकार की नौकरियाँ</div>
             <div class="job-description">RPSC - राजस्थान लोक सेवा आयोग</div>
@@ -211,6 +217,7 @@
             <a href="https://mppsc.nic.in/" class="more-details" target="_blank">More Details</a>
         </div>
 
+        <!-- Other Field Jobs -->
         <div class="job-column">
             <div class="job-header">अन्य क्षेत्रों की नौकरियाँ</div>
             <div class="job-description">Teaching - शिक्षक की नौकरियाँ (TET, CTET)</div>
@@ -222,6 +229,7 @@
         </div>
     </div>
 
+    <!-- Bottom Menu -->
     <div class="bottom-menu">
         <a href="index.html">
             <i class="fas fa-home icon"></i> Home
@@ -235,82 +243,39 @@
         <a href="privacy-policy.html">
             <i class="fas fa-shield-alt icon"></i> Privacy 
         </a>
-        <aTo enhance the display and user experience of your job portal, we can implement a few changes to ensure that elements are more visually appealing and functionally effective. Here are some adjustments you might consider:
+        <a href="about.html">
+            <i class="fas fa-info-circle icon"></i> About
+        </a>
+        <a href="https://wa.me/917737740207">
+            <i class="fas fa-envelope icon"></i> Contact
+        </a>
+    </div>
 
-### 1. Improve Responsive Design
-You can adjust styles in your CSS to ensure that elements adapt better across various screen sizes.
-
-### CSS Adjustments
-Here's an updated CSS snippet to enhance the responsiveness and display properties of your job portal:
-
-```css
-/* Body */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding-bottom: 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    <script>
+       function filterJobs() {
+    const searchInput = document.getElementById('searchBar').value.toLowerCase();
+    const jobColumns = document.querySelectorAll('.job-column');
+    
+    jobColumns.forEach(column => {
+        const jobs = column.querySelectorAll('.job-description');
+        const links = column.querySelectorAll('.more-details');
+        let hasVisibleJob = false;
+        
+        // Loop through each job description to check if it matches the search
+        jobs.forEach((job, index) => {
+            const jobText = job.textContent.toLowerCase();
+            const isVisible = jobText.includes(searchInput);
+            
+            job.style.display = isVisible ? '' : 'none'; // Show/hide job based on match
+            links[index].style.display = isVisible ? '' : 'none'; // Show/hide corresponding link
+            
+            if (isVisible) hasVisibleJob = true;
+        });
+        
+        // Show the column if it has at least one matching job
+        column.style.display = hasVisibleJob ? '' : 'none';
+    });
 }
 
-/* Job List */
-.job-list {
-    width: 100%; /* Use full width for responsiveness */
-    max-width: 600px;
-    margin: 10px 0;
-    display: flex;
-    flex-direction: column; /* Stack job columns */
-}
-
-/* Job Column */
-.job-column {
-    padding: 8px;
-    margin: 5px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    transition: transform 0.2s; /* Add a hover effect */
-}
-
-.job-column:hover {
-    transform: scale(1.02); /* Scale up on hover for better visual feedback */
-}
-
-/* Search Bar */
-.search-bar {
-    width: 100%; /* Adjust to full width */
-    max-width: 600px; /* Maintain maximum width */
-    display: flex;
-    margin: 10px 0;
-}
-
-.search-bar input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    font-size: 1em;
-    box-sizing: border-box;
-    border-radius: 5px;
-}
-
-/* Marquee Container */
-.marquee-container {
-    width: 100%; /* Adjust to full width */
-    max-width: 600px; /* Maintain maximum width */
-}
-
-/* Bottom Menu */
-.bottom-menu {
-    display: flex;
-    justify-content: space-around;
-    background-color: #febd69;
-    padding: 5px;
-    border-radius: 5px;
-    width: 100%; /* Full width */
-    max-width: 600px;
-    position: fixed;
-    bottom: 0;
-    z-index: 1000;
-}
+    </script>
+    
