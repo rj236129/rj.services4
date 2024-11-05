@@ -13,7 +13,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
         /* Header */
@@ -41,7 +40,7 @@
         }
 
         .job-list {
-            width: 95%; /* Use relative width */
+            width: 100%; /* Use relative width */
             max-width: 600px;
             margin: 10px 0;
         }
@@ -61,12 +60,11 @@
 
         /* Scrolling Updates Section */
         .marquee-container {
-            width: 95%; 
+            width: 100%; 
             background-color: #f1f1f1;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             margin: 10px 0;
-            overflow: hidden; /* Prevent overflow */
         }
 
         .marquee {
@@ -112,7 +110,7 @@
 
         /* Search Bar */
         .search-bar {
-            width: 95%;
+            width: auto;
             display: flex;
             margin: 10px 0;
         }
