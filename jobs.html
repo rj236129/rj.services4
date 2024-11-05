@@ -3,263 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RJ Services - ITR Services</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <title>Job Portal</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding-block-end: 60px;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: black;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            min-height: 100vh;
         }
-
-        /* Header */
-        header {
-            background-color: #febd69;
+        .container {
+            max-width: AUTO;
+            margin: 0 0;
+            padding: 0;
+            flex: 1;
+        }
+        h2 {
             color: black;
-            padding: 5px;
-            inline-size: 100%;
-            display: flex;
-            align-items: center;
-            inset-block-start: 0;
-          
-        }
-
-        header img {
-            inline-size: 40px;
-            block-size: auto;
-            margin-inline-end: 10px;
-        }
-
-        .job-portal-header {
-            text-align: center;
-            margin: 0; 
-        }
-
-        .job-list {
-            inline-size: auto; /* Use relative width */
-            max-inline-size: auto;
-            margin: 10px 0;
-        }
-
-        .job-column {
-            padding: 8px;
-            margin: 5px 0; 
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-        }
-
-        .job-portal-header h1 {
-            font-size: 2em; 
-            font-weight: bold;
-        }
-
-        /* Scrolling Updates Section */
-        .marquee-container {
-            inline-size: auto; 
-            background-color: #f1f1f1;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin: 10px 0;
-            overflow: hidden; /* Prevent overflow */
-        }
-
-        .marquee {
-            display: flex;
-            animation: scroll 15s linear infinite;
-        }
-
-        .update {
-            padding: 5px;
-            background-color: #e6f7ff;
-            border-radius: 5px;
-            margin-inline-end: 5px;
-            white-space: nowrap;
-            min-inline-size: 150px;
-            font-size: 1em;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
-        /* Job List */
-        .job-header {
-            font-weight: bold;
-            text-align: center;
-            margin-block-end: 5px;
-            font-size: 1.2em;
-        }
-
-        .job-description {
-            margin-block-end: 5px;
-            padding-inline-start: 10px;
-        }
-
-        .more-details {
-            color: #0073e6;
-            text-decoration: none;
-            font-weight: bold;
-            display: block;
-            margin-inline-start: 10px;
-        }
-
-        /* Search Bar */
-        .search-bar {
-            inline-size: auto;
-            display: flex;
-            margin: 10px 0;
-        }
-
-        .search-bar input {
-            inline-size: 100%;
+            background-color: #febd69;
             padding: 10px;
-            border: 1px solid #ddd;
-            font-size: 1em;
-            box-sizing: border-box;
-            border-radius: 5px;
+            border-radius: 0px;
+            text-align: center;
+            margin: 0px 0;
         }
-
-        /* Bottom Menu */
+        h3 {
+            color: black;
+            background-color: #ffcc80;
+            padding: 10px;
+            max-width: auto;
+            border-radius: 0px;
+            text-align: center;
+            margin: 0px 0px;
+        }
+        .search-container {
+            text-align: center;
+            padding: 2px;
+            margin: 0; /* Set margin to 0 */
+            background-color: #febd69; /* Set background color for search container */
+            display: flex; /* Use flexbox for layout */
+            align-items: center; /* Center items vertically */
+        }
+        .logo {
+            height: 50px; /* Set logo height */
+            margin-right: 10px; /* Space between logo and text */
+            display: flex;
+        }
+        .logo-text {
+            font-size: 1.5em; /* Font size for RJ Services text */
+            font-weight: bold; /* Bold text */
+            color: black; /* Text color */
+        }
         .bottom-menu {
             display: flex;
-            justify-content: space-around;
-            background-color: #febd69;
-            padding: 5px;
+            justify-content: space-around; /* Adjust space for icon and text */
+            background-color: #febd69; /* Set bottom menu color */
+            padding: 5px; /* Reduced padding for bottom menu */
             border-radius: 5px;
-            inline-size: 100%; /* Full width */
-            max-inline-size: auto;
+            margin: 0; /* Remove margin for bottom menu */
             position: fixed;
-            inset-block-end: 0;
-       
-          
+            bottom: 0;
+            left: 0;
+            right: 0;
         }
-
         .bottom-menu a {
-            color: black;
+            color: black; /* Set text color to black */
             text-decoration: none;
-            font-size: 0.9em;
+            font-size: 0.7em; /* Set font size to smaller */
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: center; /* Center items in the flex column */
             transition: color 0.3s;
         }
-
         .bottom-menu a:hover {
-            color: #d97706;
+            color: #d97706; /* Change color on hover */
         }
-
         .bottom-menu .icon {
-            font-size: 1.5em;
-            margin-block-end: 3px;
+            font-size: 1.5em; /* Icon size */
+            margin-bottom: 3px; /* Space between icon and text */
         }
-
+        .new-section {
+            padding: 30px; /* Increased padding for height */
+            background-color: #e0f7fa; /* Background color for new section */
+            border-radius: 8px; /* Rounded corners */
+            text-align: center; /* Center align text */
+            margin: 0; /* Set margin to 0 for no space around new section */
+            margin-bottom: 50px; /* Additional margin at the bottom for spacing */
+        }
+        .flex-box {
+            display: flex; /* Set as flexbox */
+            justify-content: space-around; /* Space between items */
+            margin-top: 20px; /* Margin for spacing */
+        }
+        .flex-box-item {
+            background-color: #ffffff; /* White background */
+            border: 1px solid #febd69; /* Border color */
+            border-radius: 10px; /* Rounded corners */
+            padding: 15px; /* Padding for content */
+            width: 45%; /* Width of flex items */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+            transition: transform 0.2s, box-shadow 0.2s; /* Transition for hover effect */
+        }
+        .flex-box-item:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+        }
+        .p1{color: black;
+            background-color: #febd69;
+            padding: 10px 40PX;
+            border-radius: 10px;
+            text-align: center;
+            margin: 0px 0;
+        }
+        h4 {
+            color: #febd69;
+            padding: 0;
+            margin-bottom: 0;
+            font-size: 1.8em;
+        }
+        .p2 {
+            line-height: 1.8;
+            color:black;
+            font-size: 1.1em;
+        }
+        .rj{text-align: center;
+}
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <img src="C:\Users\desktop\OneDrive\Desktop\MY LOGO.png" alt="App Icon">
-    </header>     
-    <!-- Scrolling Latest Updates Section -->
-    <div class="marquee-container">
-        <div class="marquee">
-            <div class="update">🗞️ Update 1: Latest information about Exam A. <a href="#" target="_blank">Check Here</a></div>
-            <div class="update">🗞️ Update 2: Announcement regarding Exam B. <a href="#" target="_blank">Check Here</a></div>
-            <div class="update">🗞️ Update 3: Important notice for Exam C. <a href="#" target="_blank">Check Here</a></div>
-            <div class="update">🗞️ Update 4: Update on Exam D application deadline. <a href="#" target="_blank">Check Here</a></div>
+     <div class="container">
+        <!-- Section 1: Logo and Text -->
+        <div class="search-container">
+            <img src="MY LOGO.png" alt="Logo" class="logo"> <!-- Add your logo here -->
         </div>
-    </div>
+            <h3>Jobs Services</h3>
+            <div class="rj">   
+                <h4>सरकारी नौकरियाँ | आवेदन, परिणाम और एडमिट कार्ड सेवाएँ</h4>
+                <p2>जैन अकाउंटिंग और बुककीपिंग कंसल्टेंसी में, हम व्यक्तियों को सरकारी नौकरियों के लिए आवेदन करने, परिणाम ट्रैक करने और एडमिट कार्ड डाउनलोड करने में मदद करते हैं।</p2> 
+                <h4>हम किस प्रकार की सरकारी नौकरियों को कवर करते हैं?</h4>
+<p>
+    - <a href="https://www.upsc.gov.in/" target="_blank">केंद्र सरकार की नौकरियाँ (UPSC) - ताज़ा भर्तियाँ और परीक्षाएँ</a><br>
+    - <a href="https://indianrailways.gov.in/railwayboard/view_section.jsp?lang=0&id=0,7,1281" target="_blank">रेलवे भर्ती बोर्ड (RRB) - रेलवे भर्तियों की जानकारी</a><br>
+    - <a href="https://ssc.nic.in/" target="_blank">कर्मचारी चयन आयोग (SSC) - नवीनतम भर्तियाँ और परीक्षाएँ</a><br>
+    - <a href="https://joinindianarmy.nic.in/" target="_blank">रक्षा भर्तियाँ (सेना, वायु सेना, नौसेना) - भर्ती सूचना</a><br>
+    - <a href="https://rpsc.rajasthan.gov.in/" target="_blank">राजस्थान लोक सेवा आयोग (RPSC) - राज्य स्तरीय भर्तियाँ</a><br>
+    - <a href="http://rajeduboard.rajasthan.gov.in/" target="_blank">राजस्थान शिक्षा बोर्ड (Rajasthan Education Board) - TET/CTET परीक्षा की जानकारी</a><br>
+    - <a href="https://ctet.nic.in/" target="_blank">शिक्षण नौकरियाँ (CTET) - शिक्षक पात्रता परीक्षा</a><br>
+    - <a href="https://www.psuconnect.in/psu-jobs" target="_blank">सार्वजनिक क्षेत्र के उपक्रम (PSUs) - ताज़ा PSU भर्तियाँ</a><br>
+    - <a href="https://www.ibps.in/" target="_blank">बैंकिंग नौकरियाँ (IBPS, SBI) - बैंकिंग क्षेत्र में अवसर</a><br>
+    - <a href="https://employment.rajasthan.gov.in/" target="_blank">राजस्थान सरकारी नौकरियों के लिए आधिकारिक पोर्टल - नवीनतम भर्ती और विवरण</a><br>
+    - <a href="https://www.ncs.gov.in/" target="_blank">केंद्रीय सरकार की नौकरी पोर्टल - सभी सरकारी नौकरियों के लिए एकल स्थान</a><br>
+    - <a href="https://www.naukri.com/" target="_blank">नौकरी.com - निजी और सरकारी नौकरियों के लिए प्रमुख पोर्टल</a><br>
+    - <a href="https://www.timesjobs.com/" target="_blank">टाइम्सजॉब्स.com - विभिन्न क्षेत्रों में नौकरियों की खोज</a><br>
+    - <a href="https://www.freshersworld.com/" target="_blank">फ्रेशर्सवर्ल्ड.com - ताज़ा ग्रेजुएट और अनुभवी नौकरियाँ</a>
+</p>
 
-    <!-- Search Bar -->
-    <div class="search-bar">
-        <input type="text" id="searchBar" placeholder="Search for jobs..." onkeyup="filterJobs()">
-    </div>
 
-    <!-- Job List with Vertical Boxes -->
-    <div class="job-list" id="jobList">
-        <div class="job-column">
-            <div class="job-header">केंद्र सरकार की नौकरियाँ</div>
-            <div class="job-description">UPSC - संघ लोक सेवा आयोग</div>
-            <a href="https://www.upsc.gov.in/" class="more-details" target="_blank">More Details</a>
-            <div class="job-description">RRB - भारतीय रेलवे भर्ती बोर्ड</div>
-            <a href="https://indianrailways.gov.in/" class="more-details" target="_blank">More Details</a>
-            <div class="job-description">SSC - कर्मचारी चयन आयोग</div>
-            <a href="https://ssc.nic.in/" class="more-details" target="_blank">More Details</a>
-        </div>
 
-        <!-- State Government Jobs -->
-        <div class="job-column">
-            <div class="job-header">राज्य सरकार की नौकरियाँ</div>
-            <div class="job-description">RPSC - राजस्थान लोक सेवा आयोग</div>
-            <a href="https://rpsc.rajasthan.gov.in/" class="more-details" target="_blank">More Details</a>
-            <div class="job-description">MPPSC - मध्य प्रदेश लोक सेवा आयोग</div>
-            <a href="https://mppsc.nic.in/" class="more-details" target="_blank">More Details</a>
-        </div>
 
-        <!-- Other Field Jobs -->
-        <div class="job-column">
-            <div class="job-header">अन्य क्षेत्रों की नौकरियाँ</div>
-            <div class="job-description">Teaching - शिक्षक की नौकरियाँ (TET, CTET)</div>
-            <a href="https://ctet.nic.in/" class="more-details" target="_blank">More Details</a>
-            <div class="job-description">Banking - बैंकिंग नौकरियाँ (IBPS, SBI)</div>
-            <a href="https://www.ibps.in/" class="more-details" target="_blank">More Details</a>
-            <div class="job-description">Police - पुलिस और रक्षा सेवाएँ</div>
-            <a href="https://www.police.gov.in/" class="more-details" target="_blank">More Details</a>
-        </div>
-    </div>
-
-    <!-- Bottom Menu -->
+                
+                <h4>सरकारी नौकरी सेवाओं के लिए हमें क्यों चुनें?</h4>
+                <p2>
+                    <strong>विशेषज्ञ सहायता:</strong> हम आपको चरण-दर-चरण मार्गदर्शन प्रदान करते हैं।<br>
+                    <strong>सरल प्रक्रिया:</strong> हमारी सेवाएँ सरकारी नौकरी के जटिल आवेदन को सरल बनाती हैं।
+                </p2>
+                
+                <h4>यह कैसे काम करता है</h4>
+                <ol>
+                    <li><strong>हमसे संपर्क करें:</strong>अपने करियर लक्ष्यों को साझा करें।</li>
+                    <li><strong>आवेदन करें:</strong>हम आपको आवेदन करने में सहायता करते हैं।</li>
+                </ol>
+                
+                <p2>सरकारी नौकरी सुरक्षित करने के अवसर को न चूकें। हमें आपकी सहायता करने दें।</p2></div>
+                <div class="new-section">
+                    <p1>Latest Updates</p1>
+                    <div class="flex-box">
+                        <div class="flex-box-item">
+                            <h3><a href="https://www.aai.aero/en/careers/recruitment-2024" target="_blank">AAI अपरेंटिस भर्ती 2024</a></h3>
+                            <p>एयरपोर्ट्स अथॉरिटी ऑफ इंडिया (AAI) ने उत्तर क्षेत्र में 90 अपरेंटिस पदों की घोषणा की है। आवेदन करने की अंतिम तिथि 20 नवम्बर, 2024 है।</p>
+                        </div>
+                        <div class="flex-box-item">
+                            <h3><a href="https://joinindianarmy.nic.in/" target="_blank">भारतीय सेना TES-53 भर्ती 2024</a></h3>
+                            <p>भारतीय सेना TES-53 योजना के तहत 90 रिक्तियों के लिए आवेदन आमंत्रित कर रही है। आवेदन की अंतिम तिथि 6 नवम्बर, 2024 है।</p>
+                        </div>
+                    </div>
+                    <div class="flex-box">
+                        <div class="flex-box-item">
+                            <h3><a href="https://www.rajpolice.gov.in/Recruitment" target="_blank">राजस्थान पुलिस कांस्टेबल भर्ती</a></h3>
+                            <p>राजस्थान पुलिस विभाग ने कांस्टेबल पदों के लिए आवेदन आमंत्रित किए हैं। आवेदन की जानकारी के लिए बने रहें।</p>
+                        </div>
+                        <div class="flex-box-item">
+                            <h3><a href="https://rsmssb.rajasthan.gov.in/" target="_blank">RSMSSB प्रयोगशाला सहायक भर्ती</a></h3>
+                            <p>RSMSSB ने राज्य विभागों में प्रयोगशाला सहायक के पदों के लिए घोषणा की है। अधिक जानकारी RSMSSB की आधिकारिक साइट पर उपलब्ध है।</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+ <!-- Bottom Menu -->
     <div class="bottom-menu">
         <a href="index.html">
-            <i class="fas fa-home icon"></i> Home
+            <i class="fas fa-home icon"></i>
+            Home
         </a>
         <a href="#profile">
-            <i class="fas fa-user icon"></i> Profile
+            <i class="fas fa-user icon"></i>
+            Profile
         </a>
         <a href="terms&conditions.html">
-            <i class="fas fa-file-contract icon"></i> Terms
+            <i class="fas fa-file-contract icon"></i>
+            Terms
         </a>
-        <a href="privacy-policy.html">
-            <i class="fas fa-shield-alt icon"></i> Privacy 
+        <a href="privecy policy.html">
+            <i class="fas fa-shield-alt icon"></i>
+            Privacy 
         </a>
         <a href="about.html">
-            <i class="fas fa-info-circle icon"></i> About
+            <i class="fas fa-info-circle icon"></i>
+            About
         </a>
         <a href="https://wa.me/917737740207">
-            <i class="fas fa-envelope icon"></i> Contact
+            <i class="fas fa-envelope icon"></i>
+            Contact
         </a>
     </div>
-
-    <script>
-       function filterJobs() {
-    const searchInput = document.getElementById('searchBar').value.toLowerCase();
-    const jobColumns = document.querySelectorAll('.job-column');
-    
-    jobColumns.forEach(column => {
-        const jobs = column.querySelectorAll('.job-description');
-        const links = column.querySelectorAll('.more-details');
-        let hasVisibleJob = false;
-        
-        // Loop through each job description to check if it matches the search
-        jobs.forEach((job, index) => {
-            const jobText = job.textContent.toLowerCase();
-            const isVisible = jobText.includes(searchInput);
-            
-            job.style.display = isVisible ? '' : 'none'; // Show/hide job based on match
-            links[index].style.display = isVisible ? '' : 'none'; // Show/hide corresponding link
-            
-            if (isVisible) hasVisibleJob = true;
-        });
-        
-        // Show the column if it has at least one matching job
-        column.style.display = hasVisibleJob ? '' : 'none';
-    });
-}
-
-    </script>
-    
+</body>
+</html>
