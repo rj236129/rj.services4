@@ -34,36 +34,43 @@
             font-weight: bold;
         }
 
-       /* Adjusting the marquee container */
-    .marquee-container {
-        width: 100%;
-        background-color: #f1f1f1;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        margin: 0; /* Remove extra margin */
-        padding: 10px; /* Add some padding for better readability */
-    }
+      /* Container styling */
+.marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    background-color: #f1f1f1;
+    padding: 10px 0;
+}
 
-    .marquee {
-        display: flex;
-        flex-direction: column; /* Stack updates vertically */
-        gap: 10px; /* Space between each update */
-        animation: scroll-vertical 15s linear infinite;
-    }
+/* Common styling for each update */
+.update {
+    display: inline-block;
+    padding: 0 50px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
 
-    .update {
-        padding: 5px;
-        background-color: #e6f7ff;
-        border-radius: 5px;
-        font-size: 1em;
-        white-space: nowrap;
-    }
+/* Right-to-left scrolling */
+@keyframes scrollRight {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
 
-    @keyframes scroll-vertical {
-        0% { transform: translateY(100%); }
-        100% { transform: translateY(-100%); }
-    }
+/* Left-to-right scrolling */
+@keyframes scrollLeft {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Apply animations */
+.scroll-right {
+    animation: scrollRight 10s linear infinite;
+}
+
+.scroll-left {
+    animation: scrollLeft 10s linear infinite;
+}
+
 
         /* Job List */
         .job-header {
@@ -145,15 +152,16 @@
                 </h1>
             </div>
         </header>             
-  <!-- Scrolling Latest Updates Section -->
+ <!-- Scrolling Latest Updates Section -->
 <div class="marquee-container">
     <div class="marquee">
-        <div class="update">🗞️ <a href="#" target="_blank">Update 1: Latest information about Exam A.</a></div>
-        <div class="update">🗞️ <a href="#" target="_blank">Update 2: Announcement regarding Exam B.</a></div>
-        <div class="update">🗞️ <a href="#" target="_blank">Update 3: Important notice for Exam C.</a></div>
-        <div class="update">🗞️ <a href="#" target="_blank">Update 4: Update on Exam D application deadline.</a></div>
+        <div class="update scroll-right">🗞️ <a href="#" target="_blank">Update 1: Latest information about Exam A.</a></div>
+        <div class="update scroll-left">🗞️ <a href="#" target="_blank">Update 2: Announcement regarding Exam B.</a></div>
+        <div class="update scroll-right">🗞️ <a href="#" target="_blank">Update 3: Important notice for Exam C.</a></div>
+        <div class="update scroll-left">🗞️ <a href="#" target="_blank">Update 4: Update on Exam D application deadline.</a></div>
     </div>
 </div>
+
 
     <!-- Search Bar -->
     <div class="search-bar">
