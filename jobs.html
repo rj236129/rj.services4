@@ -9,7 +9,7 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            
+            padding-bottom: 60px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -129,36 +129,32 @@
         /* Bottom Menu */
         .bottom-menu {
             display: flex;
-            justify-content: space-around;
-            background-color: #febd69;
-            padding: 5px;
+            justify-content: space-around; /* Adjust space for icon and text */
+            background-color: #febd69; /* Set bottom menu color */
+            padding: 5px; /* Reduced padding for bottom menu */
             border-radius: 5px;
-            width: 100%; /* Full width */
-            max-width: 600px;
+            margin: 0; /* Remove margin for bottom menu */
             position: fixed;
             bottom: 0;
-            z-index: 1000;
+            left: 0;
+            right: 0;
         }
-
         .bottom-menu a {
-            color: black;
+            color: black; /* Set text color to black */
             text-decoration: none;
-            font-size: 0.9em;
+            font-size: 0.7em; /* Set font size to smaller */
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: center; /* Center items in the flex column */
             transition: color 0.3s;
         }
-
         .bottom-menu a:hover {
-            color: #d97706;
+            color: #d97706; /* Change color on hover */
         }
-
         .bottom-menu .icon {
-            font-size: 1.5em;
-            margin-bottom: 3px;
+            font-size: 1.5em; /* Icon size */
+            margin-bottom: 3px; /* Space between icon and text */
         }
-
         /* Responsive Font Sizes */
         @media (max-width: 768px) {
             h1 {
