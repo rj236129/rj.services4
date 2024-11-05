@@ -37,9 +37,13 @@
       /* Container styling */
 .marquee-container {
     overflow: hidden;
-    white-space: nowrap;
     background-color: #f1f1f1;
     padding: 10px 0;
+}
+
+/* Row styling */
+.update-row {
+    white-space: nowrap; /* Prevents line breaks within the row */
 }
 
 /* Common styling for each update */
@@ -70,6 +74,7 @@
 .scroll-left {
     animation: scrollLeft 10s linear infinite;
 }
+
 
 
         /* Job List */
@@ -155,12 +160,21 @@
  <!-- Scrolling Latest Updates Section -->
 <div class="marquee-container">
     <div class="marquee">
-        <div class="update scroll-right">🗞️ <a href="#" target="_blank">Update 1: Latest information about Exam A.</a></div>
-        <div class="update scroll-left">🗞️ <a href="#" target="_blank">Update 2: Announcement regarding Exam B.</a></div>
-        <div class="update scroll-right">🗞️ <a href="#" target="_blank">Update 3: Important notice for Exam C.</a></div>
-        <div class="update scroll-left">🗞️ <a href="#" target="_blank">Update 4: Update on Exam D application deadline.</a></div>
+        <div class="update-row">
+            <div class="update scroll-right">🗞️ <a href="#" target="_blank">Update 1: Latest information about Exam A.</a></div>
+        </div>
+        <div class="update-row">
+            <div class="update scroll-left">🗞️ <a href="#" target="_blank">Update 2: Announcement regarding Exam B.</a></div>
+        </div>
+        <div class="update-row">
+            <div class="update scroll-right">🗞️ <a href="#" target="_blank">Update 3: Important notice for Exam C.</a></div>
+        </div>
+        <div class="update-row">
+            <div class="update scroll-left">🗞️ <a href="#" target="_blank">Update 4: Update on Exam D application deadline.</a></div>
+        </div>
     </div>
 </div>
+
 
 
     <!-- Search Bar -->
