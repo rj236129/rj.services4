@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>Job Portal</title>
     <style>
         body {
@@ -28,26 +27,25 @@
         /* Scrolling Latest Updates Section */
         .marquee-container {
             width: 100%;
-            max-width: 900px;
             overflow: hidden;
             background-color: #f1f1f1;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             margin: 20px 0;
-            padding: 10px;
         }
 
         .marquee {
             display: flex;
-            animation: scroll 15s linear infinite;
+            animation: scroll 10s linear infinite; /* Slower for better mobile visibility */
         }
 
         .update {
-            padding: 15px;
+            padding: 10px;
             background-color: #e6f7ff;
             border-radius: 5px;
-            margin-right: 20px;
+            margin-right: 10px;
             white-space: nowrap;
+            min-width: 200px; /* Ensures updates are readable */
         }
 
         /* Animation for scrolling */
@@ -59,9 +57,8 @@
         /* Job List */
         .job-list {
             width: 100%;
-            max-width: 900px;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column; /* Stack columns vertically for mobile */
             margin: 20px 0;
         }
 
@@ -69,8 +66,7 @@
             background-color: #f9f9f9;
             border: 1px solid #ddd;
             padding: 10px;
-            flex: 1;
-            margin: 0 10px;
+            margin: 10px 0; /* Space between job sections */
         }
 
         .job-header {
@@ -102,34 +98,6 @@
             border: 1px solid #ddd;
             font-size: 16px;
             box-sizing: border-box;
-        }
-        .bottom-menu {
-            display: flex;
-            justify-content: space-around; /* Adjust space for icon and text */
-            background-color: #febd69; /* Set bottom menu color */
-            padding: 5px; /* Reduced padding for bottom menu */
-            border-radius: 5px;
-            margin: 0; /* Remove margin for bottom menu */
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-        }
-        .bottom-menu a {
-            color: black; /* Set text color to black */
-            text-decoration: none;
-            font-size: 0.7em; /* Set font size to smaller */
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Center items in the flex column */
-            transition: color 0.3s;
-        }
-        .bottom-menu a:hover {
-            color: #d97706; /* Change color on hover */
-        }
-        .bottom-menu .icon {
-            font-size: 1.5em; /* Icon size */
-            margin-bottom: 3px; /* Space between icon and text */
         }
     </style>
 </head>
@@ -183,33 +151,6 @@
             <div class="job-description">स्वास्थ्य सेवा में नौकरियाँ</div>
             <a href="https://www.mohfw.gov.in/" class="more-details" target="_blank">More Details</a>
         </div>
-    </div>
-    <!-- Bottom Menu -->
-    <div class="bottom-menu">
-        <a href="index.html">
-            <i class="fas fa-home icon"></i>
-            Home
-        </a>
-        <a href="#profile">
-            <i class="fas fa-user icon"></i>
-            Profile
-        </a>
-        <a href="terms&conditions.html">
-            <i class="fas fa-file-contract icon"></i>
-            Terms
-        </a>
-        <a href="privecy policy.html">
-            <i class="fas fa-shield-alt icon"></i>
-            Privacy 
-        </a>
-        <a href="about.html">
-            <i class="fas fa-info-circle icon"></i>
-            About
-        </a>
-        <a href="https://wa.me/917737740207">
-            <i class="fas fa-envelope icon"></i>
-            Contact
-        </a>
     </div>
     
     <script>
