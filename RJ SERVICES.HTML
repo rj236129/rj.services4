@@ -3,118 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RJ Services</title>
-    <link rel="stylesheet" href="styles.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Job Portal</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
+            padding-bottom: 60px;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-            color: black; /* Set default text color to black */
+            align-items: center;
         }
-        .search-container {
-            text-align: center;
-            padding: 2px;
-            margin: 0; /* Set margin to 0 */
-            background-color: #febd69; /* Set background color for search container */
-            display: flex; /* Use flexbox for layout */
-            align-items: center; /* Center items vertically */
-        }
-        .logo {
-            height: 50px; /* Set logo height */
-            margin-right: 10px; /* Space between logo and text */
-            display: flex;
-        }
-        .logo-text {
-            font-size: 1.5em; /* Font size for RJ Services text */
-            font-weight: bold; /* Bold text */
-            color: black; /* Text color */
-        }
-        .container {
-            max-width: 400px;
-            margin: 0 auto; /* Centering container */
-            padding: 0; /* No padding for container */
-            flex: 1;
-        }
-        h2 {
-            color: black; /* Set heading text color to black */
-            text-align: center;
-            margin: 0; /* Set margin to 0 */
-            background-color: #ffcc80; /* Set a different background color for "Our Services" */
-            padding: 10px; /* Added padding for a better look */
-            border-radius: 0px; /* Rounded corners for the heading */
-            margin-bottom: 0;
-        }
-        .service-layer {
-            display: flex;
-            flex-direction: column; /* Arrange items vertically */
-            padding: 0; /* Remove padding for layers */
-            border-radius: 10px; /* Rounded corners for layers */
-            background-color: #fff; /* Background for layers */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for layers */
-            
-        }
-        .service-box {
-            display: flex;
-            justify-content: space-between;
-            padding: 5px; /* Reduced padding for smaller spacing */
-        }
-        .service-item { 
-            width: 25%; /* Width for service boxes */
-            text-align: center;
-            border: 2px solid #febd69; /* Add border */
-            border-radius: 10px; /* Rounded corners */
-            padding: 10px; /* Add padding */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
-            transition: transform 0.2s, box-shadow 0.2s; /* Transition for hover effect */
-            position: relative; /* Position for pseudo-element */
-        }
-        .service-item:hover {
-            transform: translateY(-5px); /* Lift effect on hover */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+      
+
+
+       
+
+        .job-list {
+            width: 100%; /* Use relative width */
+            max-width: 100%; /* Max width for larger screens */
+            margin: 10px 0;
         }
 
-        .service-item h4 {
-            font-size:11px; /* Heading font size */
+        .job-column {
+            padding: 8px;
+            margin: 5px 0; 
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .job-portal-header h1 {
+            font-size: 2em; 
             font-weight: bold;
         }
-    
-        .new-section {
-            padding: 30px; /* Increased padding for height */
-            background-color: #e0f7fa; /* Background color for new section */
-            border-radius: 8px; /* Rounded corners */
-            text-align: center; /* Center align text */
-            margin: 0; /* Set margin to 0 for no space around new section */
-            margin-bottom: 50px; /* Additional margin at the bottom for spacing */
+
+        /* Scrolling Updates Section */
+        .marquee-container {
+            width:100%; 
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 10px 0;
+            overflow: hidden;
         }
-        .flex-box {
-            display: flex; /* Set as flexbox */
-            justify-content: space-around; /* Space between items */
-            margin-top: 20px; /* Margin for spacing */
-            flex-wrap: wrap; /* Allow wrapping for smaller screens */
+
+        .marquee {
+            display: flex;
+            animation: scroll 15s linear infinite;
         }
-        .flex-box a{ font-size: 10px;
-        font-weight: bold;}
-        .flex-box-item {
-            background-color: #ffffff; /* White background */
-            border: 1px solid #febd69; /* Border color */
-            border-radius: 10px; /* Rounded corners */
-            padding: 25px; /* Padding for content */
-            width: 100%; /* Width of flex items */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
-            transition: transform 0.2s, box-shadow 0.2s; /* Transition for hover effect */
-            margin: 10px; /* Margin for spacing between flex items */
+
+        .update {
+            padding: 5px;
+            background-color: #e6f7ff;
+            border-radius: 5px;
+            margin-right: 5px;
+            white-space: nowrap;
+            min-width: 150px;
+            font-size: 1em;
         }
-        .flex-box-item:hover {
-            transform: translateY(-5px); /* Lift effect on hover */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
-        .bottom-menu {
+
+        /* Job List */
+        .job-header {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 5px;
+            font-size: 1.2em;
+        }
+
+        .job-description {
+            margin-bottom: 5px;
+            padding-left: 10px;
+        }
+
+        .more-details {
+            color: #0073e6;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+            margin-left: 10px;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            width: 95%;
+            display: flex;
+            margin: 0px 0;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            font-size: 1em;
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+
+          .bottom-menu {
             display: flex;
             justify-content: space-around; /* Adjust space for icon and text */
             background-color: #febd69; /* Set bottom menu color */
@@ -142,132 +133,115 @@
             font-size: 1.5em; /* Icon size */
             margin-bottom: 3px; /* Space between icon and text */
         }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- Section 1: Logo and Text -->
-        <div class="search-container">
-            <img src="MY LOGO.png" alt="Logo" class="logo"> <!-- Add your logo here -->
-        </div>
-
-        <!-- Section 2: E-Mitra Services -->
-         <h2>E-Mitra Services</h2>
-
-        <!-- Section 3: Services Layer -->
-<div class="service-layer">
-    <div class="flex-box">
-        <div class="service-item">
-            <a href="https://janapp.rajasthan.gov.in/janaadhaar/citizenDashboard">
-                <h4>JAN-AADHAR</h4>
-            </a>
-        </div>
-        <div class="service-item">
-            <a href="ration-card.html">
-                <h4>RATION-CARD</h4>
-            </a>
-        </div>
-        <div class="service-item">
-            <a href="nfsa.html">
-                <h4>NFSA (राशन पाने के लिये)</h4>
-            </a>
-        </div>
-        <div class="service-item">
-            <a href="cast cetificate.html">
-                <h4>CAST CERTIFICATE (जाति प्रमाण पत्र)</h4>
-            </a>
-        </div>
-        <div class="service-item">
-            <a href="bonafide%20certificate.html">
-                <h4>BONAFIDE CERTIFICATE (मूल-निवास प्रमाण पात्र)</h4>
-            </a>
-        </div>
-        <div class="service-item">
-            <a href="birth%20certificate.html">
-                <h4>BIRTH CERTIFICATE (जन्म प्रमाण पत्र)</h4>
-            </a>
-        </div>
-        <div class="service-item">
-            <a href="death%20certificate.html">
-                <h4>DEATH CERTIFICATE (मृत्यु प्रमाण पत्र)</h4>
-            </a>
+      </style>
+      <body>
+        <header style="display: flex; align-items: center; justify-content: space-between; background-color: #febd69; padding:auto; width: 100%;">
+            <img src="MY LOGO.png" alt="Logo" style="height: 50px;margin-left: 5px;">
+            <h1 style="flex: 1; text-align: center; margin: 0;">
+                Job Portal
+            </h1>
+        </header>
+        
+                  
+    <!-- Scrolling Latest Updates Section -->
+    <div class="marquee-container">
+        <div class="marquee">
+            <div class="update">🗞️ Update 1: Latest information about Exam A. <a href="#" target="_blank">Check Here</a></div>
+            <div class="update">🗞️ Update 2: Announcement regarding Exam B. <a href="#" target="_blank">Check Here</a></div>
+            <div class="update">🗞️ Update 3: Important notice for Exam C. <a href="#" target="_blank">Check Here</a></div>
+            <div class="update">🗞️ Update 4: Update on Exam D application deadline. <a href="#" target="_blank">Check Here</a></div>
         </div>
     </div>
-</div>
-        <!-- Section 4: Application Forms -->
-        <div class="new-section">
-            <h2>Application Forms</h2>
-            <div class="flex-box">
-                <div class="flex-box-item">
-                    <a href="https://drive.google.com/file/d/1aGUGRbbcTQrpwkl7CPj0MiEXYid2iz4J/view?usp=sharing" target="_blank">1.:- JAN-AADHAR CARD APPLICATION FORM</a>
-                </div>
-                <div class="flex-box-item">
-                    <a href="https://drive.google.com/file/d/1VAR4-25aEipsp0WdF2lShEsqN2cRoae2/view?usp=drive_link" target="_blank">2.:- NEW RATION-CARD APPLICATION FORM FOR APL</a>
-                </div>
-                <div class="flex-box-item">
-                    <a href="https://drive.google.com/file/d/1t1X1eayB8X1yu9gP6ymzJrMwD9TVaCHc/view?usp=drive_link" target="_blank">3.:- NEW RATION-CARD APPLICATION FORM FOR BPL</a>
-                </div>
-                <div class="flex-box-item">
-                    <a href="https://drive.google.com/file/d/179j8NoBr7AUq7EOs1n35z06Gt3acLwtK/view?usp=drive_link" target="_blank">4.:- RATION CARD CORRECTION APPLICATION FORM</a>
-                </div>
-                <div class="flex-box-item">
-                    <a href="https://drive.google.com/file/d/1hSjoQgcea3xON42AFEhAJPJ5_407Fa30/view?usp=drive_link" target="_blank">5.:- NFSA APPLICATION FORM FOR RULAR</a>
-                </div>
-                <div class="flex-box-item">
-                    <a href="https://drive.google.com/file/d/1cmUrORLB8ZzED2Bo1stlx0_hFKknIPPu/view?usp=drive_link" target="_blank">6.:- OBC CAST CERTIFICATE APPLICATION FORM</a>
-                </div>
-                <div class="flex-box-item">
-                    <a href="https://drive.google.com/file/d/1brNEz51RCdhrBFiymriFElGIPjpT_a8A/view?usp=sharing" target="_blank">7.:- CAST CERTIFICATE APPLICATION FORM</a>
-                </div>
-                <div class="flex-box-item">
-                    <a href="https://drive.google.com/file/d/1A8Sd3J4kWd6DE00RdaG465dIs05XSOgV/view?usp=drive_link" target="_blank">8.:- ST/SC CAST CERTIFICATE APPLICATION FORM</a>
-                </div>
-                <div class="flex-box-item">
-                    <a href="https://drive.google.com/file/d/14lKNvRai0OcDHA62fcHgOVyZyTn9IVPf/view?usp=drive_link" target="_blank">9.:- BONAFIDE CERTIFICATE APPLICATION FORM</a>
-                </div>
-                <div class="flex-box-item">
-                    <a href="https://drive.google.com/file/d/1CtQdCYNv_Fdd-AroahuU_9IKgXf-tEWa/view?usp=drive_link" target="_blank">10.:- BIRTH CERTIFICATE APPLICATION FORM</a>
-                </div>
-                <div class="flex-box-item">
-                    <a href="https://drive.google.com/file/d/1A9IpAgzRqqyU769suqRYlwgTEX6ElYGM/view?usp=drive_link" target="_blank">11.:- DEATH CERTIFICATE APPLICATION FORM</a>
-                </div>
-                <div class="flex-box-item">
-                    <a href="https://drive.google.com/file/d/1hlGHEJP97bT9LQ5zAKfRTjMqkehlp2lK/view?usp=drive_link" target="_blank">12.:- Vivah Panjian APPLICATION FORM</a>
-                </div>
-                <div class="flex-box-item">
-                    <a href="https://drive.google.com/file/d/12SpIhgmsPgTjHlHqga61FiLii7zhtxJY/view?usp=drive_link" target="_blank">13.:- EWS STATE APPLICATION FORM</a>
-                </div>
-                <div class="flex-box-item">
-                    <a href="https://drive.google.com/file/d/1btQORO5TGPiWMMmtKfHmDiOXmGzo8M71/view?usp=drive_link" target="_blank">14.:- EWS CENTER GOVT. APPLICATION FORM</a>
-                </div>
-            </div>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" id="searchBar" placeholder="Search for jobs..." onkeyup="filterJobs()">
+    </div>
+
+    <!-- Job List with Vertical Boxes -->
+    <div class="job-list" id="jobList">
+        <div class="job-column">
+            <div class="job-header">केंद्र सरकार की नौकरियाँ</div>
+            <div class="job-description">UPSC - संघ लोक सेवा आयोग</div>
+            <a href="https://www.upsc.gov.in/" class="more-details" target="_blank">More Details</a>
+            <div class="job-description">RRB - भारतीय रेलवे भर्ती बोर्ड</div>
+            <a href="https://indianrailways.gov.in/" class="more-details" target="_blank">More Details</a>
+            <div class="job-description">SSC - कर्मचारी चयन आयोग</div>
+            <a href="https://ssc.nic.in/" class="more-details" target="_blank">More Details</a>
         </div>
-   <!-- Bottom Menu -->
+
+        <!-- State Government Jobs -->
+        <div class="job-column">
+            <div class="job-header">राज्य सरकार की नौकरियाँ</div>
+            <div class="job-description">RPSC - राजस्थान लोक सेवा आयोग</div>
+            <a href="https://rpsc.rajasthan.gov.in/" class="more-details" target="_blank">More Details</a>
+            <div class="job-description">MPPSC - मध्य प्रदेश लोक सेवा आयोग</div>
+            <a href="https://mppsc.nic.in/" class="more-details" target="_blank">More Details</a>
+        </div>
+
+        <!-- Other Field Jobs -->
+        <div class="job-column">
+            <div class="job-header">अन्य क्षेत्रों की नौकरियाँ</div>
+            <div class="job-description">Teaching - शिक्षक की नौकरियाँ (TET, CTET)</div>
+            <a href="https://ctet.nic.in/" class="more-details" target="_blank">More Details</a>
+            <div class="job-description">Banking - बैंकिंग नौकरियाँ (IBPS, SBI)</div>
+            <a href="https://www.ibps.in/" class="more-details" target="_blank">More Details</a>
+            <div class="job-description">Police - पुलिस और रक्षा सेवाएँ</div>
+            <a href="https://www.police.gov.in/" class="more-details" target="_blank">More Details</a>
+        </div>
+    </div>
+
+    <!-- Bottom Menu -->
     <div class="bottom-menu">
         <a href="index.html">
-            <i class="fas fa-home icon"></i>
-            Home
+            <i class="fas fa-home icon"></i> Home
         </a>
         <a href="#profile">
-            <i class="fas fa-user icon"></i>
-            Profile
+            <i class="fas fa-user icon"></i> Profile
         </a>
         <a href="terms&conditions.html">
-            <i class="fas fa-file-contract icon"></i>
-            Terms
+            <i class="fas fa-file-contract icon"></i> Terms
         </a>
-        <a href="privecy policy.html">
-            <i class="fas fa-shield-alt icon"></i>
-            Privacy 
+        <a href="privacy-policy.html">
+            <i class="fas fa-shield-alt icon"></i> Privacy 
         </a>
         <a href="about.html">
-            <i class="fas fa-info-circle icon"></i>
-            About
+            <i class="fas fa-info-circle icon"></i> About
         </a>
         <a href="https://wa.me/917737740207">
-            <i class="fas fa-envelope icon"></i>
-            Contact
+            <i class="fas fa-envelope icon"></i> Contact
         </a>
     </div>
-</body>
-</html>
+
+    <script>
+        function filterJobs() {
+            const searchInput = document.getElementById('searchBar').value.toLowerCase();
+            const jobColumns = document.querySelectorAll('.job-column');
+            
+            jobColumns.forEach(column => {
+                const jobs = column.querySelectorAll('.job-description');
+                const links = column.querySelectorAll('.more-details');
+                let hasVisibleJob = false;
+                
+                jobs.forEach((job, index) => {
+                    const jobText = job.textContent.toLowerCase();
+                    if (jobText.includes(searchInput)) {
+                        job.style.display = 'block'; // Show job description
+                        links[index].style.display = 'block'; // Show corresponding link
+                        hasVisibleJob = true; // At least one job is visible
+                    } else {
+                        job.style.display = 'none'; // Hide job description
+                        links[index].style.display = 'none'; // Hide corresponding link
+                    }
+                });
+                
+                // Optionally, hide the column if no jobs are visible
+                if (!hasVisibleJob) {
+                    column.style.display = 'none'; // Hide entire job column
+                } else {
+                    column.style.display = 'block'; // Show column if it has visible jobs
+                }
+            });
+        }
+    </script>
+    
