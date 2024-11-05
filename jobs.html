@@ -3,65 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>Job Portal</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            padding-bottom: 60px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            width: 100vw;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            justify-content: center;
         }
 
-        /* Header */
-        header {
-            background-color: #0073e6;
-            color: white;
-            padding: 10px; /* Reduced padding */
-            width: 100%;
-            display: flex;
-            align-items: center;
-        }
+       /* Header */
+       header {
+    background-color: #febd69; /* Set header color same as bottom menu */
+    color: black; /* Change text color for visibility */
+    padding: 10px; /* Padding remains the same */
+    inline-size: 100%;
+    display: flex;
+    align-items: center;
+}
 
-        header img {
-            width: 40px; /* Keep size for the icon */
-            height: 40px; 
-            margin-right: 10px; /* Reduced margin */
-        }
+header img {
+    inline-size: 80px;
+    block-size: 40px;
+    margin-left: 20px; 
+}
 
-        h1 {
-            margin: 0;
-            flex-grow: 1;
-            text-align: center;
-            font-size: 20px; /* Adjust font size for mobile */
-        }
-
-        /* Scrolling Latest Updates Section */
+h1 {
+    margin-inline-start: 15px; /* Keep some space from the logo */
+    margin: 0 auto; /* Center the <h1> element */
+    text-align: center; /* Center text */
+    flex: 1; /* Allow the <h1> to take remaining space */
+    font-size: 30px;
+}
+     /* Scrolling Latest Updates Section */
         .marquee-container {
-            width: 100%;
+            inline-size: 100%;
             overflow: hidden;
             background-color: #f1f1f1;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin: 15px 0; /* Reduced margin */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 10px 0; /* Reduced margin */
         }
 
         .marquee {
             display: flex;
-            animation: scroll 10s linear infinite; /* Adjust speed for mobile */
+            animation: scroll 10s linear infinite;
         }
 
         .update {
-            padding: 8px; /* Reduced padding */
+            padding: 5px; /* Reduced padding */
             background-color: #e6f7ff;
-            border-radius: 4px;
-            margin-right: 8px; /* Reduced margin */
+            border-radius: 5px;
+            margin-inline-end: 5px; /* Reduced margin */
             white-space: nowrap;
-            min-width: 180px; /* Ensure readability */
+            min-inline-size: 150px; /* Adjusted for readability */
         }
 
         @keyframes scroll {
@@ -71,59 +70,87 @@
 
         /* Job List */
         .job-list {
-            width: 100%;
-            max-width: 1000px; /* Adjusted maximum width */
+            inline-size: 100%;
             display: flex;
             flex-direction: column;
-            margin: 0 auto;
-            padding: 0 5px; /* Reduced padding */
+            margin: 10px 0; /* Reduced margin */
         }
 
         .job-column {
             background-color: #f9f9f9;
             border: 1px solid #ddd;
-            padding: 8px; /* Reduced padding */
+            padding: 5px; /* Reduced padding */
             margin: 5px 0; /* Reduced margin */
-            border-radius: 4px; /* Rounded corners */
         }
 
         .job-header {
             font-weight: bold;
             text-align: center;
-            margin-bottom: 5px; /* Reduced margin */
+            margin-block-end: 5px; /* Reduced margin */
         }
 
         .job-description {
-            margin-bottom: 4px; /* Reduced margin */
-        }
+        margin-block-end: 2px; /* Reduced margin */
+        padding-inline-start: 10px; /* Added left padding */
+    }
 
         .more-details {
             color: #0073e6;
             text-decoration: none;
             font-weight: bold;
-            font-size: 14px; /* Adjust font size for mobile */
+            padding-inline-start: 10px;
         }
 
         .search-bar {
-            width: 100%;
-            max-width: 600px;
+            inline-size: 100%;
+            max-inline-size: 600px;
             display: flex;
-            margin: 8px 0; /* Reduced margin */
+            margin: 5px 0; /* Reduced margin */
         }
 
         .search-bar input {
-            width: 100%;
+            inline-size: 100%;
             padding: 8px; /* Reduced padding */
             border: 1px solid #ddd;
-            font-size: 14px; /* Adjust font size for mobile */
+            font-size: 14px; /* Adjusted font size */
             box-sizing: border-box;
         }
-    </style>
+    
+     .bottom-menu {
+        display: flex;
+        justify-content: space-around; /* Adjust space for icon and text */
+        background-color: #febd69; /* Set bottom menu color */
+        padding: 5px; /* Reduced padding for bottom menu */
+        border-radius: 5px;
+        margin: 0; /* Remove margin for bottom menu */
+        position: fixed;
+        inset-block-end: 0;
+        inset-inline-start: 0;
+        inset-inline-end: 0;
+        z-index: 1000;
+    }
+    .bottom-menu a {
+        color: black; /* Set text color to black */
+        text-decoration: none;
+        font-size: 0.7em; /* Set font size to smaller */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center items in the flex column */
+        transition: color 0.3s;
+    }
+    .bottom-menu a:hover {
+        color: #d97706; /* Change color on hover */
+    }
+    .bottom-menu .icon {
+        font-size: 1.5em; /* Icon size */
+        margin-block-end: 3px; /* Space between icon and text */
+    }
+</style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <img src="path/to/your/icon.png" alt="App Icon">
+        <img src="C:\Users\desktop\OneDrive\Desktop\MY LOGO.png" alt="App Icon">
         <h1>Job Portal</h1>
     </header>
 
@@ -171,22 +198,50 @@
             <div class="job-description">स्वास्थ्य सेवा में नौकरियाँ</div>
             <a href="https://www.mohfw.gov.in/" class="more-details" target="_blank">More Details</a>
         </div>
+        
+        
     </div>
-
+    <!-- Bottom Menu -->
+    <div class="bottom-menu">
+        <a href="index.html">
+            <i class="fas fa-home icon"></i>
+            Home
+        </a>
+        <a href="#profile">
+            <i class="fas fa-user icon"></i>
+            Profile
+        </a>
+        <a href="terms&conditions.html">
+            <i class="fas fa-file-contract icon"></i>
+            Terms
+        </a>
+        <a href="privecy policy.html">
+            <i class="fas fa-shield-alt icon"></i>
+            Privacy 
+        </a>
+        <a href="about.html">
+            <i class="fas fa-info-circle icon"></i>
+            About
+        </a>
+        <a href="https://wa.me/917737740207">
+            <i class="fas fa-envelope icon"></i>
+            Contact
+        </a>
+    
     <script>
         function filterJobs() {
             const searchInput = document.getElementById('searchBar').value.toLowerCase();
             const jobColumns = document.querySelectorAll('.job-column');
             jobColumns.forEach(column => {
                 const jobs = column.querySelectorAll('.job-description');
-                let hasVisibleJob = false; // Track if any job in the column is visible
+                let hasVisibleJob = false;
                 jobs.forEach(job => {
                     const jobText = job.textContent.toLowerCase();
                     const isVisible = jobText.includes(searchInput);
                     job.parentElement.style.display = isVisible ? '' : 'none';
-                    if (isVisible) hasVisibleJob = true; // Set to true if any job is visible
+                    if (isVisible) hasVisibleJob = true;
                 });
-                column.style.display = hasVisibleJob ? '' : 'none'; // Show or hide the column based on job visibility
+                column.style.display = hasVisibleJob ? '' : 'none';
             });
         }
     </script>
