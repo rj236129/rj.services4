@@ -9,11 +9,11 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding-block-end: 60px;
+            padding-bottom: 60px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
         /* Header */
@@ -21,50 +21,52 @@
             background-color: #febd69;
             color: black;
             padding: 10px;
-            inline-size: 100%;
+            width: 100%;
             display: flex;
             align-items: center;
             position: sticky;
-            inset-block-start: 0;
+            top: 0;
             z-index: 1000;
         }
 
         header img {
-            inline-size: 40px;
-            block-size: auto;
-            margin-inline-end: 10px;
+            width: 40px;
+            height: auto;
+            margin-right: 10px;
         }
 
-.job-portal-header {
-    text-align: center;
-    margin: 0px 0; /* Reduce space around header */
-}
+        .job-portal-header {
+            text-align: center;
+            margin: 0; 
+        }
 
-.job-list {
-    inline-size: 100%; /* Full width */
-    max-inline-size: 600px;
-    margin: 5px 0; /* Reduced margin */
-}
+        .job-list {
+            width: 95%; /* Use relative width */
+            max-width: 600px;
+            margin: 10px 0;
+        }
 
-.job-column {
-    padding: 8px;
-    margin: 5px 0; /* Reduced space between job entries */
-}
+        .job-column {
+            padding: 8px;
+            margin: 5px 0; 
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
 
-.job-portal-header h1 {
-    font-size: 2em; /* Adjust the size as needed */
-    font-weight: bold;
-}
-
+        .job-portal-header h1 {
+            font-size: 2em; 
+            font-weight: bold;
+        }
 
         /* Scrolling Updates Section */
         .marquee-container {
-            inline-size: 95%;
-            overflow-x: hidden;
+            width: 95%; 
             background-color: #f1f1f1;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             margin: 10px 0;
+            overflow: hidden; /* Prevent overflow */
         }
 
         .marquee {
@@ -76,9 +78,9 @@
             padding: 5px;
             background-color: #e6f7ff;
             border-radius: 5px;
-            margin-inline-end: 5px;
+            margin-right: 5px;
             white-space: nowrap;
-            min-inline-size: 150px;
+            min-width: 150px;
             font-size: 1em;
         }
 
@@ -88,32 +90,16 @@
         }
 
         /* Job List */
-        .job-list {
-            inline-size: 95%;
-            max-inline-size: 100%;
-            display: flex;
-            flex-direction: column;
-            margin: 10px 0;
-        }
-
-        .job-column {
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 5px;
-        }
-
         .job-header {
             font-weight: bold;
             text-align: center;
-            margin-block-end: 5px;
+            margin-bottom: 5px;
             font-size: 1.2em;
         }
 
         .job-description {
-            margin-block-end: 5px;
-            padding-inline-start: 10px;
+            margin-bottom: 5px;
+            padding-left: 10px;
         }
 
         .more-details {
@@ -121,19 +107,18 @@
             text-decoration: none;
             font-weight: bold;
             display: block;
-            margin-inline-start: 10px;
+            margin-left: 10px;
         }
 
         /* Search Bar */
         .search-bar {
-            inline-size: 95%;
-            max-inline-size: 100%;
+            width: 95%;
             display: flex;
             margin: 10px 0;
         }
 
         .search-bar input {
-            inline-size: 100%;
+            width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
             font-size: 1em;
@@ -148,10 +133,10 @@
             background-color: #febd69;
             padding: 5px;
             border-radius: 5px;
-            inline-size: 100%;
-            max-inline-size: 600px;
+            width: 100%; /* Full width */
+            max-width: 600px;
             position: fixed;
-            inset-block-end: 0;
+            bottom: 0;
             z-index: 1000;
         }
 
@@ -171,11 +156,11 @@
 
         .bottom-menu .icon {
             font-size: 1.5em;
-            margin-block-end: 3px;
+            margin-bottom: 3px;
         }
 
         /* Responsive Font Sizes */
-        @media (max-inline-size: 768px) {
+        @media (max-width: 768px) {
             h1 {
                 font-size: 1.5em;
             }
