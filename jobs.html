@@ -33,53 +33,53 @@
             font-size: 2em; 
             font-weight: bold;
         }
-
-    /* Container styling */
+/* Container styling */
 .marquee-container {
-    width: auto; /* Set width to auto */
-    max-width: 100%; /* Ensure it does not exceed the viewport width */
-    overflow: hidden; /* Hide overflow to maintain a clean look */
-    background-color: #f1f1f1; /* Background color for visibility */
-    padding: 10px 0; /* Padding for top and bottom */
-    box-sizing: border-box; /* Include padding in the total width */
-}
+            width: auto; /* Auto width to fit content */
+            max-width: 100%;
+            overflow: hidden;
+            background-color: #f1f1f1;
+            padding: 10px 0;
+            box-sizing: border-box;
+        }
 
+        /* Row styling */
+        .update-row {
+            display: flex;
+            white-space: nowrap;
+            margin: 5px 0;
+        }
 
-/* Row styling */
-.update-row {
-    white-space: nowrap; /* Prevents line breaks within the row */
-}
+        /* Common styling for each update */
+        .update {
+            display: inline-block;
+            padding: 0 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+            white-space: nowrap;
+        }
 
-/* Common styling for each update */
-.update {
-    display: inline-block;
-    padding: 0 50px;
-    font-size: 1.2rem;
-    font-weight: bold;
-}
+        /* Scroll-right animation */
+        @keyframes scrollRight {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
 
-/* Right-to-left scrolling */
-@keyframes scrollRight {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-}
+        /* Scroll-left animation */
+        @keyframes scrollLeft {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
 
-/* Left-to-right scrolling */
-@keyframes scrollLeft {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
+        /* Apply animations to alternate directions */
+        .scroll-right {
+            animation: scrollRight 15s linear infinite;
+        }
 
-/* Apply animations */
-.scroll-right {
-    animation: scrollRight 10s linear infinite;
-}
-
-.scroll-left {
-    animation: scrollLeft 10s linear infinite;
-}
-
-
+        .scroll-left {
+            animation: scrollLeft 15s linear infinite;
+        }
 
         /* Job List */
         .job-header {
@@ -162,23 +162,20 @@
             </div>
         </header>             
  <!-- Scrolling Latest Updates Section -->
-<div class="marquee-container">
-    <div class="marquee">
-        <div class="update-row">
-            <div class="update scroll-right">🗞️ <a href="https://rsmssb.rajasthan.gov.in/page?menuName=EJwE/Y7GD1hMok0YfKTFOtUJMJFGLBa;455611;jbRgWtRe9q4=#" target="_blank">CET(GRADUATE LEVEL)-2024 registration of application : 09Aug-07-SEP-2024</a></div>
-        </div>
-        <div class="update-row">
-            <div class="update scroll-left">🗞️ <a href="https://rsmssb.rajasthan.gov.in/page?menuName=EJwE/Y7GD1hMok0YfKTFOtUJMJFGLBa;455611;jbRgWtRe9q4=#" target="_blank">CET(GRADUATE LEVEL)-2024 registration of application : 02SEP TO 01-OCT-2024</a></div>
-        </div>
-        <div class="update-row">
-            <div class="update scroll-right">🗞️ <a href="https://rsmssb.rajasthan.gov.in/page?menuName=EJwE/Y7GD1hMok0YfKTFOtUJMJFGLBa;455611;jbRgWtRe9q4=#" target="_blank">DIRECT RECRUITMENT ON VARIOUS POST OF JUNIOR INSTRUCTOR - 2024 registration of application : 13-Mar-2024 TO  11-Apr-2024</a></div>
-        </div>
-        <div class="update-row">
-            <div class="update scroll-left">🗞️ <a href="https://rsmssb.rajasthan.gov.in/page?menuName=EJwE/Y7GD1hMok0YfKTFOtUJMJFGLBa;455611;jbRgWtRe9q4=#" target="_blank">DIRECT RECRUITMENT OF JUNIOR INSTRUCTOR - 2024 registration of application : 07-Mar-2024 TO 05-Apr-2024</a></div>
-        </div>
+ <div class="marquee-container">
+    <div class="update-row">
+        <div class="update scroll-right">🗞️ <a href="https://rsmssb.rajasthan.gov.in/page?menuName=EJwE/Y7GD1hMok0YfKTFOtUJMJFGLBa;455611;jbRgWtRe9q4=#" target="_blank">CET (GRADUATE LEVEL) - 2024 registration of application: 09-Aug to 07-Sep-2024</a></div>
+    </div>
+    <div class="update-row">
+        <div class="update scroll-left">🗞️ <a href="https://rsmssb.rajasthan.gov.in/page?menuName=EJwE/Y7GD1hMok0YfKTFOtUJMJFGLBa;455611;jbRgWtRe9q4=#" target="_blank">CET (GRADUATE LEVEL) - 2024 registration of application: 02-Sep to 01-Oct-2024</a></div>
+    </div>
+    <div class="update-row">
+        <div class="update scroll-right">🗞️ <a href="https://rsmssb.rajasthan.gov.in/page?menuName=EJwE/Y7GD1hMok0YfKTFOtUJMJFGLBa;455611;jbRgWtRe9q4=#" target="_blank">DIRECT RECRUITMENT ON VARIOUS POST OF JUNIOR INSTRUCTOR - 2024 registration of application: 13-Mar-2024 to 11-Apr-2024</a></div>
+    </div>
+    <div class="update-row">
+        <div class="update scroll-left">🗞️ <a href="https://rsmssb.rajasthan.gov.in/page?menuName=EJwE/Y7GD1hMok0YfKTFOtUJMJFGLBa;455611;jbRgWtRe9q4=#" target="_blank">DIRECT RECRUITMENT OF JUNIOR INSTRUCTOR - 2024 registration of application: 07-Mar-2024 to 05-Apr-2024</a></div>
     </div>
 </div>
-
 
 
     <!-- Search Bar -->
