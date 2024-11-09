@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RJ Services - ITR Services</title>
+    <title>RJ Services - GST Services</title>
     <link rel="stylesheet" href="styles.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            background-color: #e0f7fa;
             color: black;
             display: flex;
             flex-direction: column;
@@ -43,78 +43,79 @@
         .search-container {
             text-align: center;
             padding: 2px;
-            margin: 0; /* Set margin to 0 */
-            background-color: #febd69; /* Set background color for search container */
-            display: flex; /* Use flexbox for layout */
-            align-items: center; /* Center items vertically */
+            margin: 0;
+            background-color: #febd69;
+            display: flex;
+            align-items: center;
         }
         .logo {
-            height: 50px; /* Set logo height */
-            margin-right: 10px; /* Space between logo and text */
+            height: 50px;
+            margin-right: 10px;
             display: flex;
         }
         .logo-text {
-            font-size: 1.5em; /* Font size for RJ Services text */
-            font-weight: bold; /* Bold text */
-            color: black; /* Text color */
+            font-size: 1.5em;
+            font-weight: bold;
+            color: black;
         }
         .bottom-menu {
             display: flex;
-            justify-content: space-around; /* Adjust space for icon and text */
-            background-color: #febd69; /* Set bottom menu color */
-            padding: 5px; /* Reduced padding for bottom menu */
+            justify-content: space-around;
+            background-color: #febd69;
+            padding: 5px;
             border-radius: 5px;
-            margin: 0; /* Remove margin for bottom menu */
+            margin: 0;
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
         }
         .bottom-menu a {
-            color: black; /* Set text color to black */
+            color: black;
             text-decoration: none;
-            font-size: 0.7em; /* Set font size to smaller */
+            font-size: 0.7em;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center items in the flex column */
+            align-items: center;
             transition: color 0.3s;
         }
         .bottom-menu a:hover {
-            color: #d97706; /* Change color on hover */
+            color: #d97706;
         }
         .bottom-menu .icon {
-            font-size: 1.5em; /* Icon size */
-            margin-bottom: 3px; /* Space between icon and text */
+            font-size: 1.5em;
+            margin-bottom: 3px;
         }
         .new-section {
-            padding: 30px; /* Increased padding for height */
-            background-color: #e0f7fa; /* Background color for new section */
-            border-radius: 8px; /* Rounded corners */
-            text-align: center; /* Center align text */
-            margin: 0; /* Set margin to 0 for no space around new section */
-            margin-bottom: 50px; /* Additional margin at the bottom for spacing */
+            padding: 30px;
+            background-color: #e0f7fa;
+            border-radius: 8px;
+            text-align: center;
+            margin: 0;
+            margin-bottom: 50px;
         }
         .flex-box {
-            display: flex; /* Set as flexbox */
-            justify-content: space-around; /* Space between items */
-            margin-top: 20px; /* Margin for spacing */
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
         }
         .flex-box-item {
-            background-color: #ffffff; /* White background */
-            border: 1px solid #febd69; /* Border color */
-            border-radius: 10px; /* Rounded corners */
-            padding: 15px; /* Padding for content */
-            width: 45%; /* Width of flex items */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
-            transition: transform 0.2s, box-shadow 0.2s; /* Transition for hover effect */
+            background-color: #ffffff;
+            border: 1px solid #febd69;
+            border-radius: 10px;
+            padding: 15px;
+            width: 45%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
         .flex-box-item:hover {
-            transform: translateY(-5px); /* Lift effect on hover */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
-        p1{color: black;
+        p1 {
+            color: black;
             background-color: #febd69;
-            padding: 10px 40PX;
+            padding: 10px 40px;
             border-radius: 10px;
             text-align: center;
             margin: 0px 0;
@@ -127,11 +128,26 @@
         p2 {
             margin: 10px 0;
             line-height: 1.8;
-            color:black;
+            color: black;
             font-size: 1.1em;
         }
-        .rj{text-align: center;
-        background-color: #e0f7fa;
+        .rj {
+            text-align: center;
+            background-color: #e0f7fa;
+        }
+        .button {
+            background-color: #febd69;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #d97706;
         }
     </style>
 </head>
@@ -139,63 +155,64 @@
     <div class="container">
         <!-- Section 1: Logo and Text -->
         <div class="search-container">
-            <img src="MY LOGO.png" alt="Logo" class="logo"> <!-- Add your logo here -->
+            <img src="MY LOGO.png" alt="Logo" class="logo">
         </div>
-            <h3>GST Services</h3>
-            <div class="rj">   
-                <h4>GST का पूरा नाम</h4>
-                <p2>GST का पूरा नाम "Goods and Services Tax" है जिसे हिंदी में "माल एवं सेवा कर" कहा जाता है।</p2>
-                
-                <h4>GST क्या है</h4>
-                <p2>GST भारत सरकार के दुवारा लगाया गया एक टैक्स है जो वस्तुओं और सेवाओं पर केन्द्र सरकार लगाती है।</p2>
-        
-                <h4>GST पंजीयन किसके लिए करना जरुरी है</h4>
-                <p2>
-                    किसी भी व्यापार में सालाना कारोबार 40 लाख अधिक है तो GST पंजीयन करा कर GST नंबर लेना जरुरी है।<br>
-                    किसी भी सेवा में सालाना कारोबार 20 लाख अधिक है तो GST पंजीयन करा कर GST नंबर लेना जरुरी है।<br>
-                    एक राज्य दूसरे राज्य में व्यापार करने वालो को GST पंजीयन करा कर GST नंबर लेना जरुरी है।<br>
-                    ऑनलाइन व्यापार करने वालो को GST पंजीयन करा कर GST नंबर लेना जरुरी है।
-                </p2>
-        
-                <h4>GST पंजीयन के लिए क्या -क्या दस्तावेज लगते है</h4>
-                <p2>
-                    - पैन कार्ड नंबर<br>
-                    - आधार कार्ड नंबर<br>
-                    - पासपोर्ट साइज फोटो<br>
-                    - ईमेल वह मोबाइल नंबर<br>
-                    - व्यापार का नाम वह पता<br>
-                    - व्यापार के पते का प्रमाण<br>
-                    - HSN/SAC कोड व्यापार के लिए
-                </p2>
-        
-                <h4>GST पंजीयन के लिए ऑनलाइन आवेदन कैसे करते है</h4>
-                <p2 style="background-color:#ffe57f;color:black;">आवेदन की प्रक्रिया के लिए हमसे संपर्क करें: <strong>+91 7737740207</strong></p2></div>
-                
-    <div class="new-section">
-        <p1>Latest Updates</P1>
-        <div class="flex-box">
-            <div class="flex-box-item">
-                <h3>Update 1</h3>
-                <p>Details about the first update...</p>
-            </div>
-            <div class="flex-box-item">
-                <h3>Update 2</h3>
-                <p>Details about the second update...</p>
-            </div>
+
+        <h3>GST Services</h3>
+        <div class="rj">
+            <h4>GST का पूरा नाम</h4>
+            <p2>GST का पूरा नाम "Goods and Services Tax" है जिसे हिंदी में "माल एवं सेवा कर" कहा जाता है।</p2>
+            
+            <h4>GST क्या है</h4>
+            <p2>GST भारत सरकार के दुवारा लगाया गया एक टैक्स है जो वस्तुओं और सेवाओं पर केन्द्र सरकार लगाती है।</p2>
+
+            <h4>GST पंजीयन किसके लिए करना जरुरी है</h4>
+            <p2>
+                किसी भी व्यापार में सालाना कारोबार 40 लाख अधिक है तो GST पंजीयन करा कर GST नंबर लेना जरुरी है।<br>
+                किसी भी सेवा में सालाना कारोबार 20 लाख अधिक है तो GST पंजीयन करा कर GST नंबर लेना जरुरी है।<br>
+                एक राज्य दूसरे राज्य में व्यापार करने वालो को GST पंजीयन करा कर GST नंबर लेना जरुरी है।<br>
+                ऑनलाइन व्यापार करने वालो को GST पंजीयन करा कर GST नंबर लेना जरुरी है।
+            </p2>
+
+            <h4>GST पंजीयन के लिए क्या -क्या दस्तावेज लगते है</h4>
+            <p2>
+                - पैन कार्ड नंबर<br>
+                - आधार कार्ड नंबर<br>
+                - पासपोर्ट साइज फोटो<br>
+                - ईमेल वह मोबाइल नंबर<br>
+                - व्यापार का नाम वह पता<br>
+                - व्यापार के पते का प्रमाण<br>
+                - HSN/SAC कोड व्यापार के लिए
+            </p2>
+            
         </div>
-        <div class="flex-box">
-            <div class="flex-box-item">
-                <h3>Update 3</h3>
-                <p>Details about the third update...</p>
+
+        <div class="new-section">
+            <p1><a href="GST APPLICATION-FORM.html">GST पंजीयन के लिए आवेदन करें</a></P1>
+            <div class="flex-box">
+                <div class="flex-box-item">
+                    <h3>Update 1</h3>
+                    <p>Details about the first update...</p>
+                </div>
+                <div class="flex-box-item">
+                    <h3>Update 2</h3>
+                    <p>Details about the second update...</p>
+                </div>
             </div>
-            <div class="flex-box-item">
-                <h3>Update 4</h3>
-                <p>Details about the fourth update...</p>
+            <div class="flex-box">
+                <div class="flex-box-item">
+                    <h3>Update 3</h3>
+                    <p>Details about the third update...</p>
+                </div>
+                <div class="flex-box-item">
+                    <h3>Update 4</h3>
+                    <p>Details about the fourth update...</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Bottom Menu -->
+
+    <!-- Bottom Menu -->
     <div class="bottom-menu">
         <a href="index.html">
             <i class="fas fa-home icon"></i>
