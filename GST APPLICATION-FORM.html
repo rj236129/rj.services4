@@ -7,49 +7,101 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        /* Your existing CSS styles */
+        /* General reset for mobile */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        /* Additional styling for form */
+        /* Make the body fill the screen with basic padding */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 10px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Form section styling */
         .form-section {
             padding: 20px;
             background-color: #e0f7fa;
             border-radius: 8px;
-            margin:10px 0;
-            text-align: start;
         }
+
         .form-section h4 {
             color: #febd69;
-            font-size: 1.5em;
+            font-size: 1.4em;
             text-align: center;
+            margin-bottom: 20px;
         }
+
         .form-group {
-            margin-block-end: 15px;
+            margin-bottom: 15px;
         }
+
         .form-group label {
-            display: block;
             font-weight: bold;
             color: black;
+            display: block;
+            margin-bottom: 5px;
         }
+
         .form-group input,
         .form-group select {
-            inline-size: 100%;
-            padding: 8px;
+            width: 100%;
+            padding: 12px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 1em;
+            margin-bottom: 10px;
         }
+
+        /* Submit button styling */
         .submit-button {
-            inline-size: 100%;
-            padding: 10px;
+            width: 100%;
+            padding: 12px;
             background-color: #febd69;
             border: none;
             border-radius: 5px;
-            font-size: 1.1em;
+            font-size: 1.2em;
             color: black;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
+
         .submit-button:hover {
             background-color: #ffcc80;
+        }
+
+        /* Media query for small screens */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            .form-section h4 {
+                font-size: 1.2em;
+            }
+
+            .form-group input {
+                font-size: 1.1em;
+                padding: 10px;
+            }
+
+            .submit-button {
+                font-size: 1em;
+                padding: 10px;
+            }
         }
     </style>
     <script>
