@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAN Card Services Application | RJ Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+        header, footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #febd69;
+            color: #fff;
+        }
+        .content {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        .form-container {
+            flex: 1;
+            padding-right: 20px;
+        }
+        .info-container {
+            flex: 0.4;
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        h2 {
+            color: #2a2a72;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="file"], select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .whatsapp-submit {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #25D366;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+        .whatsapp-submit:hover {
+            background-color: #1ebe56;
+        }
+        #oldPanNumberField {
+            display: none;
+        }
+        .bottom-menu {
+            display: flex;
+            justify-content: space-around;
+            background-color: #febd69;
+            padding: 5px;
+            border-radius: 5px;
+            margin: 0;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        .bottom-menu a {
+            color: black;
+            text-decoration: none;
+            font-size: 0.7em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: color 0.3s;
+        }
+        .bottom-menu a:hover {
+            color: #d97706;
+        }
+        .bottom-menu .icon {
+            font-size: 1.5em;
+            margin-bottom: 3px;
+        }
+        .search-container {
+            text-align: center;
+            padding: 2px;
+            margin: 0;
+            background-color: #febd69;
+            display: flex;
+            align-items: center;
+        }
+        .logo {
+            height: 50px;
+            margin-right: 10px;
+            display: flex;
+        }
+        h3 {
+            color: black;
+            background-color: #ffcc80;
+            padding: 10px;
+            border-radius: 0px;
+            text-align: center;
+            margin: 0px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Section 1: Logo and Text -->
+    <div class="search-container">
+        <img src="MY LOGO.png" alt="Logo" class="logo">
+    </div>
+    <h3>PAN-CARD</h3>
+<section class="content">
+    <!-- Information Section -->
+    <div class="info-container">
+        <h3>PAN Card</h3>
+        <p><strong>What is PAN?</strong><br> PAN (Permanent Account Number) is a unique 10-digit code required for financial transactions, like filing taxes, opening bank accounts, etc.</p>
+        <p><strong>Why PAN?</strong><br> It's needed for all major financial activities like investments, property transactions, and more.</p>
+        <p><strong>Who can apply?</strong><br> Anyone in India, including individuals and businesses, can apply for a PAN card.</p>
+    </div>
+
+    <!-- Form Section -->
+    <div class="form-container">
+        <h2>Apply for PAN Card</h2>
+        <p>Fill out the form below to apply for a new PAN card or for corrections. Upload your Aadhaar details and necessary documents.</p>
+
+        <!-- Application Form -->
+        <form id="panForm">
+            <div class="form-group">
+                <label for="serviceType">Service Type</label>
+                <select id="serviceType" name="serviceType" required onchange="toggleOldPanField()">
+                    <option value="" disabled selected>Select Service</option>
+                    <option value="New PAN Card">New PAN Card</option>
+                    <option value="PAN Corrections">PAN Corrections</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="aadhaar">Aadhaar Number</label>
+                <input type="text" id="aadhaar" name="aadhaar" placeholder="Enter 12-digit Aadhaar Number" required maxlength="12" pattern="\d{12}" title="Aadhaar number should be 12 digits">
+            </div>
+
+            <!-- Old PAN Number Field (hidden initially) -->
+            <div class="form-group" id="oldPanNumberField">
+                <label for="oldPanNumber">Old PAN Number</label>
+                <input type="text" id="oldPanNumber" name="oldPanNumber" placeholder="Enter Old PAN Number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="file">Upload Documents (PDF, JPG, PNG)</label>
+                <input type="file" id="file" name="file" accept=".pdf, .jpg, .png" required>
+            </div>
+            <button type="button" onclick="sendToWhatsApp()" class="whatsapp-submit">Submit & Join WhatsApp</button>
+        </form>
+    </div>
+</section>
+
+<!-- Bottom Menu -->
+<div class="bottom-menu">
+  <a href="index.html">
+      <i class="fas fa-home icon"></i>
+      Home
+  </a>
+  <a href="#profile">
+      <i class="fas fa-user icon"></i>
+      Profile
+  </a>
+  <a href="terms&conditions.html">
+      <i class="fas fa-file-contract icon"></i>
+      Terms
+  </a>
+  <a href="privecy policy.html">
+      <i class="fas fa-shield-alt icon"></i>
+      Privacy 
+  </a>
+  <a href="about.html">
+      <i class="fas fa-info-circle icon"></i>
+      About
+  </a>
+  <a href="https://wa.me/917737740207">
+      <i class="fas fa-envelope icon"></i>
+      Contact
+  </a>
+</div>
+
+<script>
+    // Function to toggle visibility of Old PAN Number input field
+    function toggleOldPanField() {
+        const serviceType = document.getElementById('serviceType').value;
+        const oldPanField = document.getElementById('oldPanNumberField');
+        
+        // If "PAN Corrections" is selected, show the Old PAN Number field
+        if (serviceType === 'PAN Corrections') {
+            oldPanField.style.display = 'block';
+        } else {
+            oldPanField.style.display = 'none';
+        }
+    }
+
+    // Function to send details to WhatsApp with pre-filled message
+    function sendToWhatsApp() {
+        // Collect form data
+        const serviceType = document.getElementById('serviceType').value;
+        const aadhaar = document.getElementById('aadhaar').value;
+        const oldPan = document.getElementById('oldPanNumber').value;
+
+        // Validate fields
+        if (!serviceType || !aadhaar || aadhaar.length !== 12) {
+            alert("Please complete all required fields, especially Aadhaar number (12 digits).");
+            return;
+        }
+        
+        // Prepare the message
+        let message = `PAN Card Service Application\n\nService Type: ${serviceType}\nAadhaar Number: ${aadhaar}`;
+        
+        if (serviceType === 'PAN Corrections' && oldPan) {
+            message += `\nOld PAN Number: ${oldPan}`;
+        }
+        
+        // WhatsApp Group Link with Pre-filled Message
+        const whatsappLink = `https://wa.me/917737740207?text=${encodeURIComponent(message)}`;
+        
+        // Open WhatsApp link
+        window.open(whatsappLink, '_blank');
+    }
+</script>
+
+</body>
+</html>
