@@ -28,3 +28,49 @@
         "description": "This API generates natural language responses based on the given input text."
     }
 }
+{
+    "services": [
+        {
+            "title": "GST Services",
+            "description": "GST पंजीकरण, फाइलिंग, और परामर्श",
+            "link": "https://example.com/gst",
+            "image": "https://example.com/gst-image.jpg"
+        },
+        {
+            "title": "ITR Services",
+            "description": "आयकर रिटर्न फाइलिंग और परामर्श",
+            "link": "https://example.com/itr",
+            "image": "https://example.com/itr-image.jpg"
+        }
+    ],
+    "jobs": [
+        {
+            "title": "सॉफ्टवेयर इंजीनियर",
+            "description": "Google में सॉफ्टवेयर इंजीनियर पद के लिए आवेदन करें",
+            "link": "https://careers.google.com/jobs/results/123456789/",
+            "company": "Google",
+            "location": "बैंगलोर, भारत"
+        },
+        {
+            "title": "डिजिटल मार्केटिंग विशेषज्ञ",
+            "description": "Amazon में डिजिटल मार्केटिंग विशेषज्ञ की आवश्यकता",
+            "link": "https://www.amazon.jobs/en/jobs/987654321/",
+            "company": "Amazon",
+            "location": "हैदराबाद, भारत"
+        }
+    ],
+    "emitra_services": [
+        {
+            "title": "बिजली बिल भुगतान",
+            "description": "ई-मित्र के माध्यम से अपने बिजली बिल का भुगतान करें",
+            "link": "https://emitra.rajasthan.gov.in/emitra/services",
+            "department": "DISCOM विभाग"
+        },
+        {
+            "title": "पानी बिल भुगतान",
+            "description": "ई-मित्र के माध्यम से अपने पानी के बिल का भुगतान करें",
+            "link": "https://emitra.rajasthan.gov.in/emitra/services",
+            "department": "PHED विभाग"
+        }
+    ]
+}
