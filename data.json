@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "title": "GST Services",
+        "description": "GST Registration, Filing, and Consultation"
+    },
+    {
+        "id": 2,
+        "title": "ITR Services",
+        "description": "Income Tax Returns Filing and Consultancy"
+    },
+    {
+        "id": 3,
+        "title": "Accounting Services",
+        "description": "Bookkeeping, Payroll, and Tax Accounting"
+    }
+]
