@@ -1,8 +1,14 @@
-{
-  "services": [
-    { "title": "GST Services", "description": "GST registration and compliance services." },
-    { "title": "ITR Services", "description": "Income Tax Returns filing for individuals and businesses." }
-  ],
-  "jobs": [ ... ],
-  "emitra_services": [ ... ]
-}
+[
+    {
+        "title": "GST Services",
+        "description": "We offer GST registration and compliance services."
+    },
+    {
+        "title": "PAN Card Services",
+        "description": "Assistance in applying for and updating PAN cards."
+    },
+    {
+        "title": "ITR Services",
+        "description": "We help with income tax return filings for individuals and businesses."
+    }
+]
