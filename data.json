@@ -1,16 +1,30 @@
 {
     "services": [
         {
+            "id": 1,
             "title": "GST Services",
             "description": "GST Registration, Filing, and Consultation",
             "link": "https://example.com/gst",
             "image": "https://example.com/gst-image.jpg"
         },
         {
+            "id": 2,
             "title": "ITR Services",
             "description": "Income Tax Returns Filing and Consultancy",
             "link": "https://example.com/itr",
             "image": "https://example.com/itr-image.jpg"
+        },
+        {
+            "id": 3,
+            "title": "Accounting Services",
+            "description": "Bookkeeping, Payroll, and Tax Accounting",
+            "link": "https://example.com/accounting",
+            "image": "https://example.com/accounting-image.jpg"
         }
-    ]
+    ],
+    "ai_features": {
+        "language_model": "GPT-3",
+        "api_url": "https://api.openai.com/v1/completions",
+        "description": "This API generates natural language responses based on the given input text."
+    }
 }
