@@ -4,22 +4,29 @@
             "id": 1,
             "title": "GST Services",
             "description": "GST Registration, Filing, and Consultation",
-            "link": "https://example.com/gst",
+            "link": "https://rj236129.github.io/gst-services",
             "image": "https://example.com/gst-image.jpg"
         },
         {
             "id": 2,
             "title": "ITR Services",
             "description": "Income Tax Returns Filing and Consultancy",
-            "link": "https://example.com/itr",
+            "link": "https://rj236129.github.io/itr-services",
             "image": "https://example.com/itr-image.jpg"
         },
         {
             "id": 3,
             "title": "Accounting Services",
             "description": "Bookkeeping, Payroll, and Tax Accounting",
-            "link": "https://example.com/accounting",
+            "link": "https://rj236129.github.io/accounting-services",
             "image": "https://example.com/accounting-image.jpg"
+        },
+        {
+            "id": 4,
+            "title": "PAN Card Services",
+            "description": "New PAN Application, Correction & Updates",
+            "link": "https://rj236129.github.io/pan-card-services",
+            "image": "https://example.com/pan-image.jpg"
         }
     ],
     "jobs": [
@@ -38,6 +45,14 @@
             "link": "https://www.amazon.jobs/en/jobs/987654321/",
             "company": "Amazon",
             "location": "Hyderabad, India"
+        },
+        {
+            "id": 3,
+            "title": "Bank PO",
+            "description": "Apply for Bank Probationary Officer (PO) Jobs in SBI",
+            "link": "https://sbi.co.in/careers/",
+            "company": "State Bank of India",
+            "location": "India"
         }
     ],
     "emitra_services": [
@@ -54,11 +69,18 @@
             "description": "Pay your water bill through e-Mitra",
             "link": "https://emitra.rajasthan.gov.in/emitra/services",
             "department": "PHED Department"
+        },
+        {
+            "id": 3,
+            "title": "Birth Certificate",
+            "description": "Apply for a birth certificate online",
+            "link": "https://emitra.rajasthan.gov.in/emitra/birth-certificate",
+            "department": "Municipal Corporation"
         }
     ],
     "ai_features": {
         "language_model": "GPT-3",
         "api_url": "https://api.openai.com/v1/completions",
-        "description": "This API generates natural language responses based on the given input text."
+        "description": "This AI API generates responses based on the input text."
     }
 }
