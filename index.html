@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RJ Services - Google Login</title>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script> <!-- EmailJS -->
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -91,6 +92,11 @@
   </div>
 
   <script>
+    // Initialize EmailJS
+    (function(){
+      emailjs.init("YOUR_PUBLIC_KEY"); // 🔁 Replace with your EmailJS public key
+    })();
+
     // Parse JWT token
     function parseJwt(token) {
       const base64Url = token.split('.')[1];
@@ -106,6 +112,17 @@
       const data = parseJwt(response.credential);
       localStorage.setItem("user", JSON.stringify(data));
       showProfile(data);
+
+      // Send email notification via EmailJS
+      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+        user_name: data.name,
+        user_email: data.email,
+        user_picture: data.picture
+      }).then(() => {
+        console.log("📧 Email sent to admin");
+      }).catch((error) => {
+        console.error("❌ Email error:", error);
+      });
 
       // Optional redirect
       setTimeout(() => {
