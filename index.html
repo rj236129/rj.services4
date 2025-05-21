@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RJ Services - Login</title>
+  <title>RJ Services - Google Login</title>
 
   <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-app-compat.js"></script>
@@ -12,34 +12,60 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #e0ecff, #ffffff);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      background: #f4f7fa;
+      text-align: center;
+      padding: 50px 20px;
     }
 
     .container {
-      background: #fff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      text-align: center;
+      background-color: #fff;
       max-width: 400px;
-      width: 100%;
+      margin: auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     }
 
     h2 {
       color: #1877f2;
-      margin-bottom: 20px;
+    }
+
+    #profile {
+      display: none;
+      margin-top: 30px;
+    }
+
+    #profile img {
+      border-radius: 50%;
+      margin: 15px 0;
+    }
+
+    #profile p {
+      margin: 8px 0;
+    }
+
+    button {
+      background-color: #d9534f;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #c9302c;
     }
 
     .login-btn {
       background-color: #4285F4;
       color: #fff;
+      margin-top: 20px;
+      padding: 10px 20px;
       border: none;
-      padding: 12px 25px;
-      border-radius: 8px;
+      border-radius: 6px;
       font-size: 16px;
       cursor: pointer;
     }
@@ -52,38 +78,74 @@
 <body>
 
   <div class="container">
-    <h2>🔐 Login with Google</h2>
+    <h2>🔐 Google Login - RJ Services</h2>
+    
+    <!-- Login Button -->
     <button class="login-btn" onclick="googleLogin()">Login with Google</button>
+
+    <!-- Profile Section -->
+    <div id="profile">
+      <h3>✅ Logged In User</h3>
+      <img id="picture" width="100" alt="User image">
+      <p><strong>Name:</strong> <span id="name"></span></p>
+      <p><strong>Email:</strong> <span id="email"></span></p>
+      <button onclick="logout()">Logout</button>
+    </div>
   </div>
 
   <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyCT3sjKPk2pLvtvJQWY_W9nINqlSgAI3LU",
-      authDomain: "rj-services-1bb77.firebaseapp.com",
-      projectId: "rj-services-1bb77",
-      storageBucket: "rj-services-1bb77.appspot.com",
-      messagingSenderId: "494561826910",
-      appId: "1:494561826910:web:b0c276b5f5368f14babccf",
-      measurementId: "G-5TNJ1BD1TJ"
-    };
+    // ✅ Replace this with your own Firebase Config from Firebase Console
+   const firebaseConfig = {
+  apiKey: "AIzaSyCBSmbqHrMQPZncBX0ot41_LW6biCHJhNQ",
+  authDomain: "ai-chat-a04d2.firebaseapp.com",
+  projectId: "ai-chat-a04d2",
+  storageBucket: "ai-chat-a04d2.firebasestorage.app",
+  messagingSenderId: "977444551817",
+  appId: "1:977444551817:web:84dc52655bfa224cb71a58",
+  measurementId: "G-LH3RX40BC9"
+};
 
+
+    // 🔥 Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
+    // 🔐 Google Sign-In
     function googleLogin() {
       const provider = new firebase.auth.GoogleAuthProvider();
       auth.signInWithPopup(provider)
         .then(result => {
-          window.location.href = "home.html";
+          const user = result.user;
+          showProfile(user);
+
+          // Optional: Mail Notification (You can use Formspree, EmailJS, or backend here)
+          // sendEmailNotification(user.email);
         })
         .catch(error => {
           alert("Login failed: " + error.message);
         });
     }
 
+    // ✅ Show user profile
+    function showProfile(user) {
+      document.getElementById("name").textContent = user.displayName;
+      document.getElementById("email").textContent = user.email;
+      document.getElementById("picture").src = user.photoURL;
+      document.getElementById("profile").style.display = "block";
+      document.querySelector(".login-btn").style.display = "none";
+    }
+
+    // 🚪 Logout
+    function logout() {
+      if (confirm("Are you sure you want to log out?")) {
+        auth.signOut().then(() => location.reload());
+      }
+    }
+
+    // 🔄 Auto Login
     auth.onAuthStateChanged(user => {
       if (user) {
-        window.location.href = "home.html";
+        showProfile(user);
       }
     });
   </script>
