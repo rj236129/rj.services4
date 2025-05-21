@@ -504,34 +504,6 @@
             Contact
         </a>
     </div>
- <h2>👋 Welcome to RJ Services</h2>
-  <div id="user-info">
-    <p><strong>Name:</strong> <span id="name"></span></p>
-    <p><strong>Email:</strong> <span id="email"></span></p>
-    <img id="picture" width="100" alt="User picture"/>
-  </div>
-
-  <button onclick="logout()">Logout</button>
-
-  <script>
-    // ✅ Check if user is logged in
-    const user = JSON.parse(localStorage.getItem("user"));
-
-    if (!user) {
-      // ❌ Agar user data nahi mila, wapas login page pe bhej do
-      window.location.href = "index.html";
-    } else {
-      // ✅ Show user info
-      document.getElementById("name").textContent = user.name;
-      document.getElementById("email").textContent = user.email;
-      document.getElementById("picture").src = user.picture;
-    }
-
-    function logout() {
-      localStorage.removeItem("user");
-      window.location.href = "home.html";
-    }
-  </script>
     
 </body>
 </html>
