@@ -80,7 +80,7 @@
          data-size="large">
     </div>
 
-    <!-- Profile Info After Login -->
+    <!-- Profile Info -->
     <div id="profile">
       <h3>✅ Logged In User</h3>
       <img id="picture" width="100" alt="User image">
@@ -91,35 +91,52 @@
   </div>
 
   <script>
-    function handleCredentialResponse(response) {
-      const data = parseJwt(response.credential);
-      document.getElementById("name").textContent = data.name;
-      document.getElementById("email").textContent = data.email;
-      document.getElementById("picture").src = data.picture;
-      document.getElementById("profile").style.display = "block";
-      document.querySelector(".g_id_signin").style.display = "none";
-
-      // Optional redirect to home.html
-      setTimeout(() => {
-        window.location.href = "home.html"; // ⬅️ Change or remove this if not needed
-      }, 1500);
-    }
-
+    // Parse JWT token
     function parseJwt(token) {
       const base64Url = token.split('.')[1];
       const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      const jsonPayload = decodeURIComponent(
-        atob(base64)
-          .split('')
-          .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
-          .join('')
-      );
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(c =>
+        '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+      ).join(''));
       return JSON.parse(jsonPayload);
     }
 
+    // Handle login
+    function handleCredentialResponse(response) {
+      const data = parseJwt(response.credential);
+      localStorage.setItem("user", JSON.stringify(data));
+      showProfile(data);
+
+      // Optional redirect
+      setTimeout(() => {
+        window.location.href = "home.html"; // optional
+      }, 1500);
+    }
+
+    // Show profile
+    function showProfile(user) {
+      document.getElementById("name").textContent = user.name;
+      document.getElementById("email").textContent = user.email;
+      document.getElementById("picture").src = user.picture;
+      document.getElementById("profile").style.display = "block";
+      document.querySelector(".g_id_signin").style.display = "none";
+    }
+
+    // Logout function
     function signOut() {
-      google.accounts.id.disableAutoSelect();
-      location.reload();
+      if (confirm("Are you sure you want to log out?")) {
+        google.accounts.id.disableAutoSelect();
+        localStorage.removeItem("user");
+        location.reload();
+      }
+    }
+
+    // Auto load profile if user exists
+    window.onload = function () {
+      const user = localStorage.getItem("user");
+      if (user) {
+        showProfile(JSON.parse(user));
+      }
     }
   </script>
 
