@@ -118,6 +118,7 @@
       const provider = new firebase.auth.GoogleAuthProvider();
       auth.signInWithPopup(provider)
         .then(result => {
+          sessionStorage.setItem("justLoggedIn", "true");  // mark login
           window.location.href = "home.html";
         })
         .catch(error => {
@@ -132,6 +133,7 @@
 
       auth.signInWithEmailAndPassword(email, password)
         .then(() => {
+          sessionStorage.setItem("justLoggedIn", "true");
           window.location.href = "home.html";
         })
         .catch(error => {
@@ -158,12 +160,21 @@
         });
     }
 
-    // 🔄 Redirect if already logged in
+    // ✅ Redirect only if not just signed out
     auth.onAuthStateChanged(user => {
-      if (user) {
+      const fromLogout = sessionStorage.getItem("logout") === "true";
+      const justLoggedIn = sessionStorage.getItem("justLoggedIn") === "true";
+
+      if (user && !fromLogout && !justLoggedIn) {
         window.location.href = "home.html";
       }
     });
+
+    // ✅ Reset flags on load
+    window.onload = () => {
+      sessionStorage.removeItem("logout");
+      sessionStorage.removeItem("justLoggedIn");
+    };
   </script>
 
 </body>
